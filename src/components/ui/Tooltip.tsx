@@ -1,13 +1,7 @@
 import { useId, useState, type ReactNode } from 'react'
 import { cn } from '@/utils/cn'
 
-interface TooltipProps {
-  content: string
-  children: ReactNode
-  side?: 'top' | 'bottom'
-}
-
-export function Tooltip({ content, children, side = 'top' }: TooltipProps) {
+export function Tooltip({ content, children, side = 'top' }: { content: string; children: ReactNode; side?: 'top' | 'bottom' }) {
   const [visible, setVisible] = useState(false)
   const id = useId()
 
@@ -25,7 +19,7 @@ export function Tooltip({ content, children, side = 'top' }: TooltipProps) {
           role="tooltip"
           id={id}
           className={cn(
-            'absolute z-50 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-surface-4 border border-border-strong px-2.5 py-1.5 text-caption text-content-primary shadow-overlay animate-fade-in pointer-events-none',
+            'pointer-events-none absolute left-1/2 z-50 max-w-xs -translate-x-1/2 animate-fade-in rounded-md bg-navy px-2.5 py-1.5 text-caption leading-snug text-white shadow-overlay',
             side === 'top' ? 'bottom-full mb-2' : 'top-full mt-2',
           )}
         >

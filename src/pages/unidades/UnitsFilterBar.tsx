@@ -63,7 +63,7 @@ export function UnitsFilterBar({
         <Select aria-label="Gerente" value={manager} onChange={(e) => onManagerChange(e.target.value)} options={managerOptions} className="w-44" />
         <Select aria-label="Ordenar por" value={sort} onChange={(e) => onSortChange(e.target.value as UnitSortKey)} options={sortOptions} className="w-52 ml-auto" />
       </FilterBar>
-      <div className="flex items-center justify-between text-caption text-content-tertiary">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-caption text-ink-tertiary">
         <span>{resultCount} de {units.length} unidades · Ambiente demonstrativo — dados simulados</span>
         <span className="flex items-center gap-1.5">
           <RefreshCw className="h-3 w-3" />

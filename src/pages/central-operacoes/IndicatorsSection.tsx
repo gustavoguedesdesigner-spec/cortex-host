@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { DollarSign, Package, Percent, ShoppingCart, TrendingDown } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/SectionHeader'
-import { MetricCard } from '@/components/ui/MetricCard'
+import { MetricCard, MetricStrip } from '@/components/ui/MetricCard'
 import { MetricDetailModal, type MetricDetailConfig } from '@/components/cortex/MetricDetailModal'
 import { getUnidadesOrdenadasPorCriticidade } from '@/data/units'
 import { networkSummary } from '@/data/network-summary'
@@ -85,11 +84,10 @@ export function IndicatorsSection() {
   return (
     <section>
       <SectionHeader title="Indicadores principais" description="Consolidado das 6 unidades no período selecionado" />
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
+      <MetricStrip>
         <MetricCard
           titulo="CMV real"
           valor={formatPercent(networkSummary.cmvReal)}
-          icon={<Percent className="h-3.5 w-3.5" />}
           status="critical"
           variacao={formatPercentPoints(networkSummary.cmvReal - networkSummary.cmvMeta)}
           direcaoVariacao="up"
@@ -100,7 +98,6 @@ export function IndicatorsSection() {
         <MetricCard
           titulo="CMV teórico"
           valor={formatPercent(networkSummary.cmvTeorico)}
-          icon={<Percent className="h-3.5 w-3.5" />}
           status="attention"
           variacao={formatPercentPoints(networkSummary.cmvTeoricoVariacaoAnterior)}
           direcaoVariacao="up"
@@ -111,7 +108,6 @@ export function IndicatorsSection() {
         <MetricCard
           titulo="Diferença financeira"
           valor={formatCurrencyCompactBRL(networkSummary.diferencaFinanceira)}
-          icon={<DollarSign className="h-3.5 w-3.5" />}
           status="critical"
           comparacao="impacto estimado no período"
           onClick={() => setSelectedMetricId('diferenca')}
@@ -119,7 +115,6 @@ export function IndicatorsSection() {
         <MetricCard
           titulo="Compras do período"
           valor={formatCurrencyCompactBRL(networkSummary.compras)}
-          icon={<ShoppingCart className="h-3.5 w-3.5" />}
           status="attention"
           variacao={`+${(networkSummary.comprasVariacaoAnterior * 100).toFixed(1)}%`}
           direcaoVariacao="up"
@@ -129,7 +124,6 @@ export function IndicatorsSection() {
         <MetricCard
           titulo="Valor em estoque"
           valor={formatCurrencyCompactBRL(networkSummary.valorEstoque)}
-          icon={<Package className="h-3.5 w-3.5" />}
           status="success"
           comparacao="consolidado das 6 unidades"
           onClick={() => setSelectedMetricId('estoque')}
@@ -137,14 +131,13 @@ export function IndicatorsSection() {
         <MetricCard
           titulo="Perdas registradas"
           valor={formatCurrencyCompactBRL(networkSummary.perdas)}
-          icon={<TrendingDown className="h-3.5 w-3.5" />}
           status="critical"
           variacao={`+${(networkSummary.perdasVariacaoAnterior * 100).toFixed(1)}%`}
           direcaoVariacao="up"
           comparacao="vs. período anterior"
           onClick={() => setSelectedMetricId('perdas')}
         />
-      </div>
+      </MetricStrip>
 
       <MetricDetailModal metric={selectedMetricId ? buildMetricConfig(selectedMetricId) : null} onClose={() => setSelectedMetricId(null)} />
     </section>

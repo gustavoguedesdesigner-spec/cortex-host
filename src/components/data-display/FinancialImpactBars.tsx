@@ -1,37 +1,30 @@
 import type { FinancialImpactCategory } from '@/types'
 import { formatCurrencyBRL } from '@/utils/format'
-import { ArrowUp, ArrowDown, Minus } from 'lucide-react'
 import { cn } from '@/utils/cn'
 
-const trendIcon = { up: ArrowUp, down: ArrowDown, flat: Minus }
-const trendColor = { up: 'text-status-critical', down: 'text-status-success', flat: 'text-content-tertiary' }
-
+/** Barras horizontais neutras; apenas a categoria de maior peso recebe o acento. */
 export function FinancialImpactBars({ categories, total }: { categories: FinancialImpactCategory[]; total: number }) {
   const max = Math.max(...categories.map((c) => c.valor))
 
   return (
-    <div className="flex flex-col gap-3.5">
-      {categories.map((cat) => {
-        const TrendIcon = trendIcon[cat.tendencia]
-        const pct = cat.valor / total
-
-        return (
-          <div key={cat.id} className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between gap-3 text-support">
-              <span className="font-medium text-content-primary">{cat.categoria}</span>
-              <span className="flex items-center gap-2 text-content-secondary shrink-0">
-                <TrendIcon className={cn('h-3 w-3', trendColor[cat.tendencia])} />
-                {formatCurrencyBRL(cat.valor)}
-                <span className="text-content-tertiary">({(pct * 100).toFixed(0)}%)</span>
-              </span>
-            </div>
-            <div className="h-2 w-full rounded-full bg-surface-4 overflow-hidden">
-              <div className="h-full rounded-full bg-cortex-500" style={{ width: `${(cat.valor / max) * 100}%` }} />
-            </div>
-            <span className="text-caption text-content-tertiary">Maior contribuição: {cat.unidadePrincipal}</span>
+    <div className="flex flex-col divide-y divide-border">
+      {categories.map((cat, i) => (
+        <div key={cat.id} className="flex flex-col gap-2 py-3 first:pt-0 last:pb-0">
+          <div className="flex items-baseline justify-between gap-3 text-support">
+            <span className="font-medium text-ink-primary">{cat.categoria}</span>
+            <span className="tabular text-ink-secondary">
+              {formatCurrencyBRL(cat.valor)}
+              <span className="ml-1.5 text-ink-tertiary">{((cat.valor / total) * 100).toFixed(0)}%</span>
+            </span>
           </div>
-        )
-      })}
+          <div className="flex items-center gap-3">
+            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-surface-subtle">
+              <div className={cn('h-full rounded-full', i === 0 ? 'bg-accent' : 'bg-navy/35')} style={{ width: `${(cat.valor / max) * 100}%` }} />
+            </div>
+            <span className="w-40 shrink-0 truncate text-caption text-ink-tertiary">{cat.unidadePrincipal}</span>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

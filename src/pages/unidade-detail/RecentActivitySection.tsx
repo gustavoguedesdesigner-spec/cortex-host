@@ -39,20 +39,20 @@ export function RecentActivitySection({ eventos }: { eventos: UnitActivityEvent[
         }
       />
       <Card padded={false}>
-        <ul className="flex flex-col divide-y divide-border-subtle">
+        <ul className="flex flex-col divide-y divide-border">
           {filtrados.map((e, i) => {
             const Icon = iconByType[e.tipo] ?? Activity
             return (
               <li key={i} className="flex items-center justify-between gap-4 px-4 py-3">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-3 text-content-tertiary">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-subtle text-ink-tertiary">
                     <Icon className="h-3.5 w-3.5" />
                   </span>
-                  <p className="text-support text-content-secondary truncate">
-                    <span className="font-medium text-content-primary">{e.usuario}</span> {e.acao}
+                  <p className="text-support text-ink-secondary truncate">
+                    <span className="font-medium text-ink-primary">{e.usuario}</span> {e.acao}
                   </p>
                 </div>
-                <span className="text-caption text-content-tertiary shrink-0">{formatRelativeShort(e.horario)}</span>
+                <span className="text-caption text-ink-tertiary shrink-0">{formatRelativeShort(e.horario)}</span>
               </li>
             )
           })}

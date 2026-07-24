@@ -21,7 +21,7 @@ export function UnitDetailDrawer({ unit, onClose }: { unit: Unit | null; onClose
       <div className="flex flex-col gap-5">
         <div className="flex items-center justify-between">
           <StatusBadge level={unit.nivelAtencao} />
-          <span className="text-support text-content-tertiary">{unit.cidade} · {unit.regiao}</span>
+          <span className="text-support text-ink-tertiary">{unit.cidade} · {unit.regiao}</span>
         </div>
 
         <DataList
@@ -31,7 +31,7 @@ export function UnitDetailDrawer({ unit, onClose }: { unit: Unit | null; onClose
             { label: 'CMV real', value: formatPercent(unit.cmvReal) },
             {
               label: 'Desvio',
-              value: <span className={desvio > 0 ? 'text-status-critical' : 'text-status-success'}>{formatPercentPoints(desvio)}</span>,
+              value: <span className={desvio > 0 ? 'text-danger' : 'text-success'}>{formatPercentPoints(desvio)}</span>,
             },
             { label: 'Vendas no período', value: formatCurrencyBRL(unit.vendas) },
             { label: 'Compras no período', value: formatCurrencyBRL(unit.compras) },
@@ -43,7 +43,7 @@ export function UnitDetailDrawer({ unit, onClose }: { unit: Unit | null; onClose
         />
 
         <div>
-          <p className="text-card-title text-content-primary mb-2">Tendência de CMV — 8 semanas</p>
+          <p className="text-card-title text-ink-primary mb-2">Tendência de CMV — 8 semanas</p>
           <CmvWeeklyChart data={series} meta={cmvMeta} height={180} />
         </div>
 

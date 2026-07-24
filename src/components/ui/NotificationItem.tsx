@@ -1,35 +1,30 @@
-import { OctagonAlert, TriangleAlert, CircleCheckBig, Info } from 'lucide-react'
 import { cn } from '@/utils/cn'
 import type { NotificationItemData, NotificationSeverity } from '@/types'
 import { formatRelativeShort } from '@/utils/format'
 
-const severityConfig: Record<NotificationSeverity, { icon: typeof Info; classes: string }> = {
-  critical: { icon: OctagonAlert, classes: 'text-status-critical bg-status-criticalBg' },
-  attention: { icon: TriangleAlert, classes: 'text-status-attention bg-status-attentionBg' },
-  info: { icon: Info, classes: 'text-status-info bg-status-infoBg' },
-  success: { icon: CircleCheckBig, classes: 'text-status-success bg-status-successBg' },
+const dotBySeverity: Record<NotificationSeverity, string> = {
+  critical: 'bg-danger',
+  attention: 'bg-warning',
+  info: 'bg-info',
+  success: 'bg-success',
 }
 
 export function NotificationItem({ data, onClick }: { data: NotificationItemData; onClick?: () => void }) {
-  const { icon: Icon, classes } = severityConfig[data.severidade]
-
   return (
     <button
       onClick={onClick}
-      className="flex w-full items-start gap-3 px-4 py-3.5 text-left border-b border-border-subtle last:border-b-0 hover:bg-surface-4 transition-colors"
+      className="flex w-full items-start gap-3 border-b border-border px-4 py-3 text-left transition-colors last:border-b-0 hover:bg-surface-hover"
     >
-      <span className={cn('flex h-7 w-7 shrink-0 items-center justify-center rounded-full', classes)}>
-        <Icon className="h-3.5 w-3.5" />
-      </span>
-      <span className="flex-1 min-w-0">
+      <span className={cn('mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full', dotBySeverity[data.severidade])} aria-hidden="true" />
+      <span className="min-w-0 flex-1">
         <span className="flex items-center gap-2">
-          <span className={cn('text-support font-semibold text-content-primary', !data.lida && 'pr-1.5')}>{data.titulo}</span>
-          {!data.lida && <span className="h-1.5 w-1.5 rounded-full bg-cortex-500 shrink-0" aria-label="Não lida" />}
+          <span className="text-support font-medium text-ink-primary">{data.titulo}</span>
+          {!data.lida && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-label="Não lida" />}
         </span>
-        <span className="block text-support text-content-secondary mt-0.5 line-clamp-2">{data.descricao}</span>
-        <span className="flex items-center gap-2 mt-1.5 text-caption text-content-tertiary">
+        <span className="mt-0.5 block line-clamp-2 text-support text-ink-secondary">{data.descricao}</span>
+        <span className="mt-1 flex items-center gap-2 text-caption text-ink-tertiary">
           {data.unidade && <span>{data.unidade}</span>}
-          {data.unidade && <span aria-hidden="true">•</span>}
+          {data.unidade && <span aria-hidden="true">·</span>}
           <span>{formatRelativeShort(data.horario)}</span>
         </span>
       </span>

@@ -41,11 +41,11 @@ export function ComparisonDrawer({ units, onClose }: { units: Unit[]; onClose: (
     <Drawer isOpen={isOpen} onClose={onClose} title="Comparar unidades" widthClassName="w-full max-w-3xl">
       {isOpen && (
         <div className="flex flex-col gap-5">
-          <div className="flex items-start gap-2.5 rounded-md bg-surface-3/60 border border-border-subtle px-3.5 py-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cortex-900/60 text-cortex-400">
+          <div className="flex items-start gap-2.5 rounded-md bg-surface-subtle border border-border px-3.5 py-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
               <CortexMark className="h-3.5 w-3.5" />
             </span>
-            <p className="text-support text-content-secondary leading-relaxed">
+            <p className="text-support text-ink-secondary leading-relaxed">
               {first && second
                 ? `${first.nomeCurto} vende ${Math.abs(vendaDiffPct)}% ${vendaDiffPct >= 0 ? 'mais' : 'menos'} que ${second.nomeCurto}, mas apresenta impacto financeiro estimado ${impactoRatio}x ${Number(impactoRatio) >= 1 ? 'maior' : 'menor'}. A principal diferença está nas categorias de carnes e chope.`
                 : 'Selecione entre 2 e 4 unidades para comparar.'}
@@ -55,10 +55,10 @@ export function ComparisonDrawer({ units, onClose }: { units: Unit[]; onClose: (
           <div className="overflow-x-auto">
             <table className="w-full text-support">
               <thead>
-                <tr className="border-b border-border-subtle">
-                  <th className="text-left py-2 pr-4 text-label text-content-tertiary">Indicador</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 pr-4 text-label text-ink-tertiary">Indicador</th>
                   {units.map((u) => (
-                    <th key={u.id} className="text-right py-2 pl-4 text-label text-content-primary">{u.nomeCurto}</th>
+                    <th key={u.id} className="text-right py-2 pl-4 text-label text-ink-primary">{u.nomeCurto}</th>
                   ))}
                 </tr>
               </thead>
@@ -68,8 +68,8 @@ export function ComparisonDrawer({ units, onClose }: { units: Unit[]; onClose: (
                   const best = row.higherIsBetter ? Math.max(...values) : Math.min(...values)
                   const worst = row.higherIsBetter ? Math.min(...values) : Math.max(...values)
                   return (
-                    <tr key={row.label} className="border-b border-border-subtle last:border-b-0">
-                      <td className="py-2 pr-4 text-content-tertiary">{row.label}</td>
+                    <tr key={row.label} className="border-b border-border last:border-b-0">
+                      <td className="py-2 pr-4 text-ink-tertiary">{row.label}</td>
                       {units.map((u) => {
                         const raw = row.getRaw(u)
                         const isBest = raw === best && best !== worst
@@ -79,9 +79,9 @@ export function ComparisonDrawer({ units, onClose }: { units: Unit[]; onClose: (
                             key={u.id}
                             className={cn(
                               'py-2 pl-4 text-right font-medium',
-                              isBest && 'text-status-success',
-                              isWorst && 'text-status-critical',
-                              !isBest && !isWorst && 'text-content-primary',
+                              isBest && 'text-success',
+                              isWorst && 'text-danger',
+                              !isBest && !isWorst && 'text-ink-primary',
                             )}
                           >
                             {row.getValue(u)}

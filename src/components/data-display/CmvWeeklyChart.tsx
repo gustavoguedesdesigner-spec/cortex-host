@@ -2,40 +2,48 @@ import { Area, AreaChart, CartesianGrid, Legend, ReferenceLine, ResponsiveContai
 import type { CmvWeeklyPoint } from '@/data/cmv-weekly-series'
 import { formatPercent } from '@/utils/format'
 
-interface CmvWeeklyChartProps {
-  data: CmvWeeklyPoint[]
-  meta: number
-  height?: number
-}
+const AXIS = { fill: 'var(--chart-axis)', fontSize: 11 }
 
-export function CmvWeeklyChart({ data, meta, height = 260 }: CmvWeeklyChartProps) {
+export function CmvWeeklyChart({ data, meta, height = 260 }: { data: CmvWeeklyPoint[]; meta: number; height?: number }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <AreaChart data={data} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
+      <AreaChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
         <defs>
-          <linearGradient id="cmvWeeklyRealFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#C2793D" stopOpacity={0.32} />
-            <stop offset="100%" stopColor="#C2793D" stopOpacity={0} />
+          <linearGradient id="cmvRealFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--chart-accent)" stopOpacity={0.14} />
+            <stop offset="100%" stopColor="var(--chart-accent)" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid stroke="#232B31" vertical={false} />
-        <XAxis dataKey="semana" tick={{ fill: '#6C7880', fontSize: 11 }} axisLine={{ stroke: '#232B31' }} tickLine={false} />
+        <CartesianGrid stroke="var(--chart-grid)" vertical={false} />
+        <XAxis dataKey="semana" tick={AXIS} axisLine={false} tickLine={false} dy={6} />
         <YAxis
           tickFormatter={(v) => formatPercent(v, 0)}
-          tick={{ fill: '#6C7880', fontSize: 11 }}
+          tick={AXIS}
           axisLine={false}
           tickLine={false}
-          width={44}
-          domain={['dataMin - 0.01', 'dataMax + 0.01']}
+          width={46}
+          domain={['dataMin - 0.012', 'dataMax + 0.008']}
         />
         <Tooltip
           formatter={(value: number, name: string) => [formatPercent(value), name]}
-          contentStyle={{ background: '#1B2329', border: '1px solid #3A444C', borderRadius: 8, fontSize: 12, color: '#EDEFF0' }}
+          contentStyle={{
+            background: '#FFFFFF',
+            border: '1px solid #E4E7EB',
+            borderRadius: 10,
+            fontSize: 12,
+            color: '#171A1F',
+            boxShadow: '0 8px 26px rgba(16,24,40,0.07)',
+          }}
         />
-        <Legend formatter={(value) => <span style={{ color: '#9CA8AE', fontSize: 12 }}>{value}</span>} iconType="circle" iconSize={8} />
-        <ReferenceLine y={meta} stroke="#4E88C4" strokeDasharray="3 3" strokeWidth={1.3} label={{ value: 'Meta', position: 'insideTopRight', fill: '#4E88C4', fontSize: 11 }} />
-        <Area type="monotone" dataKey="cmvTeorico" name="CMV teórico" stroke="#6C7880" strokeWidth={1.5} strokeDasharray="4 3" fill="none" />
-        <Area type="monotone" dataKey="cmvReal" name="CMV real" stroke="#C2793D" strokeWidth={2.2} fill="url(#cmvWeeklyRealFill)" />
+        <Legend formatter={(v) => <span style={{ color: '#656B75', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
+        <ReferenceLine
+          y={meta}
+          stroke="var(--chart-neutral)"
+          strokeDasharray="4 4"
+          label={{ value: 'Meta', position: 'insideTopRight', fill: 'var(--chart-neutral)', fontSize: 11 }}
+        />
+        <Area type="monotone" dataKey="cmvTeorico" name="CMV teórico" stroke="var(--chart-navy)" strokeWidth={1.4} fill="none" dot={false} />
+        <Area type="monotone" dataKey="cmvReal" name="CMV real" stroke="var(--chart-accent)" strokeWidth={2} fill="url(#cmvRealFill)" dot={false} />
       </AreaChart>
     </ResponsiveContainer>
   )

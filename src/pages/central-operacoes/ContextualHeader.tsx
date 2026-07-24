@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { RefreshCw, CircleCheckBig } from 'lucide-react'
+import { CircleCheckBig, Clock, RefreshCw } from 'lucide-react'
+import { PageHeader } from '@/components/ui/PageHeader'
 import { IconButton } from '@/components/ui/Button'
-import { IntegrationStatusRow } from '@/components/data-display/IntegrationStatusRow'
+import { cn } from '@/utils/cn'
 import { useAppState, useUnitOptions } from '@/context/AppStateContext'
 import { periodOptions } from '@/data/periods'
 import { integrationStatus, networkSummary } from '@/data/network-summary'
@@ -29,43 +30,56 @@ export function ContextualHeader() {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <p className="text-caption text-content-tertiary mb-1">
-            {formatDateFull(networkSummary.dataSimulada)} · Ambiente demonstrativo — dados simulados
-          </p>
-          <h1 className="text-page-title">Bom dia, {demoUser.nome}.</h1>
-          <p className="text-body text-content-secondary mt-1">
-            Veja o que exige sua atenção nas operações da {demoUser.empresa}.
-          </p>
+    <PageHeader
+      title={`Bom dia, ${demoUser.nome}.`}
+      description={`Veja o que exige sua atenção nas operações da ${demoUser.empresa}.`}
+      meta={
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-caption text-ink-tertiary">
+          <span>{formatDateFull(networkSummary.dataSimulada)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{periodoLabel}</span>
+          <span aria-hidden="true">·</span>
+          <span>{unidadeLabel}</span>
+          <span aria-hidden="true">·</span>
+          <span>Ambiente demonstrativo — dados simulados</span>
         </div>
-
-        <div className="flex flex-col items-start gap-1.5 sm:items-end shrink-0">
-          <div className="flex items-center gap-1.5 text-support text-content-tertiary">
+      }
+      actions={
+        <div className="flex flex-col items-start gap-2 lg:items-end">
+          <div className="flex items-center gap-1.5 text-caption">
+            {justUpdated ? (
+              <span className="flex items-center gap-1.5 text-success">
+                <CircleCheckBig className="h-3.5 w-3.5" strokeWidth={1.7} />
+                Dados atualizados com sucesso
+              </span>
+            ) : (
+              <span className="text-ink-tertiary">Dados atualizados {updatedLabel}</span>
+            )}
             <IconButton
-              icon={<RefreshCw className={isRefreshing ? 'h-3.5 w-3.5 animate-spin' : 'h-3.5 w-3.5'} />}
+              icon={<RefreshCw className={cn('h-3.5 w-3.5', isRefreshing && 'animate-spin')} strokeWidth={1.7} />}
               label="Atualizar dados"
               size="sm"
               onClick={handleRefresh}
             />
-            {justUpdated ? (
-              <span className="flex items-center gap-1 text-status-success">
-                <CircleCheckBig className="h-3.5 w-3.5" />
-                Dados atualizados com sucesso
-              </span>
-            ) : (
-              <span>Dados atualizados {updatedLabel}</span>
-            )}
           </div>
-          <span className="text-caption text-content-tertiary">
-            Período: <span className="text-content-secondary">{periodoLabel}</span> · Unidade:{' '}
-            <span className="text-content-secondary">{unidadeLabel}</span>
-          </span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            {integrationStatus.map((item) => {
+              const ok = item.estado === 'atualizado'
+              return (
+                <span key={item.nome} className="inline-flex items-center gap-1.5 text-caption text-ink-secondary">
+                  {ok ? (
+                    <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+                  ) : (
+                    <Clock className="h-3 w-3 text-warning" strokeWidth={1.7} />
+                  )}
+                  {item.nome}
+                  {item.detalhe && <span className="text-ink-tertiary">· {item.detalhe}</span>}
+                </span>
+              )
+            })}
+          </div>
         </div>
-      </div>
-
-      <IntegrationStatusRow items={integrationStatus} />
-    </div>
+      }
+    />
   )
 }

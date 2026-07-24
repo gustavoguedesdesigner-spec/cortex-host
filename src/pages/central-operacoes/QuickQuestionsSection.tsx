@@ -8,7 +8,7 @@ export function QuickQuestionsSection() {
 
   return (
     <section>
-      <SectionHeader title="Pergunte sobre sua operação" description="Perguntas rápidas para o CORTEX, com resposta imediata" />
+      <SectionHeader title="Pergunte sobre sua operação" description="Perguntas rápidas com resposta imediata do CORTEX" />
       <QuickQuestionsGrid questions={quickQuestions} onAsk={askCortex} />
     </section>
   )

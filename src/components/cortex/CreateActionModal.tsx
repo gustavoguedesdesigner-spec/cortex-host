@@ -72,8 +72,8 @@ export function CreateActionModal({ isOpen, onClose, defaults, onSave }: CreateA
     <Modal isOpen={isOpen} onClose={onClose} title="Criar ação" description="A ação será incluída em Pendências operacionais.">
       {saved ? (
         <div className="flex flex-col items-center gap-2 py-8 text-center">
-          <CircleCheckBig className="h-6 w-6 text-status-success" />
-          <p className="text-body text-content-primary font-medium">Ação criada com sucesso.</p>
+          <CircleCheckBig className="h-6 w-6 text-success" />
+          <p className="text-body text-ink-primary font-medium">Ação criada com sucesso.</p>
         </div>
       ) : (
         <div className="flex flex-col gap-4">

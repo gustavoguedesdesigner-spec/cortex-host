@@ -9,7 +9,7 @@ import { formatCurrencyBRL } from '@/utils/format'
 import type { CriticalProduct } from '@/types'
 
 const trendIcon = { up: ArrowUp, down: ArrowDown, flat: Minus }
-const trendColor = { up: 'text-status-critical', down: 'text-status-success', flat: 'text-content-tertiary' }
+const trendColor = { up: 'text-danger', down: 'text-success', flat: 'text-ink-tertiary' }
 const confidenceLabel = { alta: 'Alta', media: 'Média', baixa: 'Baixa' }
 
 export function ProductsSection({ produtos, unitName }: { produtos: CriticalProduct[]; unitName: string }) {
@@ -21,7 +21,7 @@ export function ProductsSection({ produtos, unitName }: { produtos: CriticalProd
     { key: 'venda', header: 'Venda', align: 'right', render: (p) => formatCurrencyBRL(p.venda) },
     { key: 'consumoTeorico', header: 'Consumo teórico', align: 'right', render: (p) => p.consumoTeorico },
     { key: 'consumoReal', header: 'Consumo real', align: 'right', render: (p) => p.consumoReal },
-    { key: 'impacto', header: 'Impacto', align: 'right', render: (p) => <span className="text-status-critical font-medium">{formatCurrencyBRL(p.impacto)}</span> },
+    { key: 'impacto', header: 'Impacto', align: 'right', render: (p) => <span className="text-danger font-medium">{formatCurrencyBRL(p.impacto)}</span> },
     {
       key: 'tendencia',
       header: 'Tendência',
@@ -52,9 +52,9 @@ export function ProductsSection({ produtos, unitName }: { produtos: CriticalProd
                 { label: 'Nível de confiança', value: confidenceLabel[selected.confianca] },
               ]}
             />
-            <div className="rounded-md bg-surface-3/60 p-3">
-              <p className="text-caption text-content-tertiary mb-0.5">Ação recomendada</p>
-              <p className="text-support text-content-primary">{selected.acaoRecomendada}</p>
+            <div className="rounded-md bg-surface-subtle p-3">
+              <p className="text-caption text-ink-tertiary mb-0.5">Ação recomendada</p>
+              <p className="text-support text-ink-primary">{selected.acaoRecomendada}</p>
             </div>
           </div>
         )}

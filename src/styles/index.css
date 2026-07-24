@@ -2,84 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================================
-   CORTEX HOST - Estilos globais
-   Tema escuro por padrao. Estrutura preparada para futura variante clara:
-   as variaveis de superficie/conteudo abaixo poderiam ser sobrescritas em
-   um seletor [data-theme="light"] no futuro, sem alterar os componentes.
-   ========================================================================= */
+/* =====================================================================
+   CORTEX HOST — estilos globais. Tema claro único.
+   Tokens de gráfico expostos como CSS vars para o Recharts consumir,
+   evitando cor hardcoded nos componentes de visualização.
+   ===================================================================== */
+
+:root {
+  --chart-accent: #FF5A1F;
+  --chart-navy: #132033;
+  --chart-neutral: #9297A0;
+  --chart-grid: #EDEFF2;
+  --chart-axis: #9297A0;
+  --chart-info: #4C71AE;
+}
 
 @layer base {
   * {
-    @apply border-border-subtle;
+    @apply border-border;
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    @apply bg-base text-content-primary font-sans antialiased;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    @apply bg-canvas text-ink-primary font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum' 0;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-content-primary;
+    @apply text-ink-primary;
+    text-wrap: balance;
   }
 
-  /* Foco visivel e consistente em toda a aplicacao (acessibilidade) */
   :focus-visible {
-    outline: 2px solid theme('colors.cortex.500');
+    outline: 2px solid theme('colors.accent.DEFAULT');
     outline-offset: 2px;
     border-radius: 4px;
   }
 
   ::selection {
-    background-color: rgba(194, 121, 61, 0.35);
+    background-color: rgba(255, 90, 31, 0.16);
   }
 
-  /* Scrollbar discreta, coerente com o tema escuro */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background-color: #2B3339;
+    background-color: #D6DADF;
     border-radius: 8px;
     border: 2px solid transparent;
     background-clip: padding-box;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #3A444C;
-    background-clip: padding-box;
-  }
+  ::-webkit-scrollbar-thumb:hover { background-color: #C2C7CE; background-clip: padding-box; }
 }
 
 @layer utilities {
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-none {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Efeito shimmer usado nos Skeletons de carregamento */
+  .tabular { font-variant-numeric: tabular-nums; }
+
   .skeleton-shimmer {
-    background-image: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.03) 0px,
-      rgba(255, 255, 255, 0.07) 40px,
-      rgba(255, 255, 255, 0.03) 80px
-    );
+    background-image: linear-gradient(90deg, #EFF1F3 0px, #F7F8F9 40px, #EFF1F3 80px);
     background-size: 400px 100%;
   }
 }
 
-/* Respeita preferencia por reducao de movimento do usuario */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

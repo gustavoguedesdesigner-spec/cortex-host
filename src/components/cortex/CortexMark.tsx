@@ -1,16 +1,17 @@
 import { cn } from '@/utils/cn'
 
 /**
- * Marca abstrata do CORTEX: um "pulso operacional" — nucleo central
- * com ondas de sinal. Reaparece, com moderacao, em pontos de inteligencia
- * artificial da interface (logotipo, botao do assistente, insights).
+ * Marca do CORTEX: quatro módulos convergindo para um núcleo — leitura
+ * de "central que consolida sinais da operação". Geométrica e estável,
+ * deliberadamente sem metáforas de IA (cérebro, sparkle, robô).
  */
-export function CortexMark({ className, animated = false }: { className?: string; animated?: boolean }) {
+export function CortexMark({ className }: { className?: string; animated?: boolean }) {
   return (
-    <svg viewBox="0 0 32 32" fill="none" className={cn('shrink-0', className)} aria-hidden="true">
-      <circle cx="16" cy="16" r="13" stroke="currentColor" strokeWidth="1" opacity="0.22" />
-      <circle cx="16" cy="16" r="8.5" stroke="currentColor" strokeWidth="1.3" opacity="0.5" />
-      <circle cx="16" cy="16" r="3.1" fill="currentColor" className={animated ? 'animate-pulse-dot' : undefined} />
+    <svg viewBox="0 0 24 24" fill="none" className={cn('shrink-0', className)} aria-hidden="true">
+      <rect x="3" y="3" width="6.5" height="6.5" rx="1.6" fill="currentColor" opacity="0.28" />
+      <rect x="14.5" y="3" width="6.5" height="6.5" rx="1.6" fill="currentColor" opacity="0.28" />
+      <rect x="3" y="14.5" width="6.5" height="6.5" rx="1.6" fill="currentColor" opacity="0.28" />
+      <rect x="14.5" y="14.5" width="6.5" height="6.5" rx="1.6" fill="currentColor" />
     </svg>
   )
 }

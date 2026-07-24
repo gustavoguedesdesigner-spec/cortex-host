@@ -11,9 +11,9 @@ export function UnitQuickQuestionsSection({ perguntas, onAsk }: { perguntas: Uni
           <button
             key={qa.pergunta}
             onClick={() => onAsk(qa.pergunta, qa.resposta)}
-            className="flex items-center gap-2.5 rounded-md border border-border-subtle bg-surface-2 px-3.5 py-3 text-left text-support text-content-secondary transition-colors hover:border-cortex-700/40 hover:bg-surface-3 hover:text-content-primary"
+            className="flex items-center gap-2.5 rounded-md border border-border bg-surface px-3.5 py-3 text-left text-support text-ink-secondary transition-colors hover:border-accent/40 hover:bg-surface-hover hover:text-ink-primary"
           >
-            <Sparkles className="h-3.5 w-3.5 text-cortex-500 shrink-0" />
+            <Sparkles className="h-3.5 w-3.5 text-accent shrink-0" />
             {qa.pergunta}
           </button>
         ))}

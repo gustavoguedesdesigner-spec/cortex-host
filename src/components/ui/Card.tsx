@@ -5,15 +5,18 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   padded?: boolean
   interactive?: boolean
+  /** 'flat' usa apenas borda; 'raised' adiciona sombra sutil para blocos principais */
+  elevation?: 'flat' | 'raised'
 }
 
-export function Card({ children, padded = true, interactive, className, ...props }: CardProps) {
+export function Card({ children, padded = true, interactive, elevation = 'flat', className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-lg bg-surface-2 border border-border-subtle shadow-card',
+        'rounded-lg border border-border bg-surface',
+        elevation === 'raised' && 'shadow-card',
         padded && 'p-5',
-        interactive && 'transition-colors duration-150 hover:border-border-strong hover:bg-surface-3 cursor-pointer',
+        interactive && 'cursor-pointer transition-all hover:border-border-strong hover:shadow-card',
         className,
       )}
       {...props}
@@ -21,4 +24,9 @@ export function Card({ children, padded = true, interactive, className, ...props
       {children}
     </div>
   )
+}
+
+/** Seção sem superfície própria — usada quando o conteúdo não precisa de card. */
+export function DataPanel({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={cn('flex flex-col', className)}>{children}</div>
 }

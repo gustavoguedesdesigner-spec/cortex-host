@@ -15,20 +15,26 @@ interface TableProps<T> {
   getRowId: (row: T) => string
   onRowClick?: (row: T) => void
   className?: string
+  /** Fixa a primeira coluna em tabelas largas */
+  stickyFirstColumn?: boolean
 }
 
 const alignClasses = { left: 'text-left', right: 'text-right', center: 'text-center' }
 
-export function Table<T>({ columns, data, getRowId, onRowClick, className }: TableProps<T>) {
+export function Table<T>({ columns, data, getRowId, onRowClick, className, stickyFirstColumn }: TableProps<T>) {
   return (
-    <div className={cn('overflow-x-auto rounded-lg border border-border-subtle', className)}>
-      <table className="w-full text-body">
+    <div className={cn('overflow-x-auto rounded-lg border border-border bg-surface', className)}>
+      <table className="w-full border-collapse text-support">
         <thead>
-          <tr className="bg-surface-3 border-b border-border-subtle">
-            {columns.map((col) => (
+          <tr className="border-b border-border">
+            {columns.map((col, i) => (
               <th
                 key={col.key}
-                className={cn('px-4 py-3 text-label text-content-tertiary font-semibold', alignClasses[col.align ?? 'left'])}
+                className={cn(
+                  'whitespace-nowrap px-4 py-2.5 text-label font-medium text-ink-tertiary',
+                  alignClasses[col.align ?? 'left'],
+                  stickyFirstColumn && i === 0 && 'sticky left-0 bg-surface',
+                )}
               >
                 {col.header}
               </th>
@@ -41,12 +47,21 @@ export function Table<T>({ columns, data, getRowId, onRowClick, className }: Tab
               key={getRowId(row)}
               onClick={() => onRowClick?.(row)}
               className={cn(
-                'border-b border-border-subtle last:border-b-0 bg-surface-2 transition-colors',
-                onRowClick && 'cursor-pointer hover:bg-surface-3',
+                'border-b border-border last:border-b-0 transition-colors',
+                onRowClick && 'cursor-pointer hover:bg-surface-hover',
               )}
             >
-              {columns.map((col) => (
-                <td key={col.key} className={cn('px-4 py-3 text-content-primary', alignClasses[col.align ?? 'left'], col.className)}>
+              {columns.map((col, i) => (
+                <td
+                  key={col.key}
+                  className={cn(
+                    'h-12 whitespace-nowrap px-4 text-ink-primary',
+                    col.align === 'right' && 'tabular',
+                    alignClasses[col.align ?? 'left'],
+                    stickyFirstColumn && i === 0 && 'sticky left-0 bg-surface',
+                    col.className,
+                  )}
+                >
                   {col.render(row)}
                 </td>
               ))}

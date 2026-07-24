@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { Card } from '@/components/ui/Card'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Button } from '@/components/ui/Button'
 import { DataList } from '@/components/ui/DataList'
@@ -13,10 +12,18 @@ export function PurchasesSuppliersSection() {
 
   return (
     <section>
-      <SectionHeader title="Compras e fornecedores" description="Panorama do período e fornecedores que exigem atenção" />
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card>
-          <p className="text-card-title text-content-primary mb-3">Compras</p>
+      <SectionHeader
+        title="Compras e fornecedores"
+        description="Panorama do período e fornecedores que exigem atenção"
+        actions={
+          <Button size="sm" variant="ghost" rightIcon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate('/fornecedores')}>
+            Ver todos os fornecedores
+          </Button>
+        }
+      />
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <p className="mb-3 text-card-title text-ink-secondary">Compras</p>
           <DataList
             items={[
               { label: 'Total comprado no período', value: formatCurrencyBRL(purchaseSummary.totalComprado) },
@@ -26,45 +33,36 @@ export function PurchasesSuppliersSection() {
               { label: 'Valor em pedidos com divergência', value: formatCurrencyBRL(purchaseSummary.valorEmDivergencia) },
             ]}
           />
-        </Card>
-        <Card className="flex flex-col">
-          <p className="text-card-title text-content-primary mb-3">Fornecedores que exigem atenção</p>
-          <div className="flex flex-col gap-2.5 flex-1">
+        </div>
+
+        <div className="lg:col-span-6 lg:col-start-7">
+          <p className="mb-3 text-card-title text-ink-secondary">Fornecedores em atenção</p>
+          <ul className="flex flex-col divide-y divide-border border-t border-border">
             {supplierAlerts.map((s) => (
-              <div key={s.id} className="rounded-md bg-surface-3/60 border border-border-subtle px-3.5 py-3">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-support font-semibold text-content-primary">{s.nome}</span>
-                  <span
-                    className={cn(
-                      'text-badge font-semibold rounded-full border px-2 py-0.5',
-                      s.status === 'critico'
-                        ? 'bg-status-criticalBg text-status-critical border-status-critical/30'
-                        : 'bg-status-attentionBg text-status-attention border-status-attention/30',
-                    )}
-                  >
-                    {s.status === 'critico' ? 'Crítico' : 'Atenção'}
-                  </span>
+              <li key={s.id} className="flex items-start justify-between gap-4 py-3">
+                <div className="min-w-0">
+                  <p className="text-support font-medium text-ink-primary">{s.nome}</p>
+                  <p className="mt-0.5 flex flex-wrap gap-x-3 text-caption text-ink-tertiary">
+                    {s.aumentoPreco !== undefined && <span>Preço +{(s.aumentoPreco * 100).toFixed(1)}%</span>}
+                    {s.divergencias !== undefined && <span>{s.divergencias} divergências</span>}
+                    {s.atrasoMedioDias !== undefined && <span>Atraso {s.atrasoMedioDias} dia</span>}
+                    {s.atrasoRecorrente && <span>Atraso recorrente</span>}
+                    {s.entregasIncompletas !== undefined && <span>{s.entregasIncompletas} entregas incompletas</span>}
+                  </p>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5 text-caption text-content-tertiary">
-                  {s.aumentoPreco !== undefined && <span>Aumento de preço: {(s.aumentoPreco * 100).toFixed(1)}%</span>}
-                  {s.divergencias !== undefined && <span>Divergências: {s.divergencias}</span>}
-                  {s.atrasoMedioDias !== undefined && <span>Atraso médio: {s.atrasoMedioDias} dia</span>}
-                  {s.atrasoRecorrente && <span>Atraso recorrente</span>}
-                  {s.entregasIncompletas !== undefined && <span>{s.entregasIncompletas} entregas incompletas</span>}
-                </div>
-              </div>
+                <span
+                  className={cn(
+                    'inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-badge',
+                    s.status === 'critico' ? 'bg-danger-soft text-danger' : 'bg-warning-soft text-warning',
+                  )}
+                >
+                  <span className={cn('h-1.5 w-1.5 rounded-full', s.status === 'critico' ? 'bg-danger' : 'bg-warning')} aria-hidden="true" />
+                  {s.status === 'critico' ? 'Crítico' : 'Atenção'}
+                </span>
+              </li>
             ))}
-          </div>
-          <Button
-            size="sm"
-            variant="secondary"
-            className="mt-3 self-start"
-            rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
-            onClick={() => navigate('/fornecedores')}
-          >
-            Ver todos os fornecedores
-          </Button>
-        </Card>
+          </ul>
+        </div>
       </div>
     </section>
   )

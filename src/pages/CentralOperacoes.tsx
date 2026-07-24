@@ -13,6 +13,8 @@ import { ActivitySection } from './central-operacoes/ActivitySection'
 import { QuickQuestionsSection } from './central-operacoes/QuickQuestionsSection'
 import { executiveSummaryText, executiveRecommendations } from '@/data/executive-summary'
 import { useCreatedActions } from '@/hooks/useCreatedActions'
+import { networkSummary } from '@/data/network-summary'
+import { formatCurrencyBRL, formatPercentPoints } from '@/utils/format'
 import { useAppState } from '@/context/AppStateContext'
 
 /**
@@ -51,6 +53,29 @@ export default function CentralOperacoes() {
         onAnalyzeCauses={() => scrollTo(occurrencesRef)}
         onViewActionPlan={() => scrollTo(pendingRef)}
         onAskCortex={() => askCortex('Por que o CMV aumentou?')}
+        aside={
+          <div className="flex h-full flex-col gap-5">
+            <div>
+              <p className="text-caption text-ink-tertiary">Impacto estimado no período</p>
+              <p className="mt-1 text-metric tabular text-ink-primary">
+                {formatCurrencyBRL(networkSummary.diferencaFinanceira)}
+              </p>
+              <p className="mt-1 text-caption text-danger tabular">
+                {formatPercentPoints(networkSummary.cmvReal - networkSummary.cmvMeta)} acima da meta
+              </p>
+            </div>
+            <dl className="flex flex-col divide-y divide-border border-t border-border">
+              <div className="flex items-center justify-between py-2.5">
+                <dt className="text-support text-ink-secondary">Ocorrências</dt>
+                <dd className="text-support font-medium tabular text-ink-primary">{networkSummary.totalOcorrencias}</dd>
+              </div>
+              <div className="flex items-center justify-between py-2.5">
+                <dt className="text-support text-ink-secondary">Exigem atenção imediata</dt>
+                <dd className="text-support font-medium tabular text-danger">{networkSummary.ocorrenciasCriticas}</dd>
+              </div>
+            </dl>
+          </div>
+        }
       />
 
       <IndicatorsSection />

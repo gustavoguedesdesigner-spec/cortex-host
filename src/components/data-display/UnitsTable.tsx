@@ -49,7 +49,7 @@ export function UnitsTable({ units, onSelectUnit }: { units: Unit[]; onSelectUni
       header: 'Diferença',
       align: 'right',
       render: (u) => (
-        <span className={cn('font-medium', u.cmvReal > u.cmvTeorico ? 'text-status-critical' : 'text-status-success')}>
+        <span className={cn('font-medium', u.cmvReal > u.cmvTeorico ? 'text-danger' : 'text-success')}>
           {formatPercentPoints(u.cmvReal - u.cmvTeorico)}
         </span>
       ),

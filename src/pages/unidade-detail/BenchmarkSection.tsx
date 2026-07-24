@@ -23,24 +23,24 @@ export function BenchmarkSection({ comparadoComNome, comparadoComId, linhas, ins
         <div className="overflow-x-auto">
           <table className="w-full text-support">
             <thead>
-              <tr className="border-b border-border-subtle">
-                <th className="text-left py-2 pr-4 text-label text-content-tertiary">Métrica</th>
-                <th className="text-right py-2 px-4 text-label text-content-primary">{unitLabel}</th>
-                <th className="text-right py-2 pl-4 text-label text-content-primary">{comparadoComNome.replace('Salvador ', '')}</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-label text-ink-tertiary">Métrica</th>
+                <th className="text-right py-2 px-4 text-label text-ink-primary">{unitLabel}</th>
+                <th className="text-right py-2 pl-4 text-label text-ink-primary">{comparadoComNome.replace('Salvador ', '')}</th>
               </tr>
             </thead>
             <tbody>
               {linhas.map((row) => (
-                <tr key={row.metrica} className="border-b border-border-subtle last:border-b-0">
-                  <td className="py-2 pr-4 text-content-tertiary">{row.metrica}</td>
-                  <td className="py-2 px-4 text-right text-status-critical font-medium">{row.moinhos}</td>
-                  <td className="py-2 pl-4 text-right text-status-success font-medium">{row.serra}</td>
+                <tr key={row.metrica} className="border-b border-border last:border-b-0">
+                  <td className="py-2 pr-4 text-ink-tertiary">{row.metrica}</td>
+                  <td className="py-2 px-4 text-right text-danger font-medium">{row.moinhos}</td>
+                  <td className="py-2 pl-4 text-right text-success font-medium">{row.serra}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-support text-content-secondary leading-relaxed">{insight}</p>
+        <p className="text-support text-ink-secondary leading-relaxed">{insight}</p>
         <div className="flex flex-wrap gap-2">
           <Button size="sm" variant="secondary">Comparar processos</Button>
           <Button size="sm" variant="secondary">Criar checklist</Button>

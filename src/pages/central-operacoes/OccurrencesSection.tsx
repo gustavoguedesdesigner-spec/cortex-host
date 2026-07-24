@@ -63,7 +63,7 @@ export function OccurrencesSection({ onCreateAction, sectionRef }: OccurrencesSe
     <section ref={sectionRef} id="prioridades-de-hoje">
       <SectionHeader title="Prioridades de hoje" description="Ocorrências ordenadas por impacto e urgência" />
 
-      <div className="flex flex-wrap items-center gap-2 mb-4">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <Select aria-label="Prioridade" value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)} options={priorityOptions} className="w-44" />
         <Select aria-label="Categoria" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} options={categoryOptions} className="w-48" />
         <Select aria-label="Unidade" value={unitFilter} onChange={(e) => setUnitFilter(e.target.value)} options={unitFilterOptions} className="w-52" />
@@ -72,7 +72,7 @@ export function OccurrencesSection({ onCreateAction, sectionRef }: OccurrencesSe
       {filtered.length === 0 ? (
         <EmptyState icon={<ListChecks className="h-5 w-5" />} title="Nenhuma ocorrência com esses filtros" description="Ajuste os filtros para ver outras ocorrências do período." />
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col divide-y divide-border border-t border-border">
           {filtered.map((occ) => (
             <OccurrenceCard
               key={occ.id}

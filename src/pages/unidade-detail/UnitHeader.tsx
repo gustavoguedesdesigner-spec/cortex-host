@@ -19,12 +19,12 @@ export function UnitHeader({ unit, onCreateAction, onCompare, onAskCortex }: Uni
 
   return (
     <div className="flex flex-col gap-4">
-      <nav className="flex items-center gap-1.5 text-caption text-content-tertiary" aria-label="Breadcrumb">
-        <button onClick={() => navigate('/')} className="hover:text-content-secondary">Central de Operações</button>
+      <nav className="flex items-center gap-1.5 text-caption text-ink-tertiary" aria-label="Breadcrumb">
+        <button onClick={() => navigate('/')} className="hover:text-ink-secondary">Central de Operações</button>
         <ChevronRight className="h-3 w-3" />
-        <button onClick={() => navigate('/unidades')} className="hover:text-content-secondary">Unidades</button>
+        <button onClick={() => navigate('/unidades')} className="hover:text-ink-secondary">Unidades</button>
         <ChevronRight className="h-3 w-3" />
-        <span className="text-content-secondary">{unit.nome}</span>
+        <span className="text-ink-secondary">{unit.nome}</span>
       </nav>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -33,7 +33,7 @@ export function UnitHeader({ unit, onCreateAction, onCompare, onAskCortex }: Uni
             <h1 className="text-page-title">{unit.nome}</h1>
             <StatusBadge level={unit.nivelAtencao} />
           </div>
-          <p className="text-support text-content-secondary">
+          <p className="text-support text-ink-secondary">
             {unit.cidade} · Gerente {unit.gerente} · Atualizado {formatRelativeShort(unit.ultimaSincronizacao)} · Última contagem{' '}
             {formatDateFull(unit.ultimaContagem)}
           </p>

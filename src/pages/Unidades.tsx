@@ -153,7 +153,7 @@ export default function Unidades() {
 
         <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="flex items-center gap-1.5 text-caption text-content-tertiary pr-1">
+            <span className="flex items-center gap-1.5 text-caption text-ink-tertiary pr-1">
               <Users2 className="h-3.5 w-3.5" />
               Selecionar para comparar:
             </span>
@@ -164,8 +164,8 @@ export default function Unidades() {
                 className={
                   'rounded-full border px-2.5 py-1 text-caption font-medium transition-colors ' +
                   (selectedIds.includes(u.id)
-                    ? 'bg-cortex-500 border-cortex-500 text-[#181009]'
-                    : 'bg-surface-2 border-border-subtle text-content-tertiary hover:text-content-secondary')
+                    ? 'bg-accent border-accent text-white'
+                    : 'bg-surface border-border text-ink-tertiary hover:text-ink-secondary')
                 }
               >
                 {u.nomeCurto}
