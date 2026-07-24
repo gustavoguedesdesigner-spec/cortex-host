@@ -6,7 +6,8 @@
   "description": "CORTEX HOST — plataforma de inteligencia operacional para hospitalidade. Powered by ZAKA AI.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
+    "typecheck": "tsc -b",
     "preview": "vite preview",
     "lint": "eslint ."
   },
