@@ -1,0 +1,58 @@
+import type { NotificationItemData } from '@/types'
+
+export const notifications: NotificationItemData[] = [
+  {
+    id: 'n1',
+    titulo: 'Recebimento com divergência',
+    descricao: 'Nota fiscal do fornecedor Distribuidora Bahia Sul com 3 itens fora do preço acordado.',
+    unidade: 'Salvador Cidade Baixa',
+    severidade: 'critical',
+    horario: '2026-07-23T13:40:00-03:00',
+    lida: false,
+  },
+  {
+    id: 'n2',
+    titulo: 'CMV acima da meta',
+    descricao: 'CMV real ultrapassou a meta em 4,7 pontos percentuais no acumulado do mês.',
+    unidade: 'Salvador Cidade Baixa',
+    severidade: 'critical',
+    horario: '2026-07-23T11:05:00-03:00',
+    lida: false,
+  },
+  {
+    id: 'n3',
+    titulo: 'Estoque abaixo do mínimo',
+    descricao: 'Chope Pilsen (barril 30L) está abaixo do nível mínimo de segurança.',
+    unidade: 'Salvador Caxias Norte',
+    severidade: 'attention',
+    horario: '2026-07-23T09:20:00-03:00',
+    lida: false,
+  },
+  {
+    id: 'n4',
+    titulo: 'Contagem semanal pendente',
+    descricao: 'A contagem de estoque desta semana ainda não foi registrada.',
+    unidade: 'Salvador Caxias Norte',
+    severidade: 'attention',
+    horario: '2026-07-22T20:00:00-03:00',
+    lida: true,
+  },
+  {
+    id: 'n5',
+    titulo: 'Aumento de preço identificado',
+    descricao: 'Filé de tilápia teve reajuste de 14% no último recebimento.',
+    unidade: 'Salvador Zona Norte',
+    severidade: 'info',
+    horario: '2026-07-22T16:12:00-03:00',
+    lida: true,
+  },
+  {
+    id: 'n6',
+    titulo: 'Ficha técnica incompleta',
+    descricao: '4 itens do cardápio sazonal ainda não possuem ficha técnica cadastrada.',
+    unidade: 'Todas as unidades',
+    severidade: 'info',
+    horario: '2026-07-21T10:00:00-03:00',
+    lida: true,
+  },
+]
