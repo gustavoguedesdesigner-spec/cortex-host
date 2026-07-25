@@ -48,7 +48,7 @@ export const navGroups: NavGroupData[] = [
   },
   {
     label: 'Administração',
-    items: [{ label: 'Configurações', path: '/configuracoes', icon: Settings, emConstrucao: true }],
+    items: [{ label: 'Configurações', path: '/configuracoes', icon: Settings }],
   },
 ]
 
