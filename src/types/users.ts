@@ -10,6 +10,7 @@ export interface TemporaryAccess {
 
 export interface UserSession {
   id: string
+  userId: string
   dispositivo: string
   navegador: string
   localizacaoAproximada: string

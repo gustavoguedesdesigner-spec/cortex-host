@@ -28,11 +28,15 @@ export const twoFactorStats = {
 }
 
 export const sessions: UserSession[] = [
-  { id: 'sessao-leo-1', dispositivo: 'MacBook Pro', navegador: 'Chrome 126', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T14:32:00-03:00', status: 'ativa' },
-  { id: 'sessao-leo-2', dispositivo: 'iPhone 15', navegador: 'Safari Mobile', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T08:10:00-03:00', status: 'ativa' },
-  { id: 'sessao-mariana-1', dispositivo: 'Windows 11', navegador: 'Edge 125', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T09:30:00-03:00', status: 'ativa' },
-  { id: 'sessao-carlos-1', dispositivo: 'Windows 11', navegador: 'Chrome 126', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-24T16:00:00-03:00', status: 'ativa' },
+  { id: 'sessao-leo-1', userId: 'leo', dispositivo: 'MacBook Pro', navegador: 'Chrome 126', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T14:32:00-03:00', status: 'ativa' },
+  { id: 'sessao-leo-2', userId: 'leo', dispositivo: 'iPhone 15', navegador: 'Safari Mobile', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T08:10:00-03:00', status: 'ativa' },
+  { id: 'sessao-mariana-1', userId: 'mariana-costa', dispositivo: 'Windows 11', navegador: 'Edge 125', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-25T09:30:00-03:00', status: 'ativa' },
+  { id: 'sessao-carlos-1', userId: 'carlos-mendes', dispositivo: 'Windows 11', navegador: 'Chrome 126', localizacaoAproximada: 'Salvador, BA', ultimoAcessoIso: '2026-07-24T16:00:00-03:00', status: 'ativa' },
 ]
+
+export function getSessionsByUser(userId: string): UserSession[] {
+  return sessions.filter((s) => s.userId === userId)
+}
 
 export const securityEvents: SecurityEvent[] = [
   { id: 'sec-evt-1', tipo: 'Múltiplas tentativas de login', usuario: 'Henrique Dias', dataIso: '2026-07-19T22:05:00-03:00', detalhe: 'Cinco tentativas malsucedidas em sequência — conta bloqueada automaticamente.' },

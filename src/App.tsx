@@ -37,6 +37,9 @@ import AdminOrganization from '@/pages/AdminOrganization'
 import AdminBrands from '@/pages/AdminBrands'
 import AdminUnitsList from '@/pages/AdminUnitsList'
 import AdminUnitDetail from '@/pages/AdminUnitDetail'
+import AdminUsersList from '@/pages/AdminUsersList'
+import AdminUserNew from '@/pages/AdminUserNew'
+import AdminUserDetail from '@/pages/AdminUserDetail'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -86,6 +89,9 @@ export default function App() {
         <Route path="/configuracoes/marcas" element={<AdminBrands />} />
         <Route path="/configuracoes/unidades" element={<AdminUnitsList />} />
         <Route path="/configuracoes/unidades/:unitId" element={<AdminUnitDetail />} />
+        <Route path="/configuracoes/usuarios" element={<AdminUsersList />} />
+        <Route path="/configuracoes/usuarios/novo" element={<AdminUserNew />} />
+        <Route path="/configuracoes/usuarios/:userId" element={<AdminUserDetail />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
