@@ -33,6 +33,10 @@ import RecipeDetail from '@/pages/RecipeDetail'
 import Biblioteca from '@/pages/Biblioteca'
 import AssistenteCortex from '@/pages/AssistenteCortex'
 import Configuracoes from '@/pages/Configuracoes'
+import AdminOrganization from '@/pages/AdminOrganization'
+import AdminBrands from '@/pages/AdminBrands'
+import AdminUnitsList from '@/pages/AdminUnitsList'
+import AdminUnitDetail from '@/pages/AdminUnitDetail'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -78,6 +82,10 @@ export default function App() {
         <Route path="/biblioteca" element={<Biblioteca />} />
         <Route path="/assistente" element={<AssistenteCortex />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
+        <Route path="/configuracoes/organizacao" element={<AdminOrganization />} />
+        <Route path="/configuracoes/marcas" element={<AdminBrands />} />
+        <Route path="/configuracoes/unidades" element={<AdminUnitsList />} />
+        <Route path="/configuracoes/unidades/:unitId" element={<AdminUnitDetail />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
