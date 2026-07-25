@@ -40,6 +40,10 @@ import AdminUnitDetail from '@/pages/AdminUnitDetail'
 import AdminUsersList from '@/pages/AdminUsersList'
 import AdminUserNew from '@/pages/AdminUserNew'
 import AdminUserDetail from '@/pages/AdminUserDetail'
+import AdminRolesList from '@/pages/AdminRolesList'
+import AdminRoleDetail from '@/pages/AdminRoleDetail'
+import AdminPermissionsMatrix from '@/pages/AdminPermissionsMatrix'
+import AdminApprovalLimits from '@/pages/AdminApprovalLimits'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -92,6 +96,10 @@ export default function App() {
         <Route path="/configuracoes/usuarios" element={<AdminUsersList />} />
         <Route path="/configuracoes/usuarios/novo" element={<AdminUserNew />} />
         <Route path="/configuracoes/usuarios/:userId" element={<AdminUserDetail />} />
+        <Route path="/configuracoes/perfis" element={<AdminRolesList />} />
+        <Route path="/configuracoes/perfis/:roleId" element={<AdminRoleDetail />} />
+        <Route path="/configuracoes/permissoes" element={<AdminPermissionsMatrix />} />
+        <Route path="/configuracoes/alcadas" element={<AdminApprovalLimits />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
