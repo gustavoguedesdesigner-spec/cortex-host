@@ -44,6 +44,10 @@ import AdminRolesList from '@/pages/AdminRolesList'
 import AdminRoleDetail from '@/pages/AdminRoleDetail'
 import AdminPermissionsMatrix from '@/pages/AdminPermissionsMatrix'
 import AdminApprovalLimits from '@/pages/AdminApprovalLimits'
+import AdminModules from '@/pages/AdminModules'
+import AdminNotifications from '@/pages/AdminNotifications'
+import AdminIntegrationsList from '@/pages/AdminIntegrationsList'
+import AdminIntegrationDetail from '@/pages/AdminIntegrationDetail'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -100,6 +104,10 @@ export default function App() {
         <Route path="/configuracoes/perfis/:roleId" element={<AdminRoleDetail />} />
         <Route path="/configuracoes/permissoes" element={<AdminPermissionsMatrix />} />
         <Route path="/configuracoes/alcadas" element={<AdminApprovalLimits />} />
+        <Route path="/configuracoes/modulos" element={<AdminModules />} />
+        <Route path="/configuracoes/notificacoes" element={<AdminNotifications />} />
+        <Route path="/configuracoes/integracoes" element={<AdminIntegrationsList />} />
+        <Route path="/configuracoes/integracoes/:integrationId" element={<AdminIntegrationDetail />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
