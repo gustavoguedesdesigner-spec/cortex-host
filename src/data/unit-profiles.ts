@@ -337,7 +337,7 @@ export const unitProfiles: Record<string, UnitProfile> = {
   'caxias-centro': {
     unitId: 'caxias-centro',
     resumoExecutivo:
-      'Caxias Centro é a segunda unidade mais crítica da rede. O CMV real está 4,3 pontos acima do teórico, com impacto estimado de R$ 5.730 no período. O padrão se assemelha ao de Moinhos: consumo de carnes acima da ficha técnica, agora somado a duas divergências de recebimento com o fornecedor Serra Alimentos ainda sem retorno.',
+      'Caxias Centro é a segunda unidade mais crítica da rede. O CMV real está 4,3 pontos acima do teórico, com impacto estimado de R$ 7.210 no período. O padrão se assemelha ao de Moinhos: consumo de carnes acima da ficha técnica, agora somado a duas divergências de recebimento com o fornecedor Serra Alimentos ainda sem retorno.',
     recomendacoes: [
       'Revisar porcionamento de carnes junto à cozinha',
       'Cobrar retorno do fornecedor Serra Alimentos sobre as divergências',
@@ -392,7 +392,7 @@ export const unitProfiles: Record<string, UnitProfile> = {
       {
         pergunta: 'Por que Caxias Centro está crítica?',
         resposta:
-          'O CMV real está em 36,1%, 4,3 pontos acima do teórico, com impacto estimado de R$ 5.730. O padrão é semelhante ao de Moinhos: consumo de carnes acima da ficha técnica, somado a duas divergências de recebimento com a Serra Alimentos ainda sem retorno.',
+          'O CMV real está em 36,1%, 4,3 pontos acima do teórico, com impacto estimado de R$ 7.210. O padrão é semelhante ao de Moinhos: consumo de carnes acima da ficha técnica, somado a duas divergências de recebimento com a Serra Alimentos ainda sem retorno.',
       },
       {
         pergunta: 'Como Caxias Centro se compara a Moinhos?',

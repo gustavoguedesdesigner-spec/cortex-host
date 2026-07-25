@@ -1,9 +1,9 @@
 import { Info } from 'lucide-react'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import { Tooltip } from '@/components/ui/Tooltip'
-import type { IndiceOperacional } from '@/types'
+import type { IndicatorStatus, IndiceOperacional } from '@/types'
 
-const statusFromScore = (v: number) => (v >= 80 ? 'success' : v >= 60 ? 'attention' : 'critical') as const
+const statusFromScore = (v: number): IndicatorStatus => (v >= 80 ? 'success' : v >= 60 ? 'attention' : 'critical')
 
 export function OperationalIndexCard({ indice }: { indice: IndiceOperacional }) {
   return (

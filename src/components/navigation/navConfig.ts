@@ -23,7 +23,7 @@ export const navGroups: NavGroupData[] = [
     items: [
       { label: 'Central de Operações', path: '/', icon: LayoutGrid },
       { label: 'Unidades', path: '/unidades', icon: Building2 },
-      { label: 'CMV', path: '/cmv', icon: Percent, emConstrucao: true },
+      { label: 'CMV', path: '/cmv', icon: Percent },
       { label: 'Estoque', path: '/estoque', icon: Package, emConstrucao: true },
     ],
   },

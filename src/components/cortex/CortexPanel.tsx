@@ -5,6 +5,7 @@ import { Drawer } from '@/components/ui/Drawer'
 import { Button } from '@/components/ui/Button'
 import { demoUser } from '@/data/user'
 import { quickQuestions } from '@/data/quick-questions'
+import { findCmvQuickAnswer } from '@/data/cmv/cmvQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -16,7 +17,11 @@ interface Turn {
 }
 
 function findAnswer(question: string): string {
-  return quickQuestions.find((q) => q.pergunta.trim().toLowerCase() === question.trim().toLowerCase())?.resposta ?? fallbackAnswer
+  const network = quickQuestions.find((q) => q.pergunta.trim().toLowerCase() === question.trim().toLowerCase())
+  if (network) return network.resposta
+  const cmv = findCmvQuickAnswer(question)
+  if (cmv) return cmv.resposta
+  return fallbackAnswer
 }
 
 export function CortexPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {

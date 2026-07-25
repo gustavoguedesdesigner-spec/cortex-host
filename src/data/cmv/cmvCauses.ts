@@ -1,0 +1,187 @@
+import type { CmvCause, CmvCauseTaxonomyGroup } from '@/types'
+import { cmvBurgerCostelaEvidenceChain } from './cmvEvidence'
+
+/** Taxonomia de causas possíveis de desvio de CMV — referência para classificação, não apenas causas ativas no período. */
+export const cmvCauseTaxonomy: CmvCauseTaxonomyGroup[] = [
+  {
+    id: 'preco',
+    label: 'Preço',
+    itens: ['Aumento de fornecedor', 'Compra emergencial', 'Fornecedor fora do acordo', 'Alteração de custo não atualizada'],
+  },
+  {
+    id: 'consumo_producao',
+    label: 'Consumo e produção',
+    itens: ['Porcionamento', 'Rendimento', 'Preparo incorreto', 'Retrabalho', 'Cortes', 'Consumo interno'],
+  },
+  {
+    id: 'perdas',
+    label: 'Perdas',
+    itens: ['Validade', 'Armazenamento', 'Quebra', 'Descarte', 'Perda não registrada'],
+  },
+  {
+    id: 'estoque',
+    label: 'Estoque',
+    itens: ['Contagem incorreta', 'Inventário atrasado', 'Ajuste', 'Baixa não registrada', 'Cadastro ou conversão incorreta'],
+  },
+  {
+    id: 'recebimento',
+    label: 'Recebimento',
+    itens: ['Quantidade divergente', 'Preço divergente', 'Produto substituído', 'Entrega parcial'],
+  },
+  {
+    id: 'transferencias',
+    label: 'Transferências',
+    itens: ['Envio não confirmado', 'Recebimento não conciliado', 'Quantidade divergente'],
+  },
+  {
+    id: 'fichas_tecnicas',
+    label: 'Fichas técnicas',
+    itens: ['Ficha desatualizada', 'Rendimento incorreto', 'Unidade de medida', 'Produto vendido sem ficha completa'],
+  },
+  {
+    id: 'dados',
+    label: 'Dados',
+    itens: ['Integração atrasada', 'Venda não importada', 'Inventário ausente', 'Documento incompleto'],
+  },
+]
+
+/**
+ * Causas priorizadas do período — a soma dos impactos reconcilia
+ * exatamente com a ponte do CMV (cmvBridgeSteps) e, por consequência,
+ * com o impacto financeiro total de R$ 27.460.
+ */
+export const cmvCauses: CmvCause[] = [
+  {
+    id: 'causa-porcionamento-carnes',
+    grupo: 'consumo_producao',
+    titulo: 'Porcionamento de carnes acima da ficha técnica',
+    impacto: 8400,
+    confianca: 'alta',
+    unidades: ['Moinhos', 'Caxias Centro'],
+    categorias: ['Carnes'],
+    evidenciaIds: ['ev-porcionamento-carnes'],
+    pendencias: ['Contagem do estoque refrigerado — Moinhos'],
+    tendencia: 'up',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Revisar porcionamento dos três produtos de carne com maior consumo não explicado',
+    cadeiaEvidencias: cmvBurgerCostelaEvidenceChain,
+  },
+  {
+    id: 'causa-rendimento-fritura',
+    grupo: 'consumo_producao',
+    titulo: 'Rendimento de óleo abaixo do previsto',
+    impacto: 4440,
+    confianca: 'media',
+    unidades: ['Moinhos', 'Zona Norte'],
+    categorias: ['Óleos e frituras'],
+    evidenciaIds: ['ev-rendimento-fritura'],
+    pendencias: ['Padronizar frequência de troca de óleo'],
+    tendencia: 'up',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Auditar frequência de troca de óleo nas unidades com maior consumo',
+  },
+  {
+    id: 'causa-preco-oleo',
+    grupo: 'preco',
+    titulo: 'Aumento do preço do óleo',
+    impacto: 3800,
+    confianca: 'alta',
+    unidades: ['Zona Norte', 'Moinhos'],
+    categorias: ['Óleos e frituras'],
+    evidenciaIds: ['ev-preco-oleo'],
+    pendencias: [],
+    tendencia: 'up',
+    status: 'confirmada',
+    acaoRecomendada: 'Negociar o preço do óleo ou avaliar fornecedor alternativo',
+  },
+  {
+    id: 'causa-fornecedor-fora-acordo',
+    grupo: 'preco',
+    titulo: 'Fornecedor fora do acordo comercial — Serra Alimentos',
+    impacto: 2120,
+    confianca: 'media',
+    unidades: ['Moinhos', 'Caxias Centro', 'Caxias Norte'],
+    categorias: ['Carnes'],
+    evidenciaIds: ['ev-fornecedor-fora-acordo'],
+    pendencias: ['Retorno do fornecedor sobre a divergência'],
+    tendencia: 'flat',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Cobrar retorno da Serra Alimentos e reavaliar o acordo comercial',
+  },
+  {
+    id: 'causa-inventario-caxias-norte',
+    grupo: 'estoque',
+    titulo: 'Inventário semanal pendente em Caxias Norte',
+    impacto: 3020,
+    confianca: 'baixa',
+    unidades: ['Caxias Norte'],
+    categorias: ['Hortifrúti', 'Laticínios'],
+    evidenciaIds: ['ev-inventario-caxias-norte'],
+    pendencias: ['Concluir contagem física do estoque geral'],
+    tendencia: 'flat',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Concluir o inventário semanal antes de validar qualquer hipótese',
+  },
+  {
+    id: 'causa-contagem-refrigerado-moinhos',
+    grupo: 'estoque',
+    titulo: 'Contagem do estoque refrigerado incompleta — Moinhos',
+    impacto: 1760,
+    confianca: 'media',
+    unidades: ['Moinhos'],
+    categorias: ['Carnes'],
+    evidenciaIds: ['ev-contagem-refrigerado-moinhos'],
+    pendencias: ['3 itens não contados na última rodada'],
+    tendencia: 'up',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Concluir contagem do estoque refrigerado até o fim do dia',
+  },
+  {
+    id: 'causa-transferencia-chope',
+    grupo: 'transferencias',
+    titulo: 'Transferência de chope não conciliada',
+    impacto: 1640,
+    confianca: 'media',
+    unidades: ['Moinhos'],
+    categorias: ['Chope'],
+    evidenciaIds: ['ev-transferencia-chope'],
+    pendencias: ['Confirmação de recebimento pela unidade de destino'],
+    tendencia: 'flat',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Conciliar a transferência de chope IPA entre unidades',
+  },
+  {
+    id: 'causa-divergencia-recebimento',
+    grupo: 'recebimento',
+    titulo: 'Divergência de quantidade em recebimentos de carnes',
+    impacto: 1000,
+    confianca: 'media',
+    unidades: ['Moinhos', 'Caxias Centro'],
+    categorias: ['Carnes'],
+    evidenciaIds: ['ev-divergencia-recebimento'],
+    pendencias: ['Resposta do fornecedor às duas notas com divergência'],
+    tendencia: 'flat',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Validar as notas com divergência junto ao recebimento',
+  },
+  {
+    id: 'causa-residual-nao-atribuido',
+    grupo: 'dados',
+    titulo: 'Diferença ainda não explicada',
+    impacto: 1280,
+    confianca: 'insuficiente',
+    unidades: [],
+    categorias: [],
+    evidenciaIds: ['ev-residual-nao-atribuido'],
+    pendencias: ['Concluir pendências de dados do período para decompor o residual'],
+    tendencia: 'flat',
+    status: 'em_investigacao',
+    acaoRecomendada: 'Reavaliar após a conclusão das pendências de dados do período',
+  },
+]
+
+export function getCmvCauseById(id: string): CmvCause | undefined {
+  return cmvCauses.find((c) => c.id === id)
+}
+
+export const cmvCausesTotalImpacto = cmvCauses.reduce((sum, c) => sum + c.impacto, 0)

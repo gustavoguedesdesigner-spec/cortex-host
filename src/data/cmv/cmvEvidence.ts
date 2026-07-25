@@ -1,0 +1,143 @@
+import type { CmvEvidence } from '@/types'
+
+/**
+ * Evidências no nível de rede que sustentam as causas priorizadas de
+ * src/data/cmv/cmvCauses.ts. Distintas das evidências por unidade já
+ * publicadas em unit-profiles.ts (não duplicam, complementam com a
+ * visão consolidada do módulo de CMV).
+ */
+export const cmvEvidences: CmvEvidence[] = [
+  {
+    id: 'ev-porcionamento-carnes',
+    titulo: 'Consumo de carnes acima da ficha técnica',
+    descricao: 'Movimentação de estoque de carnes bovinas acima do previsto pelas fichas técnicas vigentes em Moinhos e Caxias Centro.',
+    valorObservado: '1.297 kg consumidos (blend para hambúrguer)',
+    valorEsperado: '1.180 kg previstos pela ficha técnica',
+    diferenca: '+9,9%',
+    origem: 'Ficha técnica × movimentação de estoque',
+    data: '2026-07-22',
+    unidade: 'Moinhos',
+    categoria: 'Carnes',
+    produto: 'Burger Costela',
+    responsavel: 'Cozinha — Moinhos',
+    confianca: 'alta',
+  },
+  {
+    id: 'ev-rendimento-fritura',
+    titulo: 'Rendimento de óleo abaixo do previsto',
+    descricao: 'Frequência de troca de óleo de fritura acima do padrão em Moinhos e Zona Norte, aumentando o consumo por porção.',
+    valorObservado: 'Troca a cada 2,1 dias',
+    valorEsperado: 'Troca a cada 3 dias (padrão)',
+    diferenca: '-30%',
+    origem: 'Registro de troca de óleo — cozinha',
+    data: '2026-07-20',
+    categoria: 'Óleos e frituras',
+    responsavel: 'Cozinha',
+    confianca: 'media',
+  },
+  {
+    id: 'ev-preco-oleo',
+    titulo: 'Aumento de preço do óleo',
+    descricao: 'Nota fiscal da Distribuidora Gaúcha confirma reajuste de preço acima da variação de mercado no período.',
+    valorObservado: 'Preço médio de R$ 9,84/L',
+    valorEsperado: 'Preço médio anterior de R$ 8,99/L',
+    diferenca: '+9,4%',
+    origem: 'Nota fiscal — Distribuidora Gaúcha',
+    data: '2026-07-15',
+    categoria: 'Óleos e frituras',
+    responsavel: 'Compras',
+    confianca: 'alta',
+  },
+  {
+    id: 'ev-fornecedor-fora-acordo',
+    titulo: 'Fornecedor fora do acordo comercial',
+    descricao: 'Serra Alimentos apresenta variação de preço de 8,7% acima do acordo vigente em múltiplas unidades.',
+    valorObservado: 'Variação de preço de 8,7%',
+    valorEsperado: 'Acordo comercial vigente (sem reajuste no trimestre)',
+    diferenca: '+8,7%',
+    origem: 'Nota fiscal × acordo comercial',
+    data: '2026-07-18',
+    categoria: 'Carnes',
+    responsavel: 'Compras',
+    confianca: 'media',
+  },
+  {
+    id: 'ev-inventario-caxias-norte',
+    titulo: 'Inventário semanal pendente',
+    descricao: 'Contagem física do estoque geral de Caxias Norte está pendente há 7 dias, reduzindo a confiabilidade do CMV apurado na unidade.',
+    valorObservado: 'Nenhuma contagem concluída na semana',
+    valorEsperado: 'Contagem semanal completa',
+    diferenca: '7 dias em atraso',
+    origem: 'Inventário',
+    data: '2026-07-16',
+    unidade: 'Caxias Norte',
+    responsavel: 'Bruno Teles',
+    confianca: 'baixa',
+  },
+  {
+    id: 'ev-contagem-refrigerado-moinhos',
+    titulo: 'Contagem do estoque refrigerado incompleta',
+    descricao: 'Três itens do estoque refrigerado de Moinhos não foram contados na última rodada de inventário.',
+    valorObservado: '3 itens não contados',
+    valorEsperado: 'Contagem semanal completa em todos os itens',
+    diferenca: '3 itens pendentes',
+    origem: 'Inventário',
+    data: '2026-07-17',
+    unidade: 'Moinhos',
+    responsavel: 'Rafael Martins',
+    confianca: 'media',
+  },
+  {
+    id: 'ev-transferencia-chope',
+    titulo: 'Transferência de chope sem conciliação',
+    descricao: 'Saída de chope IPA registrada em Moinhos sem confirmação de recebimento pela unidade de destino há 4 dias.',
+    valorObservado: 'Saída de 2 barris de Chope IPA',
+    valorEsperado: 'Confirmação de recebimento pela unidade de destino',
+    diferenca: 'Sem confirmação há 4 dias',
+    origem: 'Transferência entre unidades',
+    data: '2026-07-19',
+    categoria: 'Chope',
+    unidade: 'Moinhos',
+    responsavel: 'Estoque — Moinhos',
+    confianca: 'media',
+  },
+  {
+    id: 'ev-divergencia-recebimento',
+    titulo: 'Divergência de quantidade em recebimento',
+    descricao: 'Duas notas fiscais de carnes com diferença de quantidade e preço em relação ao pedido original, ainda sem retorno do fornecedor.',
+    valorObservado: 'NF 9821 e NF 9814 — diferença de quantidade e preço',
+    valorEsperado: 'Quantidade e preço conforme pedido',
+    diferenca: 'R$ 3.780 em divergência',
+    origem: 'Nota fiscal × pedido de compra',
+    data: '2026-07-22',
+    categoria: 'Carnes',
+    responsavel: 'Recebimento',
+    confianca: 'media',
+  },
+  {
+    id: 'ev-residual-nao-atribuido',
+    titulo: 'Diferença residual não atribuída',
+    descricao: 'Parcela do desvio consolidado ainda não pode ser atribuída a uma categoria ou causa específica com os dados disponíveis.',
+    valorObservado: 'R$ 1.280 sem categoria atribuída',
+    valorEsperado: 'Decomposição completa por categoria',
+    diferenca: 'R$ 1.280',
+    origem: 'Cálculo consolidado',
+    data: '2026-07-23',
+    responsavel: 'CORTEX',
+    confianca: 'insuficiente',
+  },
+]
+
+export function getCmvEvidenceById(id: string): CmvEvidence | undefined {
+  return cmvEvidences.find((e) => e.id === id)
+}
+
+/** Cadeia de evidências do exemplo de investigação — Burger Costela (seção 33 do briefing). */
+export const cmvBurgerCostelaEvidenceChain: string[] = [
+  'Burger Costela vendido',
+  'Ficha técnica prevê 180 g de carne por porção',
+  'Quantidade vendida indica consumo esperado de 1.180 kg no período',
+  'Movimentações de estoque e inventário indicam consumo de 1.297 kg',
+  'Perdas registradas (R$ 640) não explicam a diferença total',
+  'Hipótese: porcionamento acima da ficha ou perda não registrada — exige validação',
+]

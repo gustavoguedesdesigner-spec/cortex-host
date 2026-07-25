@@ -6,6 +6,11 @@ import CentralOperacoes from '@/pages/CentralOperacoes'
 import Unidades from '@/pages/Unidades'
 import UnitDetail from '@/pages/UnitDetail'
 import CMV from '@/pages/CMV'
+import CmvUnitDetail from '@/pages/CmvUnitDetail'
+import CmvCategoryDetail from '@/pages/CmvCategoryDetail'
+import CmvProductDetail from '@/pages/CmvProductDetail'
+import CmvClosing from '@/pages/CmvClosing'
+import CmvClosingPeriodDetail from '@/pages/CmvClosingPeriodDetail'
 import Estoque from '@/pages/Estoque'
 import Compras from '@/pages/Compras'
 import Recebimentos from '@/pages/Recebimentos'
@@ -32,6 +37,11 @@ export default function App() {
         <Route path="/unidades" element={<Unidades />} />
         <Route path="/unidades/:unitId" element={<UnitDetail />} />
         <Route path="/cmv" element={<CMV />} />
+        <Route path="/cmv/unidades/:unitId" element={<CmvUnitDetail />} />
+        <Route path="/cmv/categorias/:categoryId" element={<CmvCategoryDetail />} />
+        <Route path="/cmv/produtos/:productId" element={<CmvProductDetail />} />
+        <Route path="/cmv/fechamentos" element={<CmvClosing />} />
+        <Route path="/cmv/fechamentos/:periodId" element={<CmvClosingPeriodDetail />} />
         <Route path="/estoque" element={<Estoque />} />
         <Route path="/compras" element={<Compras />} />
         <Route path="/recebimentos" element={<Recebimentos />} />

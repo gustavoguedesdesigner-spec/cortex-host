@@ -76,7 +76,10 @@ export default function UnitDetail() {
         onAskCortex={() => askCortex(`Por que ${unit.nomeCurto} está crítica?`, unit.nome)}
       />
 
-      <InternalTabs active={activeTab} onChange={setActiveTab} />
+      <InternalTabs
+        active={activeTab}
+        onChange={(tab) => (tab === 'CMV' ? navigate(`/cmv/unidades/${unit.id}`) : setActiveTab(tab))}
+      />
 
       {activeTab !== 'Visão geral' ? (
         <UnitTabPlaceholder unitName={unit.nomeCurto} tab={activeTab} />

@@ -13,8 +13,10 @@ import type { Unit } from '@/types'
  * Valores fixos (nao gerados aleatoriamente). CMV, perdas e alertas
  * confirmam exatamente os numeros ja usados na Central de Operacoes:
  * soma de perdas = R$ 18.320, soma de alertas = 18, soma de estoque =
- * R$ 312.850, soma de impacto financeiro ≈ R$ 27.460 (Moinhos R$ 11.320
- * conforme especificado para o aprofundamento desta unidade).
+ * R$ 312.850. impactoFinanceiro por unidade bate exatamente com o
+ * impacto por unidade do modulo de CMV (soma = R$ 27.460, identico ao
+ * total de src/data/financial-impact.ts) — mesma fonte de verdade em
+ * toda a aplicacao.
  * ---------------------------------------------------------------------
  */
 export const units: Unit[] = [
@@ -81,7 +83,7 @@ export const units: Unit[] = [
     vendas: 300000,
     numeroPedidos: 3846,
     ticketMedio: 78,
-    impactoFinanceiro: 5730,
+    impactoFinanceiro: 7210,
     compras: 52000,
     valorEstoque: 33000,
     perdas: 3940,
@@ -121,7 +123,7 @@ export const units: Unit[] = [
     vendas: 365000,
     numeroPedidos: 4345,
     ticketMedio: 84,
-    impactoFinanceiro: 3570,
+    impactoFinanceiro: 3180,
     compras: 63000,
     valorEstoque: 46000,
     perdas: 2870,
@@ -161,7 +163,7 @@ export const units: Unit[] = [
     vendas: 510000,
     numeroPedidos: 5795,
     ticketMedio: 88,
-    impactoFinanceiro: 4310,
+    impactoFinanceiro: 2210,
     compras: 88000,
     valorEstoque: 68000,
     perdas: 2460,
@@ -201,7 +203,7 @@ export const units: Unit[] = [
     vendas: 430000,
     numeroPedidos: 4526,
     ticketMedio: 95,
-    impactoFinanceiro: 760,
+    impactoFinanceiro: 520,
     compras: 75000,
     valorEstoque: 58000,
     perdas: 1620,
@@ -240,7 +242,7 @@ export const units: Unit[] = [
     vendas: 250000,
     numeroPedidos: 3378,
     ticketMedio: 74,
-    impactoFinanceiro: 1780,
+    impactoFinanceiro: 3020,
     compras: 40700,
     valorEstoque: 23850,
     perdas: 2570,
