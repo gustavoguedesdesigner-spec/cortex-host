@@ -7,6 +7,7 @@ import { demoUser } from '@/data/user'
 import { quickQuestions } from '@/data/quick-questions'
 import { findCmvQuickAnswer } from '@/data/cmv/cmvQuickQuestions'
 import { findInventoryQuickAnswer } from '@/data/inventory/inventoryQuickQuestions'
+import { findRecipeQuickAnswer } from '@/data/recipes/recipeQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -24,6 +25,8 @@ function findAnswer(question: string): string {
   if (cmv) return cmv.resposta
   const inventory = findInventoryQuickAnswer(question)
   if (inventory) return inventory.resposta
+  const recipe = findRecipeQuickAnswer(question)
+  if (recipe) return recipe.resposta
   return fallbackAnswer
 }
 

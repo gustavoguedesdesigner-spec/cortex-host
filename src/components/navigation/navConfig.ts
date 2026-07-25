@@ -38,7 +38,7 @@ export const navGroups: NavGroupData[] = [
   {
     label: 'Conhecimento',
     items: [
-      { label: 'Fichas Técnicas', path: '/fichas-tecnicas', icon: BookOpen, emConstrucao: true },
+      { label: 'Fichas Técnicas', path: '/fichas-tecnicas', icon: BookOpen },
       { label: 'Biblioteca', path: '/biblioteca', icon: Library, emConstrucao: true },
     ],
   },

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { FilePlus2, GitCompareArrows, Sparkles } from 'lucide-react'
+import { FilePlus2, GitCompareArrows, Percent, Sparkles } from 'lucide-react'
 import { RecipeBreadcrumb } from '@/components/recipes/RecipeBreadcrumb'
 import { RecipeQualityBadge } from '@/components/recipes/RecipeQualityBadge'
 import { RecipeStatusBadge } from '@/components/recipes/RecipeStatusBadge'
@@ -16,6 +16,7 @@ import { CmvQuantityHistoryChart } from '@/components/cmv/CmvQuantityHistoryChar
 import { RecipeVersionHistorySection } from './recipes/RecipeVersionHistorySection'
 import { RecipeCostSimulator } from './recipes/RecipeCostSimulator'
 import { getRecipeById } from '@/data/recipes/recipes'
+import { getCmvProductById } from '@/data/cmv/cmvProducts'
 import { getRecipeVersionsByRecipe } from '@/data/recipes/recipeVersions'
 import { getIssuesByRecipe } from '@/data/recipes/recipeIssues'
 import { burgerCostelaConsumption, burgerCostelaUnitComparison, burgerCostelaUnitComparisonInsight } from '@/data/recipes/recipeConsumption'
@@ -111,6 +112,11 @@ function RecipeDetailBody({ recipeId }: { recipeId?: string }) {
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-2">
+          {getCmvProductById(recipe.id) && (
+            <Button size="sm" variant="secondary" leftIcon={<Percent className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate(`/cmv/produtos/${recipe.id}`)}>
+              Ver no CMV
+            </Button>
+          )}
           <Button size="sm" variant="secondary" leftIcon={<GitCompareArrows className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => setActiveTab('versoes')}>
             Comparar versões
           </Button>

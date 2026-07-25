@@ -11,6 +11,7 @@ import { CreateActionModal, type CreateActionDefaults } from '@/components/corte
 import { CmvQuantityHistoryChart } from '@/components/cmv/CmvQuantityHistoryChart'
 import { getCmvProductById, getCmvProductDetail } from '@/data/cmv/cmvProducts'
 import { getCmvIngredientById } from '@/data/cmv/cmvIngredients'
+import { getRecipeById } from '@/data/recipes/recipes'
 import { units } from '@/data/units'
 import { useAppState } from '@/context/AppStateContext'
 import { useCreatedActions } from '@/hooks/useCreatedActions'
@@ -33,6 +34,7 @@ export default function CmvProductDetail() {
   const insumo = detalhe?.insumoId ? getCmvIngredientById(detalhe.insumoId) : undefined
   const contextLabel = `CMV — ${produto.nome}`
   const margemTeorica = detalhe ? (detalhe.precoVenda - detalhe.custoPadrao) / detalhe.precoVenda : undefined
+  const fichaTecnicaPath = getRecipeById(produto.id) ? `/fichas-tecnicas/${produto.id}` : '/fichas-tecnicas'
 
   return (
     <div className="flex flex-col gap-6">
@@ -46,7 +48,7 @@ export default function CmvProductDetail() {
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-2">
-          <Button size="sm" variant="secondary" leftIcon={<FileText className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate('/fichas-tecnicas')}>
+          <Button size="sm" variant="secondary" leftIcon={<FileText className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate(fichaTecnicaPath)}>
             Abrir ficha técnica
           </Button>
           <Button size="sm" variant="secondary" leftIcon={<GitCompareArrows className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate('/cmv?tab=unidades')}>
