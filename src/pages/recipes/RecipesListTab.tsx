@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { RecipeStatusBadge } from '@/components/recipes/RecipeStatusBadge'
 import { RecipeQualityBadge } from '@/components/recipes/RecipeQualityBadge'
-import { recipeListRows, type RecipeListRow } from '@/data/recipes/recipeRows'
+import { recipeListRows, buildRecipeListRowFromEntry, type RecipeListRow } from '@/data/recipes/recipeRows'
 import { getIssuesByRecipe } from '@/data/recipes/recipeIssues'
+import { useCreatedRecipes } from '@/hooks/useCreatedRecipes'
 import { formatCurrencyBRL, formatCurrencyPreciseBRL, formatDateShort, formatPercent } from '@/utils/format'
 
 type QuickFilter =
@@ -71,17 +72,23 @@ export function RecipesListTab({ search }: { search: string }) {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const filtroParam = searchParams.get('filtro') as QuickFilter | null
+  const { created } = useCreatedRecipes()
 
   const [filtro, setFiltro] = useState<QuickFilter>(filtroParam ?? 'todas')
 
+  const allRows = useMemo(
+    () => [...created.map((e) => buildRecipeListRowFromEntry(e.recipe, e.version)), ...recipeListRows],
+    [created],
+  )
+
   const filtered = useMemo(
     () =>
-      recipeListRows.filter((r) => {
+      allRows.filter((r) => {
         if (!matchesFilter(r, filtro)) return false
         if (search && !r.recipe.nome.toLowerCase().includes(search.toLowerCase())) return false
         return true
       }),
-    [filtro, search],
+    [allRows, filtro, search],
   )
 
   const columns: TableColumn<RecipeListRow>[] = [

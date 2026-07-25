@@ -21,6 +21,8 @@ import { getIssuesByRecipe } from '@/data/recipes/recipeIssues'
 import { burgerCostelaConsumption, burgerCostelaUnitComparison, burgerCostelaUnitComparisonInsight } from '@/data/recipes/recipeConsumption'
 import { units } from '@/data/units'
 import { useAppState } from '@/context/AppStateContext'
+import { useCreatedRecipes } from '@/hooks/useCreatedRecipes'
+import { useRecipeApprovals } from '@/hooks/useRecipeApprovals'
 import { computeRecipeFinancials } from '@/utils/recipeCalculations'
 import { formatCurrencyBRL, formatCurrencyPreciseBRL, formatDateFull, formatPercent } from '@/utils/format'
 import { cn } from '@/utils/cn'
@@ -35,21 +37,28 @@ export default function RecipeDetail() {
 }
 
 function RecipeDetailBody({ recipeId }: { recipeId?: string }) {
+  // Todos os hooks precisam rodar sempre, na mesma ordem, independente de a ficha existir —
+  // os retornos antecipados (sem ficha / sem versão) vêm depois, nunca entre hooks.
   const navigate = useNavigate()
   const { askCortex } = useAppState()
+  const { getCreatedRecipeById } = useCreatedRecipes()
+  const { getStepStatus, setStepStatus } = useRecipeApprovals()
+  const [ingredientDrawerNotice, setIngredientDrawerNotice] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState('ficha')
 
-  const recipe = recipeId ? getRecipeById(recipeId) : undefined
+  const staticRecipe = recipeId ? getRecipeById(recipeId) : undefined
+  const createdEntry = !staticRecipe && recipeId ? getCreatedRecipeById(recipeId) : undefined
+  const recipe = staticRecipe ?? createdEntry?.recipe
   if (!recipe) return <NotFound />
 
-  const versions = getRecipeVersionsByRecipe(recipe.id)
+  const staticVersions = getRecipeVersionsByRecipe(recipe.id)
+  const versions = staticVersions.length > 0 ? staticVersions : createdEntry ? [createdEntry.version] : []
   const version = versions.find((v) => v.id === recipe.versaoVigenteId) ?? versions[0]
   const issues = getIssuesByRecipe(recipe.id)
   const impactoTotal = issues.reduce((sum, i) => sum + (i.impacto ?? 0), 0)
   const consumption = recipe.id === 'burger-costela' ? burgerCostelaConsumption : null
   const unitComparison = recipe.id === 'burger-costela' ? burgerCostelaUnitComparison : null
   const contextLabel = `Ficha técnica — ${recipe.nome}`
-
-  const [ingredientDrawerNotice, setIngredientDrawerNotice] = useState<string | null>(null)
 
   const tabItems = [
     { id: 'ficha', label: 'Ficha técnica' },
@@ -59,7 +68,6 @@ function RecipeDetailBody({ recipeId }: { recipeId?: string }) {
     ...(consumption ? [{ id: 'consumo', label: 'Consumo teórico vs. real' }] : []),
     { id: 'simulador', label: 'Simulador' },
   ]
-  const [activeTab, setActiveTab] = useState(tabItems[0].id)
 
   if (!version) {
     return (
@@ -235,22 +243,35 @@ function RecipeDetailBody({ recipeId }: { recipeId?: string }) {
         <section>
           <SectionHeader title="Fluxo de aprovação" description="Etapas necessárias para publicar esta versão" />
           <div className="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface">
-            {version.aprovacoes.map((step) => (
-              <div key={step.ordem} className="flex items-center justify-between gap-3 px-4 py-3">
-                <div>
-                  <p className="text-support font-medium text-ink-primary">
-                    {step.ordem}. {step.papel}
-                  </p>
-                  {step.responsavel && <p className="text-caption text-ink-tertiary">{step.responsavel}</p>}
+            {version.aprovacoes.map((step) => {
+              const status = getStepStatus(version.id, step.ordem, step.status)
+              return (
+                <div key={step.ordem} className="flex items-center justify-between gap-3 px-4 py-3">
+                  <div>
+                    <p className="text-support font-medium text-ink-primary">
+                      {step.ordem}. {step.papel}
+                    </p>
+                    {step.responsavel && <p className="text-caption text-ink-tertiary">{step.responsavel}</p>}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {step.data && <span className="text-caption text-ink-tertiary">{formatDateFull(step.data)}</span>}
+                    <IndicatorBadge status={approvalStatusIndicator[status]}>
+                      {status === 'aprovado' ? 'Aprovado' : status === 'rejeitado' ? 'Rejeitado' : 'Pendente'}
+                    </IndicatorBadge>
+                    {status === 'pendente' && (
+                      <div className="flex items-center gap-1.5">
+                        <Button size="sm" variant="secondary" onClick={() => setStepStatus(version.id, step.ordem, 'rejeitado')}>
+                          Rejeitar
+                        </Button>
+                        <Button size="sm" variant="navy" onClick={() => setStepStatus(version.id, step.ordem, 'aprovado')}>
+                          Aprovar
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  {step.data && <span className="text-caption text-ink-tertiary">{formatDateFull(step.data)}</span>}
-                  <IndicatorBadge status={approvalStatusIndicator[step.status]}>
-                    {step.status === 'aprovado' ? 'Aprovado' : step.status === 'rejeitado' ? 'Rejeitado' : 'Pendente'}
-                  </IndicatorBadge>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </section>
       )}

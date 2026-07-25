@@ -13,8 +13,7 @@ export interface RecipeListRow {
 }
 
 /** Junta Recipe + versão vigente + financeiro calculado — nunca hardcoded, sempre via computeRecipeFinancials. */
-export function buildRecipeListRow(recipe: Recipe): RecipeListRow {
-  const version = recipe.versaoVigenteId ? (getRecipeVersionById(recipe.versaoVigenteId) ?? null) : null
+export function buildRecipeListRowFromEntry(recipe: Recipe, version: RecipeVersion | null): RecipeListRow {
   const financials = version
     ? computeRecipeFinancials({
         ingredientes: version.ingredientes,
@@ -32,6 +31,11 @@ export function buildRecipeListRow(recipe: Recipe): RecipeListRow {
     issuesCount: issues.length,
     impactoTotal: issues.reduce((sum, i) => sum + (i.impacto ?? 0), 0),
   }
+}
+
+export function buildRecipeListRow(recipe: Recipe): RecipeListRow {
+  const version = recipe.versaoVigenteId ? (getRecipeVersionById(recipe.versaoVigenteId) ?? null) : null
+  return buildRecipeListRowFromEntry(recipe, version)
 }
 
 export const recipeListRows: RecipeListRow[] = recipes.map(buildRecipeListRow)
