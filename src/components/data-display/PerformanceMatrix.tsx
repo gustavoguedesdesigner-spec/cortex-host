@@ -44,20 +44,18 @@ export function PerformanceMatrix({ units, onSelectUnit }: { units: Unit[]; onSe
         </span>
 
         {units.map((u) => (
-          <Tooltip
-            key={u.id}
-            content={`${u.nome} · CMV ${formatPercent(u.cmvReal)} · ${formatPercentPoints(u.cmvReal - u.cmvTeorico)} · ${u.numeroAlertas} alertas · ${formatCurrencyCompactBRL(u.impactoFinanceiro)}`}
-          >
-            <button
-              onClick={() => onSelectUnit(u)}
-              className={cn(
-                'absolute h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full ring-4 ring-surface transition-transform hover:scale-150',
-                dotByLevel[u.nivelAtencao],
-              )}
-              style={{ left: `${eficiencia(u)}%`, bottom: `${impacto(u)}%` }}
-              aria-label={`Ver ${u.nome}`}
-            />
-          </Tooltip>
+          // A posição absoluta fica neste wrapper, não dentro do Tooltip: o span interno do Tooltip é `position: relative`
+          // e, como o único filho seria retirado do fluxo, ele colapsaria para tamanho zero e viraria o bloco de
+          // contenção do botão — todos os pontos cairiam exatamente na mesma coordenada.
+          <div key={u.id} className="absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${eficiencia(u)}%`, bottom: `${impacto(u)}%` }}>
+            <Tooltip content={`${u.nome} · CMV ${formatPercent(u.cmvReal)} · ${formatPercentPoints(u.cmvReal - u.cmvTeorico)} · ${u.numeroAlertas} alertas · ${formatCurrencyCompactBRL(u.impactoFinanceiro)}`}>
+              <button
+                onClick={() => onSelectUnit(u)}
+                className={cn('h-2.5 w-2.5 rounded-full ring-4 ring-surface transition-transform hover:scale-150', dotByLevel[u.nivelAtencao])}
+                aria-label={`Ver ${u.nome}`}
+              />
+            </Tooltip>
+          </div>
         ))}
       </div>
 

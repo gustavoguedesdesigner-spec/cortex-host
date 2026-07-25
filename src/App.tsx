@@ -27,6 +27,8 @@ import RecipeNew from '@/pages/RecipeNew'
 import RecipeRevisions from '@/pages/RecipeRevisions'
 import RecipeInconsistencies from '@/pages/RecipeInconsistencies'
 import RecipeSubRecipes from '@/pages/RecipeSubRecipes'
+import RecipeCosts from '@/pages/RecipeCosts'
+import MenuEngineering from '@/pages/MenuEngineering'
 import RecipeDetail from '@/pages/RecipeDetail'
 import Biblioteca from '@/pages/Biblioteca'
 import AssistenteCortex from '@/pages/AssistenteCortex'
@@ -70,6 +72,8 @@ export default function App() {
         <Route path="/fichas-tecnicas/revisoes" element={<RecipeRevisions />} />
         <Route path="/fichas-tecnicas/inconsistencias" element={<RecipeInconsistencies />} />
         <Route path="/fichas-tecnicas/subreceitas" element={<RecipeSubRecipes />} />
+        <Route path="/fichas-tecnicas/custos" element={<RecipeCosts />} />
+        <Route path="/fichas-tecnicas/engenharia" element={<MenuEngineering />} />
         <Route path="/fichas-tecnicas/:recipeId" element={<RecipeDetail />} />
         <Route path="/biblioteca" element={<Biblioteca />} />
         <Route path="/assistente" element={<AssistenteCortex />} />

@@ -45,7 +45,7 @@ export const recipeQuickQuestions: CmvQuickAnswer[] = [
     pergunta: 'Quais produtos vendem muito e rendem pouco?',
     resposta:
       'O item promocional apresenta alto volume e margem reduzida. Burger Clássico também possui volume elevado, mas margem abaixo da média da categoria. Nenhum dos dois apresenta o mesmo nível de desvio operacional do Burger Costela.',
-    links: [{ label: 'Ver engenharia de cardápio', path: '/cardapio/engenharia' }],
+    links: [{ label: 'Ver engenharia de cardápio', path: '/fichas-tecnicas/engenharia' }],
   },
   {
     pergunta: 'Onde o porcionamento está fora do padrão?',

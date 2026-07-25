@@ -14,7 +14,7 @@ const entries: NavEntry[] = [
   { id: 'inconsistencias', label: 'Inconsistências', onClick: (nav) => nav('/fichas-tecnicas/inconsistencias') },
   { id: 'subreceitas', label: 'Sub-receitas', onClick: (nav) => nav('/fichas-tecnicas/subreceitas') },
   { id: 'custos', label: 'Custos', onClick: (nav) => nav('/fichas-tecnicas/custos') },
-  { id: 'engenharia', label: 'Engenharia de cardápio', onClick: (nav) => nav('/cardapio/engenharia') },
+  { id: 'engenharia', label: 'Engenharia de cardápio', onClick: (nav) => nav('/fichas-tecnicas/engenharia') },
   { id: 'historico', label: 'Histórico', onClick: (nav) => nav('/fichas-tecnicas/revisoes?section=historico') },
 ]
 
