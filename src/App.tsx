@@ -48,6 +48,11 @@ import AdminModules from '@/pages/AdminModules'
 import AdminNotifications from '@/pages/AdminNotifications'
 import AdminIntegrationsList from '@/pages/AdminIntegrationsList'
 import AdminIntegrationDetail from '@/pages/AdminIntegrationDetail'
+import AdminSecurity from '@/pages/AdminSecurity'
+import AdminAudit from '@/pages/AdminAudit'
+import AdminData from '@/pages/AdminData'
+import AdminPolicies from '@/pages/AdminPolicies'
+import AdminAppearance from '@/pages/AdminAppearance'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -108,6 +113,11 @@ export default function App() {
         <Route path="/configuracoes/notificacoes" element={<AdminNotifications />} />
         <Route path="/configuracoes/integracoes" element={<AdminIntegrationsList />} />
         <Route path="/configuracoes/integracoes/:integrationId" element={<AdminIntegrationDetail />} />
+        <Route path="/configuracoes/seguranca" element={<AdminSecurity />} />
+        <Route path="/configuracoes/auditoria" element={<AdminAudit />} />
+        <Route path="/configuracoes/dados" element={<AdminData />} />
+        <Route path="/configuracoes/politicas" element={<AdminPolicies />} />
+        <Route path="/configuracoes/aparencia" element={<AdminAppearance />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
