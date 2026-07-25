@@ -483,7 +483,7 @@ export const unitProfiles: Record<string, UnitProfile> = {
       { metrica: 'Itens em excesso de estoque', unidade: '6', rede: '3,2 (média)', unidadeMelhor: false },
     ],
     comparacaoRedeInsight: 'Cidade Baixa opera com CMV melhor que a rede; o ponto de melhoria é reduzir o estoque excedente.',
-    estoque: { acuraciadeEstimada: 0.905, itensCriticos: 2, itensExcesso: 6, itensSemMovimentacao: 4, transferenciasPendentes: 0 },
+    estoque: { acuraciadeEstimada: 0.905, itensCriticos: 2, itensExcesso: 5, itensSemMovimentacao: 4, transferenciasPendentes: 0 },
     compras: { pedidosEmAberto: 2, comprasEmergenciais: 0, divergencias: 1, valorDivergencias: 640, principalFornecedorAtencao: '—', registros: [] },
     fornecedores: [
       { nome: 'Distribuidora Gaúcha', totalComprado: 26200, variacaoPreco: 0.052, divergenciasRede: 2, divergenciasUnidade: 1, avaliacao: 3.8, status: 'atencao' },

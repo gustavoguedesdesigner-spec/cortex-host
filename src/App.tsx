@@ -12,6 +12,13 @@ import CmvProductDetail from '@/pages/CmvProductDetail'
 import CmvClosing from '@/pages/CmvClosing'
 import CmvClosingPeriodDetail from '@/pages/CmvClosingPeriodDetail'
 import Estoque from '@/pages/Estoque'
+import InventoryUnitDetail from '@/pages/InventoryUnitDetail'
+import InventoryItemDetail from '@/pages/InventoryItemDetail'
+import InventoryCounts from '@/pages/InventoryCounts'
+import InventoryCountDetail from '@/pages/InventoryCountDetail'
+import InventoryMovements from '@/pages/InventoryMovements'
+import InventoryTransfers from '@/pages/InventoryTransfers'
+import InventoryLosses from '@/pages/InventoryLosses'
 import Compras from '@/pages/Compras'
 import Recebimentos from '@/pages/Recebimentos'
 import Fornecedores from '@/pages/Fornecedores'
@@ -43,6 +50,13 @@ export default function App() {
         <Route path="/cmv/fechamentos" element={<CmvClosing />} />
         <Route path="/cmv/fechamentos/:periodId" element={<CmvClosingPeriodDetail />} />
         <Route path="/estoque" element={<Estoque />} />
+        <Route path="/estoque/unidades/:unitId" element={<InventoryUnitDetail />} />
+        <Route path="/estoque/itens/:itemId" element={<InventoryItemDetail />} />
+        <Route path="/estoque/inventarios" element={<InventoryCounts />} />
+        <Route path="/estoque/inventarios/:inventoryId" element={<InventoryCountDetail />} />
+        <Route path="/estoque/movimentacoes" element={<InventoryMovements />} />
+        <Route path="/estoque/transferencias" element={<InventoryTransfers />} />
+        <Route path="/estoque/perdas" element={<InventoryLosses />} />
         <Route path="/compras" element={<Compras />} />
         <Route path="/recebimentos" element={<Recebimentos />} />
         <Route path="/fornecedores" element={<Fornecedores />} />

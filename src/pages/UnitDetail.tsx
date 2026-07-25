@@ -78,7 +78,9 @@ export default function UnitDetail() {
 
       <InternalTabs
         active={activeTab}
-        onChange={(tab) => (tab === 'CMV' ? navigate(`/cmv/unidades/${unit.id}`) : setActiveTab(tab))}
+        onChange={(tab) =>
+          tab === 'CMV' ? navigate(`/cmv/unidades/${unit.id}`) : tab === 'Estoque' ? navigate(`/estoque/unidades/${unit.id}`) : setActiveTab(tab)
+        }
       />
 
       {activeTab !== 'Visão geral' ? (

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { demoUser } from '@/data/user'
 import { quickQuestions } from '@/data/quick-questions'
 import { findCmvQuickAnswer } from '@/data/cmv/cmvQuickQuestions'
+import { findInventoryQuickAnswer } from '@/data/inventory/inventoryQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -21,6 +22,8 @@ function findAnswer(question: string): string {
   if (network) return network.resposta
   const cmv = findCmvQuickAnswer(question)
   if (cmv) return cmv.resposta
+  const inventory = findInventoryQuickAnswer(question)
+  if (inventory) return inventory.resposta
   return fallbackAnswer
 }
 
