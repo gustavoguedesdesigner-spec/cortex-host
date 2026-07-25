@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Card } from '@/components/ui/Card'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { DataList } from '@/components/ui/DataList'
@@ -7,6 +8,7 @@ import { formatCurrencyBRL } from '@/utils/format'
 import type { Unit, UnitProfile } from '@/types'
 
 export function StockPurchasesSuppliersSection({ unit, profile }: { unit: Unit; profile: UnitProfile }) {
+  const navigate = useNavigate()
   return (
     <section className="flex flex-col gap-4">
       <SectionHeader title="Estoque, compras e fornecedores" description="Panorama resumido da unidade — detalhes completos nos módulos dedicados" />
@@ -52,7 +54,10 @@ export function StockPurchasesSuppliersSection({ unit, profile }: { unit: Unit; 
               ))}
             </div>
           )}
-          <Button size="sm" variant="ghost" className="mt-2">Conferir recebimentos</Button>
+          <div className="flex flex-wrap gap-2 mt-2">
+            <Button size="sm" variant="secondary" onClick={() => navigate(`/compras/requisicoes?unidade=${unit.id}`)}>Ver requisições</Button>
+            <Button size="sm" variant="ghost" onClick={() => navigate('/recebimentos')}>Conferir recebimentos</Button>
+          </div>
         </Card>
 
         <Card>

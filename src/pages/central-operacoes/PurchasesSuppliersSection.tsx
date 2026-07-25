@@ -16,9 +16,14 @@ export function PurchasesSuppliersSection() {
         title="Compras e fornecedores"
         description="Panorama do período e fornecedores que exigem atenção"
         actions={
-          <Button size="sm" variant="ghost" rightIcon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate('/fornecedores')}>
-            Ver todos os fornecedores
-          </Button>
+          <>
+            <Button size="sm" variant="secondary" onClick={() => navigate('/compras')}>
+              Abrir Compras
+            </Button>
+            <Button size="sm" variant="ghost" rightIcon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={() => navigate('/fornecedores')}>
+              Ver todos os fornecedores
+            </Button>
+          </>
         }
       />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">

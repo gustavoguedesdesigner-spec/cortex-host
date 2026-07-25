@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { ArrowRight, ClipboardList, Search } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { CortexLabel } from './CortexButton'
@@ -9,6 +10,13 @@ interface ExecutiveSummaryCardProps {
   onViewActionPlan: () => void
   onAskCortex: () => void
   aside?: React.ReactNode
+  /** Rótulo e ícone do botão primário — padrão mantém o texto usado em CMV/Estoque/Fichas Técnicas/Administração. */
+  primaryLabel?: string
+  primaryIcon?: ReactNode
+  secondaryLabel?: string
+  secondaryIcon?: ReactNode
+  /** Botões adicionais após "Perguntar ao CORTEX" — usado quando o módulo precisa de uma quarta ação rápida. */
+  extraActions?: ReactNode
 }
 
 /**
@@ -22,6 +30,11 @@ export function ExecutiveSummaryCard({
   onViewActionPlan,
   onAskCortex,
   aside,
+  primaryLabel = 'Analisar causas',
+  primaryIcon = <Search className="h-3.5 w-3.5" strokeWidth={1.7} />,
+  secondaryLabel = 'Ver plano de ação',
+  secondaryIcon = <ClipboardList className="h-3.5 w-3.5" strokeWidth={1.7} />,
+  extraActions,
 }: ExecutiveSummaryCardProps) {
   return (
     <section className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border bg-border shadow-card lg:grid-cols-12">
@@ -39,15 +52,16 @@ export function ExecutiveSummaryCard({
         </ol>
 
         <div className="flex flex-wrap items-center gap-2">
-          <Button size="sm" variant="primary" leftIcon={<Search className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={onAnalyzeCauses}>
-            Analisar causas
+          <Button size="sm" variant="primary" leftIcon={primaryIcon} onClick={onAnalyzeCauses}>
+            {primaryLabel}
           </Button>
-          <Button size="sm" variant="secondary" leftIcon={<ClipboardList className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={onViewActionPlan}>
-            Ver plano de ação
+          <Button size="sm" variant="secondary" leftIcon={secondaryIcon} onClick={onViewActionPlan}>
+            {secondaryLabel}
           </Button>
           <Button size="sm" variant="ghost" rightIcon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.7} />} onClick={onAskCortex}>
             Perguntar ao CORTEX
           </Button>
+          {extraActions}
         </div>
       </div>
 

@@ -9,6 +9,7 @@ import { findCmvQuickAnswer } from '@/data/cmv/cmvQuickQuestions'
 import { findInventoryQuickAnswer } from '@/data/inventory/inventoryQuickQuestions'
 import { findRecipeQuickAnswer } from '@/data/recipes/recipeQuickQuestions'
 import { findAdminQuickAnswer } from '@/data/administration/adminQuickQuestions'
+import { findPurchasingQuickAnswer } from '@/data/purchasing/purchasingQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -30,6 +31,8 @@ function findAnswer(question: string): string {
   if (recipe) return recipe.resposta
   const admin = findAdminQuickAnswer(question)
   if (admin) return admin.resposta
+  const purchasing = findPurchasingQuickAnswer(question)
+  if (purchasing) return purchasing.resposta
   return fallbackAnswer
 }
 

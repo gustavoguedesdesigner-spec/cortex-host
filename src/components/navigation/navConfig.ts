@@ -30,7 +30,7 @@ export const navGroups: NavGroupData[] = [
   {
     label: 'Suprimentos',
     items: [
-      { label: 'Compras', path: '/compras', icon: ShoppingCart, emConstrucao: true },
+      { label: 'Compras', path: '/compras', icon: ShoppingCart },
       { label: 'Recebimentos', path: '/recebimentos', icon: Truck, emConstrucao: true },
       { label: 'Fornecedores', path: '/fornecedores', icon: Users, emConstrucao: true },
     ],

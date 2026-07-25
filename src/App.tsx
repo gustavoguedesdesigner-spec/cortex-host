@@ -20,6 +20,14 @@ import InventoryMovements from '@/pages/InventoryMovements'
 import InventoryTransfers from '@/pages/InventoryTransfers'
 import InventoryLosses from '@/pages/InventoryLosses'
 import Compras from '@/pages/Compras'
+import ComprasNecessidades from '@/pages/ComprasNecessidades'
+import ComprasRequisicoes from '@/pages/ComprasRequisicoes'
+import ComprasRequisicaoDetail from '@/pages/ComprasRequisicaoDetail'
+import ComprasAprovacoes from '@/pages/ComprasAprovacoes'
+import ComprasCotacoes from '@/pages/ComprasCotacoes'
+import ComprasCotacaoDetail from '@/pages/ComprasCotacaoDetail'
+import ComprasPedidos from '@/pages/ComprasPedidos'
+import ComprasPedidoDetail from '@/pages/ComprasPedidoDetail'
 import Recebimentos from '@/pages/Recebimentos'
 import Fornecedores from '@/pages/Fornecedores'
 import FichasTecnicas from '@/pages/FichasTecnicas'
@@ -85,6 +93,14 @@ export default function App() {
         <Route path="/estoque/transferencias" element={<InventoryTransfers />} />
         <Route path="/estoque/perdas" element={<InventoryLosses />} />
         <Route path="/compras" element={<Compras />} />
+        <Route path="/compras/necessidades" element={<ComprasNecessidades />} />
+        <Route path="/compras/requisicoes" element={<ComprasRequisicoes />} />
+        <Route path="/compras/requisicoes/:requestId" element={<ComprasRequisicaoDetail />} />
+        <Route path="/compras/aprovacoes" element={<ComprasAprovacoes />} />
+        <Route path="/compras/cotacoes" element={<ComprasCotacoes />} />
+        <Route path="/compras/cotacoes/:quotationId" element={<ComprasCotacaoDetail />} />
+        <Route path="/compras/pedidos" element={<ComprasPedidos />} />
+        <Route path="/compras/pedidos/:orderId" element={<ComprasPedidoDetail />} />
         <Route path="/recebimentos" element={<Recebimentos />} />
         <Route path="/fornecedores" element={<Fornecedores />} />
         <Route path="/fichas-tecnicas" element={<FichasTecnicas />} />
