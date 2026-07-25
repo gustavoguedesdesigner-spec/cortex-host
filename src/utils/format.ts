@@ -11,6 +11,16 @@ export function formatCurrencyBRL(value: number): string {
   }).format(value)
 }
 
+/** Para custos unitários fracionários (ex.: R$/grama) — R$ 0 seria enganoso com a formatação padrão sem casas decimais. */
+export function formatCurrencyPreciseBRL(value: number): string {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: Math.abs(value) < 1 ? 4 : 2,
+  }).format(value)
+}
+
 export function formatCurrencyCompactBRL(value: number): string {
   if (Math.abs(value) >= 1000) {
     return new Intl.NumberFormat('pt-BR', {

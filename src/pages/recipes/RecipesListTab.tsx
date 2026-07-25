@@ -10,7 +10,7 @@ import { RecipeStatusBadge } from '@/components/recipes/RecipeStatusBadge'
 import { RecipeQualityBadge } from '@/components/recipes/RecipeQualityBadge'
 import { recipeListRows, type RecipeListRow } from '@/data/recipes/recipeRows'
 import { getIssuesByRecipe } from '@/data/recipes/recipeIssues'
-import { formatCurrencyBRL, formatDateShort, formatPercent } from '@/utils/format'
+import { formatCurrencyBRL, formatCurrencyPreciseBRL, formatDateShort, formatPercent } from '@/utils/format'
 
 type QuickFilter =
   | 'todas'
@@ -88,8 +88,8 @@ export function RecipesListTab({ search }: { search: string }) {
     { key: 'nome', header: 'Produto', render: (r) => <span className="font-medium">{r.recipe.nome}</span> },
     { key: 'categoria', header: 'Categoria', render: (r) => r.recipe.categoria },
     { key: 'versao', header: 'Versão vigente', render: (r) => r.version?.versao ?? '—' },
-    { key: 'custoPorcao', header: 'Custo por porção', align: 'right', render: (r) => (r.financials ? formatCurrencyBRL(r.financials.custoPorcao) : '—') },
-    { key: 'preco', header: 'Preço de venda', align: 'right', render: (r) => (r.version ? formatCurrencyBRL(r.version.precoVenda) : '—') },
+    { key: 'custoPorcao', header: 'Custo por porção', align: 'right', render: (r) => (r.financials ? formatCurrencyPreciseBRL(r.financials.custoPorcao) : '—') },
+    { key: 'preco', header: 'Preço de venda', align: 'right', render: (r) => (r.version ? formatCurrencyPreciseBRL(r.version.precoVenda) : '—') },
     { key: 'cmv', header: 'CMV teórico', align: 'right', render: (r) => (r.financials ? formatPercent(r.financials.cmvTeorico, 1) : '—') },
     {
       key: 'margem',

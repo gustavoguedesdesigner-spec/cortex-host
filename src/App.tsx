@@ -23,6 +23,7 @@ import Compras from '@/pages/Compras'
 import Recebimentos from '@/pages/Recebimentos'
 import Fornecedores from '@/pages/Fornecedores'
 import FichasTecnicas from '@/pages/FichasTecnicas'
+import RecipeDetail from '@/pages/RecipeDetail'
 import Biblioteca from '@/pages/Biblioteca'
 import AssistenteCortex from '@/pages/AssistenteCortex'
 import Configuracoes from '@/pages/Configuracoes'
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="/recebimentos" element={<Recebimentos />} />
         <Route path="/fornecedores" element={<Fornecedores />} />
         <Route path="/fichas-tecnicas" element={<FichasTecnicas />} />
+        <Route path="/fichas-tecnicas/:recipeId" element={<RecipeDetail />} />
         <Route path="/biblioteca" element={<Biblioteca />} />
         <Route path="/assistente" element={<AssistenteCortex />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
