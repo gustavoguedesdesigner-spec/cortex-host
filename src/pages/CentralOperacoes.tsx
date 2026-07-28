@@ -44,7 +44,7 @@ export default function CentralOperacoes() {
   }, [])
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <ContextualHeader />
 
       <ExecutiveSummaryCard

@@ -1,14 +1,7 @@
-import { useNavigate } from 'react-router-dom'
-import { cn } from '@/utils/cn'
-
-interface NavEntry {
-  id: string
-  label: string
-  path: string
-}
+import { InternalNav, type InternalNavEntry } from '@/components/navigation/InternalNav'
 
 /** 13 abas da Administração (seção 6) — Marcas e Aparência ficam acessíveis a partir de Organização e Políticas, sem aba própria. */
-const entries: NavEntry[] = [
+const entries: InternalNavEntry[] = [
   { id: 'visao-geral', label: 'Visão geral', path: '/configuracoes' },
   { id: 'organizacao', label: 'Organização', path: '/configuracoes/organizacao' },
   { id: 'unidades', label: 'Unidades', path: '/configuracoes/unidades' },
@@ -25,28 +18,5 @@ const entries: NavEntry[] = [
 ]
 
 export function AdminInternalNav({ active }: { active: string }) {
-  const navigate = useNavigate()
-
-  return (
-    <div className="flex items-center gap-1 overflow-x-auto scrollbar-none border-b border-border" role="tablist">
-      {entries.map((entry) => {
-        const isActive = active === entry.id
-        return (
-          <button
-            key={entry.id}
-            role="tab"
-            aria-selected={isActive}
-            onClick={() => navigate(entry.path)}
-            className={cn(
-              'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
-              isActive ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
-            )}
-          >
-            {entry.label}
-            {isActive && <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent" />}
-          </button>
-        )
-      })}
-    </div>
-  )
+  return <InternalNav entries={entries} active={active} />
 }

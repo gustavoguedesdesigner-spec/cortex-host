@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CircleCheckBig, Clock, RefreshCw } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { PageBanner, PageHero } from '@/components/ui/PageHero'
 import { IconButton } from '@/components/ui/Button'
 import { cn } from '@/utils/cn'
 import { useAppState, useUnitOptions } from '@/context/AppStateContext'
@@ -30,11 +30,13 @@ export function ContextualHeader() {
   }
 
   return (
-    <PageHeader
+    <PageHero
       title={`Bom dia, ${demoUser.nome}.`}
+      titleSize="display"
       description={`Veja o que exige sua atenção nas operações da ${demoUser.empresa}.`}
+      banner={<PageBanner className="min-h-[200px]" />}
       meta={
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-caption text-ink-tertiary">
+        <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-caption text-ink-tertiary">
           <span>{formatDateFull(networkSummary.dataSimulada)}</span>
           <span aria-hidden="true">·</span>
           <span>{periodoLabel}</span>
@@ -45,7 +47,7 @@ export function ContextualHeader() {
         </div>
       }
       actions={
-        <div className="flex flex-col items-start gap-2 lg:items-end">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <div className="flex items-center gap-1.5 text-caption">
             {justUpdated ? (
               <span className="flex items-center gap-1.5 text-success">

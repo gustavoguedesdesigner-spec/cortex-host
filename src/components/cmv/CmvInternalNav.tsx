@@ -1,15 +1,6 @@
-import { useNavigate } from 'react-router-dom'
-import { cn } from '@/utils/cn'
+import { InternalNav, type InternalNavEntry } from '@/components/navigation/InternalNav'
 
 export type CmvTab = 'visao-geral' | 'unidades' | 'categorias' | 'produtos' | 'causas'
-
-const tabs: { id: CmvTab; label: string }[] = [
-  { id: 'visao-geral', label: 'Visão geral' },
-  { id: 'unidades', label: 'Unidades' },
-  { id: 'categorias', label: 'Categorias' },
-  { id: 'produtos', label: 'Produtos' },
-  { id: 'causas', label: 'Causas e evidências' },
-]
 
 /**
  * Navegação interna do módulo de CMV. "Visão geral" a "Causas e
@@ -17,53 +8,16 @@ const tabs: { id: CmvTab; label: string }[] = [
  * via query params); "Fechamento" e "Histórico" navegam para a rota
  * dedicada /cmv/fechamentos, que tem checklist e histórico completos.
  */
-export function CmvInternalNav({ active }: { active: CmvTab | 'fechamento' | 'historico' }) {
-  const navigate = useNavigate()
+const entries: InternalNavEntry[] = [
+  { id: 'visao-geral', label: 'Visão geral', path: '/cmv' },
+  { id: 'unidades', label: 'Unidades', path: '/cmv?tab=unidades' },
+  { id: 'categorias', label: 'Categorias', path: '/cmv?tab=categorias' },
+  { id: 'produtos', label: 'Produtos', path: '/cmv?tab=produtos' },
+  { id: 'causas', label: 'Causas e evidências', path: '/cmv?tab=causas' },
+  { id: 'fechamento', label: 'Fechamento', path: '/cmv/fechamentos' },
+  { id: 'historico', label: 'Histórico', path: '/cmv/fechamentos?section=historico' },
+]
 
-  return (
-    <div className="flex items-center gap-1 overflow-x-auto scrollbar-none border-b border-border" role="tablist">
-      {tabs.map((tab) => {
-        const isActive = active === tab.id
-        return (
-          <button
-            key={tab.id}
-            role="tab"
-            aria-selected={isActive}
-            onClick={() => navigate(tab.id === 'visao-geral' ? '/cmv' : `/cmv?tab=${tab.id}`)}
-            className={cn(
-              'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
-              isActive ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
-            )}
-          >
-            {tab.label}
-            {isActive && <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent" />}
-          </button>
-        )
-      })}
-      <button
-        role="tab"
-        aria-selected={active === 'fechamento'}
-        onClick={() => navigate('/cmv/fechamentos')}
-        className={cn(
-          'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
-          active === 'fechamento' ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
-        )}
-      >
-        Fechamento
-        {active === 'fechamento' && <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent" />}
-      </button>
-      <button
-        role="tab"
-        aria-selected={active === 'historico'}
-        onClick={() => navigate('/cmv/fechamentos?section=historico')}
-        className={cn(
-          'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
-          active === 'historico' ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
-        )}
-      >
-        Histórico
-        {active === 'historico' && <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent" />}
-      </button>
-    </div>
-  )
+export function CmvInternalNav({ active }: { active: CmvTab | 'fechamento' | 'historico' }) {
+  return <InternalNav entries={entries} active={active} />
 }
