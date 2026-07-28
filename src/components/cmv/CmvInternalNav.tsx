@@ -31,7 +31,7 @@ export function CmvInternalNav({ active }: { active: CmvTab | 'fechamento' | 'hi
             aria-selected={isActive}
             onClick={() => navigate(tab.id === 'visao-geral' ? '/cmv' : `/cmv?tab=${tab.id}`)}
             className={cn(
-              'relative shrink-0 whitespace-nowrap px-3.5 py-2.5 text-support font-medium transition-colors',
+              'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
               isActive ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
             )}
           >
@@ -45,7 +45,7 @@ export function CmvInternalNav({ active }: { active: CmvTab | 'fechamento' | 'hi
         aria-selected={active === 'fechamento'}
         onClick={() => navigate('/cmv/fechamentos')}
         className={cn(
-          'relative shrink-0 whitespace-nowrap px-3.5 py-2.5 text-support font-medium transition-colors',
+          'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
           active === 'fechamento' ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
         )}
       >
@@ -57,7 +57,7 @@ export function CmvInternalNav({ active }: { active: CmvTab | 'fechamento' | 'hi
         aria-selected={active === 'historico'}
         onClick={() => navigate('/cmv/fechamentos?section=historico')}
         className={cn(
-          'relative shrink-0 whitespace-nowrap px-3.5 py-2.5 text-support font-medium transition-colors',
+          'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
           active === 'historico' ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
         )}
       >

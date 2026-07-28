@@ -23,15 +23,15 @@ const alignClasses = { left: 'text-left', right: 'text-right', center: 'text-cen
 
 export function Table<T>({ columns, data, getRowId, onRowClick, className, stickyFirstColumn }: TableProps<T>) {
   return (
-    <div className={cn('overflow-x-auto rounded-lg border border-border bg-surface', className)}>
+    <div className={cn('overflow-x-auto rounded-xl border border-border bg-surface', className)}>
       <table className="w-full border-collapse text-support">
         <thead>
-          <tr className="border-b border-border">
+          <tr className="border-b border-border bg-surface-subtle/60">
             {columns.map((col, i) => (
               <th
                 key={col.key}
                 className={cn(
-                  'whitespace-nowrap px-4 py-2.5 text-label font-medium text-ink-tertiary',
+                  'whitespace-nowrap px-5 py-3 text-label font-medium text-ink-tertiary',
                   alignClasses[col.align ?? 'left'],
                   stickyFirstColumn && i === 0 && 'sticky left-0 bg-surface',
                 )}
@@ -55,7 +55,7 @@ export function Table<T>({ columns, data, getRowId, onRowClick, className, stick
                 <td
                   key={col.key}
                   className={cn(
-                    'h-12 whitespace-nowrap px-4 text-ink-primary',
+                    'h-14 whitespace-nowrap px-5 text-ink-primary',
                     col.align === 'right' && 'tabular',
                     alignClasses[col.align ?? 'left'],
                     stickyFirstColumn && i === 0 && 'sticky left-0 bg-surface',

@@ -11,10 +11,10 @@
 :root {
   --chart-accent: #FF5A1F;
   --chart-navy: #132033;
-  --chart-neutral: #9297A0;
-  --chart-grid: #EDEFF2;
-  --chart-axis: #9297A0;
-  --chart-info: #4C71AE;
+  --chart-neutral: #94979E;
+  --chart-grid: #EEEFED;
+  --chart-axis: #94979E;
+  --chart-info: #4A6FA9;
 }
 
 @layer base {
@@ -49,12 +49,12 @@
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background-color: #D6DADF;
+    background-color: #D9DAD9;
     border-radius: 8px;
     border: 2px solid transparent;
     background-clip: padding-box;
   }
-  ::-webkit-scrollbar-thumb:hover { background-color: #C2C7CE; background-clip: padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background-color: #C6C8C6; background-clip: padding-box; }
 }
 
 @layer utilities {
@@ -64,7 +64,7 @@
   .tabular { font-variant-numeric: tabular-nums; }
 
   .skeleton-shimmer {
-    background-image: linear-gradient(90deg, #EFF1F3 0px, #F7F8F9 40px, #EFF1F3 80px);
+    background-image: linear-gradient(90deg, #F0F1F0 0px, #F8F8F7 40px, #F0F1F0 80px);
     background-size: 400px 100%;
   }
 }

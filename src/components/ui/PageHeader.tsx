@@ -10,14 +10,14 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, actions, eyebrow, meta }: PageHeaderProps) {
   return (
-    <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-      <div className="flex max-w-2xl flex-col gap-1.5">
-        {eyebrow && <span className="text-label uppercase tracking-wide text-accent">{eyebrow}</span>}
-        <h1 className="text-page-title">{title}</h1>
-        {description && <p className="text-body text-ink-secondary">{description}</p>}
+    <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex max-w-3xl flex-col gap-2">
+        {eyebrow && <span className="text-label uppercase tracking-[0.08em] text-accent">{eyebrow}</span>}
+        <h1 className="text-page-title-sm lg:text-page-title">{title}</h1>
+        {description && <p className="text-body text-ink-secondary lg:text-lead">{description}</p>}
         {meta}
       </div>
-      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
+      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2.5">{actions}</div>}
     </div>
   )
 }

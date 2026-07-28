@@ -6,7 +6,7 @@ export function CortexButton({ onClick }: { onClick: () => void }) {
     <button
       onClick={onClick}
       aria-label="Pergunte ao CORTEX"
-      className="flex h-9 items-center gap-2 rounded-md bg-navy px-2.5 text-support font-medium text-white transition-colors hover:bg-navy-hover sm:px-3"
+      className="flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-navy px-3 text-support font-medium text-white transition-colors hover:bg-navy-hover sm:px-4"
     >
       <CortexMark className="h-4 w-4 text-accent" />
       <span className="hidden sm:inline">Pergunte ao CORTEX</span>

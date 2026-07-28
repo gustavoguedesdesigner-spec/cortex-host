@@ -16,8 +16,8 @@ export function AppShell() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <Header />
-        <main className="flex-1 px-4 pb-24 pt-6 lg:px-7 lg:pb-12 lg:pt-8">
-          <div className="mx-auto flex w-full max-w-content flex-col gap-10">
+        <main className="flex-1 px-4 pb-24 pt-6 lg:px-10 lg:pb-16 lg:pt-10">
+          <div className="mx-auto flex w-full max-w-content flex-col gap-12">
             <Outlet />
           </div>
         </main>

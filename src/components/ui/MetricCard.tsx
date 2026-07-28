@@ -26,7 +26,7 @@ export function MetricStrip({ children, className }: { children: ReactNode; clas
   return (
     <div
       className={cn(
-        'grid grid-cols-2 divide-border overflow-hidden rounded-lg border border-border bg-surface',
+        'grid grid-cols-2 divide-border overflow-hidden rounded-xl border border-border bg-surface',
         'sm:grid-cols-3 sm:divide-x xl:grid-cols-6',
         'divide-y sm:divide-y-0',
         className,
@@ -82,8 +82,8 @@ export function MetricCard({
     <Wrapper
       onClick={onClick}
       className={cn(
-        'flex w-full flex-col gap-1.5 p-4 text-left transition-colors',
-        variant === 'card' && 'rounded-lg border border-border bg-surface',
+        'flex w-full flex-col gap-2 p-5 text-left transition-colors',
+        variant === 'card' && 'rounded-xl border border-border bg-surface',
         onClick && 'hover:bg-surface-hover',
       )}
     >

@@ -38,7 +38,7 @@ export function AdminInternalNav({ active }: { active: string }) {
             aria-selected={isActive}
             onClick={() => navigate(entry.path)}
             className={cn(
-              'relative shrink-0 whitespace-nowrap px-3.5 py-2.5 text-support font-medium transition-colors',
+              'relative shrink-0 whitespace-nowrap px-4 py-3 text-support font-medium transition-colors',
               isActive ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
             )}
           >

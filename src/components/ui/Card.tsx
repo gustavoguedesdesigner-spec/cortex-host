@@ -13,9 +13,9 @@ export function Card({ children, padded = true, interactive, elevation = 'flat',
   return (
     <div
       className={cn(
-        'rounded-lg border border-border bg-surface',
+        'rounded-xl border border-border bg-surface',
         elevation === 'raised' && 'shadow-card',
-        padded && 'p-5',
+        padded && 'p-6',
         interactive && 'cursor-pointer transition-all hover:border-border-strong hover:shadow-card',
         className,
       )}

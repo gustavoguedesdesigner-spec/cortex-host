@@ -49,8 +49,8 @@ interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ className, wrapperClassName, placeholder = 'Buscar...', ...props }, ref) => (
     <div className={cn('relative flex items-center', wrapperClassName)}>
-      <Search className="pointer-events-none absolute left-3 h-4 w-4 text-ink-tertiary" strokeWidth={1.7} />
-      <input ref={ref} type="search" placeholder={placeholder} className={cn(fieldBase, 'h-9 pl-9 pr-3', className)} {...props} />
+      <Search className="pointer-events-none absolute left-3.5 h-4 w-4 text-ink-tertiary" strokeWidth={1.7} />
+      <input ref={ref} type="search" placeholder={placeholder} className={cn(fieldBase, 'h-10 rounded-full pl-10 pr-4', className)} {...props} />
     </div>
   ),
 )

@@ -34,7 +34,7 @@ export function Tabs({
               onChange?.(item.id)
             }}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-3 py-2.5 text-support font-medium transition-colors',
+              'relative flex shrink-0 items-center gap-2 px-4 py-3 text-support font-medium transition-colors',
               isActive ? 'text-ink-primary' : 'text-ink-tertiary hover:text-ink-secondary',
             )}
           >

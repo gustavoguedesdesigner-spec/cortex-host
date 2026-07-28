@@ -24,7 +24,7 @@ export function Header() {
   const unitName = segments[0] === 'unidades' && segments[1] ? getUnitById(segments[1])?.nomeCurto : undefined
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-3 border-b border-border bg-surface px-4 lg:px-7">
+    <header className="sticky top-0 z-20 flex h-[68px] shrink-0 items-center gap-3 border-b border-border bg-surface px-4 lg:px-8">
       <Logo collapsed className="lg:hidden" />
 
       <nav aria-label="Trilha de navegação" className="hidden min-w-0 items-center gap-1.5 text-support lg:flex">
@@ -39,25 +39,35 @@ export function Header() {
         )}
       </nav>
 
-      <div className="ml-auto flex items-center gap-2">
-        <SearchInput placeholder="Buscar..." wrapperClassName="hidden w-56 xl:block" />
-        <Select
-          aria-label="Selecionar período"
-          value={periodo}
-          onChange={(e) => setPeriodo(e.target.value as typeof periodo)}
-          options={periodOptions.map((p) => ({ value: p.id, label: p.label }))}
-          className="hidden w-36 md:block"
-        />
-        <Select
-          aria-label="Selecionar unidade"
-          value={unidadeSelecionada}
-          onChange={(e) => setUnidadeSelecionada(e.target.value)}
-          options={unitOptions.map((u) => ({ value: u.id, label: u.nome }))}
-          className="hidden w-44 md:block"
-        />
+      <div className="ml-auto flex items-center gap-2.5">
+        <SearchInput placeholder="Buscar..." wrapperClassName="hidden w-72 xl:block" />
+        <div className="hidden md:block">
+          <Select
+            aria-label="Selecionar período"
+            value={periodo}
+            onChange={(e) => setPeriodo(e.target.value as typeof periodo)}
+            options={periodOptions.map((p) => ({ value: p.id, label: p.label }))}
+            className="w-36"
+          />
+        </div>
+        <div className="hidden md:block">
+          <Select
+            aria-label="Selecionar unidade"
+            value={unidadeSelecionada}
+            onChange={(e) => setUnidadeSelecionada(e.target.value)}
+            options={unitOptions.map((u) => ({ value: u.id, label: u.nome }))}
+            className="w-44"
+          />
+        </div>
         <CortexButton onClick={() => setCortexPanelOpen(true)} />
         <NotificationsPanel />
-        <Avatar iniciais={demoUser.iniciais} size="sm" />
+        <div className="flex items-center gap-2.5 border-l border-border pl-2.5">
+          <Avatar iniciais={demoUser.iniciais} size="sm" />
+          <div className="hidden min-w-0 flex-col leading-tight 2xl:flex">
+            <span className="truncate text-support font-medium text-ink-primary">{demoUser.nome}</span>
+            <span className="truncate text-caption text-ink-tertiary">{demoUser.perfil}</span>
+          </div>
+        </div>
       </div>
     </header>
   )

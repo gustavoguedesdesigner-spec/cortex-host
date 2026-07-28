@@ -15,16 +15,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary: 'bg-accent text-white hover:bg-accent-hover',
-  secondary: 'bg-surface text-ink-primary border border-border-strong hover:bg-surface-hover',
+  secondary: 'bg-surface text-ink-primary border border-border hover:border-border-strong hover:bg-surface-hover',
   ghost: 'bg-transparent text-ink-secondary hover:bg-surface-subtle hover:text-ink-primary',
   navy: 'bg-navy text-white hover:bg-navy-hover',
   danger: 'bg-danger text-white hover:opacity-90',
 }
 
+/* Botões em formato pill — ações destacadas com boa área de toque. */
 const sizeClasses: Record<Size, string> = {
-  sm: 'h-8 px-3 text-support gap-1.5 rounded',
-  md: 'h-9 px-3.5 text-support gap-2 rounded-md',
-  lg: 'h-10 px-4 text-body gap-2 rounded-md',
+  sm: 'h-9 px-4 text-support gap-1.5 rounded-full',
+  md: 'h-10 px-5 text-support gap-2 rounded-full',
+  lg: 'h-11 px-6 text-body gap-2 rounded-full',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -58,9 +59,9 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const iconSizeClasses: Record<Size, string> = {
-  sm: 'h-7 w-7 rounded',
-  md: 'h-9 w-9 rounded-md',
-  lg: 'h-10 w-10 rounded-md',
+  sm: 'h-8 w-8 rounded-full',
+  md: 'h-10 w-10 rounded-full',
+  lg: 'h-11 w-11 rounded-full',
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
