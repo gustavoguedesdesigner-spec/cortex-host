@@ -12,7 +12,7 @@ export function SegmentedControl<T extends string>({
   className?: string
 }) {
   return (
-    <div className={cn('inline-flex flex-wrap items-center gap-1 rounded-[20px] border border-border bg-surface p-1', className)} role="tablist">
+    <div className={cn('inline-flex flex-wrap items-center gap-1 rounded-[20px] border border-border bg-surface-raised p-1', className)} role="tablist">
       {options.map((opt) => (
         <button
           key={opt.value}

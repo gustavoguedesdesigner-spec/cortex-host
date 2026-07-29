@@ -29,8 +29,8 @@ export function Modal({
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div className="absolute inset-0 animate-fade-in bg-navy/25" onClick={onClose} aria-hidden="true" />
-      <div className={cn('relative z-10 w-full animate-fade-in rounded-xl bg-surface shadow-overlay', sizeClasses[size])}>
+      <div className="absolute inset-0 animate-fade-in bg-backdrop" onClick={onClose} aria-hidden="true" />
+      <div className={cn('relative z-10 w-full animate-fade-in rounded-xl border border-border bg-surface-raised shadow-overlay', sizeClasses[size])}>
         <div className="flex items-start justify-between gap-4 border-b border-border px-6 pb-4 pt-5">
           <div>
             <h2 id="modal-title" className="text-section-title">

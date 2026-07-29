@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Moon, Sun } from 'lucide-react'
 import { SearchInput } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
+import { IconButton } from '@/components/ui/Button'
 import { Avatar } from '@/components/ui/Avatar'
 import { CortexButton } from '@/components/cortex/CortexButton'
 import { NotificationsPanel } from './NotificationsPanel'
@@ -16,7 +17,7 @@ import { demoUser } from '@/data/user'
 export function Header() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { periodo, setPeriodo, unidadeSelecionada, setUnidadeSelecionada, setCortexPanelOpen } = useAppState()
+  const { periodo, setPeriodo, unidadeSelecionada, setUnidadeSelecionada, setCortexPanelOpen, theme, toggleTheme } = useAppState()
   const unitOptions = useUnitOptions()
 
   const segments = location.pathname.split('/').filter(Boolean)
@@ -24,7 +25,7 @@ export function Header() {
   const unitName = segments[0] === 'unidades' && segments[1] ? getUnitById(segments[1])?.nomeCurto : undefined
 
   return (
-    <header className="sticky top-0 z-20 flex h-[68px] shrink-0 items-center gap-3 border-b border-border bg-surface px-4 lg:px-8">
+    <header className="sticky top-0 z-20 flex h-[68px] shrink-0 items-center gap-3 border-b border-border bg-shell px-4 lg:px-8">
       <Logo collapsed className="lg:hidden" />
 
       <nav aria-label="Trilha de navegação" className="hidden min-w-0 items-center gap-1.5 text-support lg:flex">
@@ -60,6 +61,12 @@ export function Header() {
           />
         </div>
         <CortexButton onClick={() => setCortexPanelOpen(true)} />
+        <IconButton
+          icon={theme === 'escuro' ? <Sun className="h-4 w-4" strokeWidth={1.7} /> : <Moon className="h-4 w-4" strokeWidth={1.7} />}
+          label={theme === 'escuro' ? 'Usar tema claro' : 'Usar tema escuro'}
+          size="sm"
+          onClick={toggleTheme}
+        />
         <NotificationsPanel />
         <div className="flex items-center gap-2.5 border-l border-border pl-2.5">
           <Avatar iniciais={demoUser.iniciais} size="sm" />

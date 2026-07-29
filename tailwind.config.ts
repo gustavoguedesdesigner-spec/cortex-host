@@ -11,37 +11,68 @@ const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      /**
+       * Cores como CSS vars (RGB cru + <alpha-value>) para suportar tema claro
+       * e escuro sem duplicar classe nos componentes: os nomes semânticos são
+       * os mesmos nos dois temas — só os valores mudam em [data-theme="dark"].
+       */
       colors: {
-        canvas: '#F7F7F6',
+        canvas: 'rgb(var(--c-canvas) / <alpha-value>)',
+        /** Fundo de sidebar e topbar — no claro é branco, no escuro é distinto do canvas. */
+        shell: 'rgb(var(--c-shell) / <alpha-value>)',
         surface: {
-          DEFAULT: '#FFFFFF',
-          subtle: '#F2F3F2',
-          hover: '#F8F8F7',
+          DEFAULT: 'rgb(var(--c-surface) / <alpha-value>)',
+          subtle: 'rgb(var(--c-surface-subtle) / <alpha-value>)',
+          hover: 'rgb(var(--c-surface-hover) / <alpha-value>)',
+          raised: 'rgb(var(--c-surface-raised) / <alpha-value>)',
+          soft: 'rgb(var(--c-surface-soft) / <alpha-value>)',
         },
         ink: {
-          primary: '#17181A',
-          secondary: '#63666C',
-          tertiary: '#94979E',
+          primary: 'rgb(var(--c-ink-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--c-ink-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--c-ink-tertiary) / <alpha-value>)',
+          disabled: 'rgb(var(--c-ink-disabled) / <alpha-value>)',
         },
         navy: {
-          DEFAULT: '#132033',
-          hover: '#1B2A40',
+          DEFAULT: 'rgb(var(--c-navy) / <alpha-value>)',
+          hover: 'rgb(var(--c-navy-hover) / <alpha-value>)',
         },
         accent: {
-          DEFAULT: '#FF5A1F',
-          hover: '#E94C12',
-          soft: '#FFF1EA',
-          line: '#FFD9C7',
+          DEFAULT: 'rgb(var(--c-accent) / <alpha-value>)',
+          hover: 'rgb(var(--c-accent-hover) / <alpha-value>)',
+          soft: 'rgb(var(--c-accent-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-accent-line) / <alpha-value>)',
         },
-        /* Paleta secundária suave: fundos claros com bordas correspondentes (-line). */
-        success: { DEFAULT: '#358A5E', soft: '#ECF7F0', line: '#CDE9D8' },
-        warning: { DEFAULT: '#A8761F', soft: '#FCF6E8', line: '#F0E2BD' },
-        danger: { DEFAULT: '#C93B49', soft: '#FDEFF0', line: '#F5D2D6' },
-        info: { DEFAULT: '#4A6FA9', soft: '#EFF3F9', line: '#D6E0EF' },
-        steel: { DEFAULT: '#5E6B7E', soft: '#EFF1F4', line: '#DCE1E8' },
+        /* Paleta secundária suave: fundos discretos com bordas correspondentes (-line). */
+        success: {
+          DEFAULT: 'rgb(var(--c-success) / <alpha-value>)',
+          soft: 'rgb(var(--c-success-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-success-line) / <alpha-value>)',
+        },
+        warning: {
+          DEFAULT: 'rgb(var(--c-warning) / <alpha-value>)',
+          soft: 'rgb(var(--c-warning-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-warning-line) / <alpha-value>)',
+        },
+        danger: {
+          DEFAULT: 'rgb(var(--c-danger) / <alpha-value>)',
+          soft: 'rgb(var(--c-danger-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-danger-line) / <alpha-value>)',
+          solid: 'rgb(var(--c-danger-solid) / <alpha-value>)',
+        },
+        info: {
+          DEFAULT: 'rgb(var(--c-info) / <alpha-value>)',
+          soft: 'rgb(var(--c-info-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-info-line) / <alpha-value>)',
+        },
+        steel: {
+          DEFAULT: 'rgb(var(--c-steel) / <alpha-value>)',
+          soft: 'rgb(var(--c-steel-soft) / <alpha-value>)',
+          line: 'rgb(var(--c-steel-line) / <alpha-value>)',
+        },
         border: {
-          DEFAULT: '#E8E9E8',
-          strong: '#D9DAD9',
+          DEFAULT: 'rgb(var(--c-border) / <alpha-value>)',
+          strong: 'rgb(var(--c-border-strong) / <alpha-value>)',
         },
       },
       fontFamily: {
@@ -72,11 +103,12 @@ const config: Config = {
         xl: '20px',
         '2xl': '24px',
       },
+      /* Sombras via var para ficarem minimas no tema escuro (profundidade vem da superficie, nao da sombra). */
       boxShadow: {
-        subtle: '0 1px 2px rgba(20, 22, 25, 0.03)',
-        card: '0 1px 2px rgba(20, 22, 25, 0.03), 0 4px 14px rgba(20, 22, 25, 0.04)',
-        raised: '0 2px 4px rgba(20, 22, 25, 0.04), 0 10px 28px rgba(20, 22, 25, 0.06)',
-        overlay: '0 16px 48px rgba(20, 22, 25, 0.14)',
+        subtle: 'var(--shadow-subtle)',
+        card: 'var(--shadow-card)',
+        raised: 'var(--shadow-raised)',
+        overlay: 'var(--shadow-overlay)',
       },
       maxWidth: {
         content: '1560px',

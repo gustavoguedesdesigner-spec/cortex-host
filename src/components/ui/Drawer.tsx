@@ -29,10 +29,10 @@ export function Drawer({
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
-      <div className="absolute inset-0 animate-fade-in bg-navy/25" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 animate-fade-in bg-backdrop" onClick={onClose} aria-hidden="true" />
       <div
         className={cn(
-          'relative z-10 flex h-full animate-slide-in-right flex-col bg-surface shadow-overlay',
+          'relative z-10 flex h-full animate-slide-in-right flex-col bg-surface-raised shadow-overlay',
           widthClassName,
           side === 'right' ? 'ml-auto border-l border-border' : 'mr-auto border-r border-border',
         )}

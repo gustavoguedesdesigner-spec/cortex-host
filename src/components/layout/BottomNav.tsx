@@ -14,7 +14,7 @@ export function BottomNav() {
   const { setMobileNavOpen } = useAppState()
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 flex h-16 items-stretch border-t border-border bg-surface lg:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-30 flex h-16 items-stretch border-t border-border bg-shell lg:hidden">
       {items.map((item) => {
         const Icon = item.icon
         return (

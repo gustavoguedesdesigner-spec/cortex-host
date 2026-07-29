@@ -31,9 +31,9 @@ export function CmvQuantityHistoryChart({ data, unidade, height = 220 }: { data:
         <YAxis tickFormatter={(v: number) => v.toLocaleString('pt-BR')} tick={AXIS} axisLine={false} tickLine={false} width={40} />
         <Tooltip
           formatter={(value: number, name: string) => [formatQty(value), name]}
-          contentStyle={{ background: '#FFFFFF', border: '1px solid #E4E7EB', borderRadius: 10, fontSize: 12, color: '#171A1F' }}
+          contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', borderRadius: 10, fontSize: 12, color: 'var(--chart-tooltip-text)' }}
         />
-        <Legend formatter={(v) => <span style={{ color: '#656B75', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
+        <Legend formatter={(v) => <span style={{ color: 'var(--chart-legend-text)', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
         <Area type="monotone" dataKey="teorico" name="Consumo teórico" stroke="var(--chart-navy)" strokeWidth={1.4} fill="none" dot={false} />
         <Area type="monotone" dataKey="real" name="Consumo real" stroke="var(--chart-accent)" strokeWidth={2} fill="url(#qtyRealFill)" dot={false} />
       </AreaChart>

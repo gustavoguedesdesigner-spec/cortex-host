@@ -1,14 +1,22 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { PeriodOptionId } from '@/types'
 import { units } from '@/data/units'
+import { useLocalStorageState } from '@/hooks/useLocalStorageState'
 
 export const ALL_UNITS_ID = 'todas'
+
+/** Tema visual da interface — claro (padrao) ou escuro. */
+export type ThemeMode = 'claro' | 'escuro'
 
 interface AppStateValue {
   // Autenticacao simulada
   isAuthenticated: boolean
   login: () => void
   logout: () => void
+
+  // Tema visual
+  theme: ThemeMode
+  toggleTheme: () => void
 
   // Selecoes globais (cabecalho)
   periodo: PeriodOptionId
@@ -41,6 +49,7 @@ const AppStateContext = createContext<AppStateValue | undefined>(undefined)
 
 export function AppStateProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [theme, setTheme] = useLocalStorageState<ThemeMode>('cortex-host:theme', 'claro')
   const [periodo, setPeriodo] = useState<PeriodOptionId>('ultimos_7_dias')
   const [unidadeSelecionada, setUnidadeSelecionada] = useState<string>(ALL_UNITS_ID)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
@@ -51,11 +60,18 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [cortexContextLabel, setCortexContextLabel] = useState<string | null>(null)
   const [cortexDirectAnswer, setCortexDirectAnswer] = useState<string | null>(null)
 
+  /* O tema vive num atributo do <html> — os tokens CSS reagem a ele sem re-render de componente. */
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme === 'escuro' ? 'dark' : 'light')
+  }, [theme])
+
   const value = useMemo<AppStateValue>(
     () => ({
       isAuthenticated,
       login: () => setIsAuthenticated(true),
       logout: () => setIsAuthenticated(false),
+      theme,
+      toggleTheme: () => setTheme(theme === 'escuro' ? 'claro' : 'escuro'),
       periodo,
       setPeriodo,
       unidadeSelecionada,
@@ -80,6 +96,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     }),
     [
       isAuthenticated,
+      theme,
+      setTheme,
       periodo,
       unidadeSelecionada,
       isSidebarCollapsed,

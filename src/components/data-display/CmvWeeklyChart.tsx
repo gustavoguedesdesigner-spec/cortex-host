@@ -27,15 +27,15 @@ export function CmvWeeklyChart({ data, meta, height = 260 }: { data: CmvWeeklyPo
         <Tooltip
           formatter={(value: number, name: string) => [formatPercent(value), name]}
           contentStyle={{
-            background: '#FFFFFF',
-            border: '1px solid #E4E7EB',
+            background: 'var(--chart-tooltip-bg)',
+            border: '1px solid var(--chart-tooltip-border)',
             borderRadius: 10,
             fontSize: 12,
-            color: '#171A1F',
-            boxShadow: '0 8px 26px rgba(16,24,40,0.07)',
+            color: 'var(--chart-tooltip-text)',
+            boxShadow: 'var(--shadow-raised)',
           }}
         />
-        <Legend formatter={(v) => <span style={{ color: '#656B75', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
+        <Legend formatter={(v) => <span style={{ color: 'var(--chart-legend-text)', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
         <ReferenceLine
           y={meta}
           stroke="var(--chart-neutral)"

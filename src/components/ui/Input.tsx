@@ -3,7 +3,7 @@ import { Search } from 'lucide-react'
 import { cn } from '@/utils/cn'
 
 const fieldBase =
-  'w-full rounded-md border border-border bg-surface text-body text-ink-primary placeholder:text-ink-tertiary outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/30'
+  'w-full rounded-md border border-border bg-surface-raised text-body text-ink-primary placeholder:text-ink-tertiary outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/30'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string

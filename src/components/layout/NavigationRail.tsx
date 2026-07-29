@@ -13,7 +13,7 @@ export function NavigationRail() {
   const { logout } = useAppState()
 
   return (
-    <aside className="sticky top-0 z-30 hidden h-screen w-[264px] shrink-0 flex-col border-r border-border bg-surface lg:flex">
+    <aside className="sticky top-0 z-30 hidden h-screen w-[264px] shrink-0 flex-col border-r border-border bg-shell lg:flex">
       <div className="flex h-[68px] shrink-0 items-center gap-2.5 border-b border-border px-5">
         <Logo collapsed />
         <Logo showSignature />

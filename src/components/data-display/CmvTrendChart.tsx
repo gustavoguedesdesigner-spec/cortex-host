@@ -20,9 +20,9 @@ export function CmvTrendChart({ data }: { data: CmvSeriesPoint[] }) {
         <Tooltip
           formatter={(value: number, name: string) => [formatPercent(value), name]}
           labelFormatter={(l) => formatDateShort(String(l))}
-          contentStyle={{ background: '#FFFFFF', border: '1px solid #E4E7EB', borderRadius: 10, fontSize: 12, color: '#171A1F' }}
+          contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', borderRadius: 10, fontSize: 12, color: 'var(--chart-tooltip-text)' }}
         />
-        <Legend formatter={(v) => <span style={{ color: '#656B75', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
+        <Legend formatter={(v) => <span style={{ color: 'var(--chart-legend-text)', fontSize: 12 }}>{v}</span>} iconType="plainline" iconSize={14} />
         <Area type="monotone" dataKey="cmvTeorico" name="CMV teórico" stroke="var(--chart-navy)" strokeWidth={1.4} fill="none" dot={false} />
         <Area type="monotone" dataKey="cmvReal" name="CMV real" stroke="var(--chart-accent)" strokeWidth={2} fill="url(#cmvDailyFill)" dot={false} />
       </AreaChart>

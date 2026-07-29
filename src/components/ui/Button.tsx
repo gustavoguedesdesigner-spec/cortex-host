@@ -15,10 +15,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary: 'bg-accent text-white hover:bg-accent-hover',
-  secondary: 'bg-surface text-ink-primary border border-border hover:border-border-strong hover:bg-surface-hover',
+  secondary: 'bg-surface-raised text-ink-primary border border-border hover:border-border-strong hover:bg-surface-hover',
   ghost: 'bg-transparent text-ink-secondary hover:bg-surface-subtle hover:text-ink-primary',
   navy: 'bg-navy text-white hover:bg-navy-hover',
-  danger: 'bg-danger text-white hover:opacity-90',
+  danger: 'bg-danger-solid text-white hover:opacity-90',
 }
 
 /* Botões em formato pill — ações destacadas com boa área de toque. */

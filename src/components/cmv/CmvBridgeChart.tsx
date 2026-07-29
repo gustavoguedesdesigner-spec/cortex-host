@@ -51,7 +51,7 @@ export function CmvBridgeChart({
               formatCurrencyBRL(item.payload?.isTotal ? item.payload.delta : value),
               item.payload?.isTotal ? 'Custo' : 'Diferença',
             ]}
-            contentStyle={{ background: '#FFFFFF', border: '1px solid #E4E7EB', borderRadius: 10, fontSize: 12, color: '#171A1F' }}
+            contentStyle={{ background: 'var(--chart-tooltip-bg)', border: '1px solid var(--chart-tooltip-border)', borderRadius: 10, fontSize: 12, color: 'var(--chart-tooltip-text)' }}
           />
           <Bar dataKey="base" stackId="bridge" fill="transparent" isAnimationActive={false} />
           <Bar dataKey="delta" stackId="bridge" radius={[4, 4, 0, 0]} isAnimationActive={false} minPointSize={4}>

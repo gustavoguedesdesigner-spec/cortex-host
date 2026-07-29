@@ -51,18 +51,28 @@ npm run typecheck
 
 ## Design system (refactor visual concluído)
 
-Tema **claro único** — não existe tema escuro. Tokens em `tailwind.config.ts` e
-`src/styles/index.css`. **Nunca usar cor hardcoded nos componentes.**
+**Dois temas (claro e escuro)** sobre os *mesmos* nomes semânticos. As cores são
+CSS vars em `src/styles/index.css` (`:root` = claro, `:root[data-theme='dark']` =
+escuro) expostas ao Tailwind em `tailwind.config.ts` como
+`rgb(var(--c-*) / <alpha-value>)`. O tema é alternado no `data-theme` do `<html>`
+via `useAppState().toggleTheme`, persistido em `cortex-host:theme`.
 
-- Superfícies: `canvas` (#F5F6F7), `surface` (#FFF), `surface-subtle`, `surface-hover`
-- Texto: `ink-primary` / `ink-secondary` / `ink-tertiary`
-- Estrutura: `navy` (#132033) — usado em ações estruturais e no painel do login
-- Assinatura: `accent` (#FF5A1F, laranja) — pontuação visual, **nunca decoração**;
-  não preencher grandes áreas
+**Nunca usar cor hardcoded nos componentes** — quebra o tema escuro. Componente
+não sabe qual tema está ativo; só consome o token.
+
+- Superfícies (escala crescente): `canvas` → `shell` (sidebar/topbar) → `surface`
+  → `surface-raised` (inputs, modais, drawers) → `surface-soft`/`subtle` → `surface-hover`
+- Texto: `ink-primary` / `ink-secondary` / `ink-tertiary` / `ink-disabled`
+- Estrutura: `navy` — ações estruturais e painel do login; no escuro vira
+  superfície elevada neutra (não some no fundo)
+- Assinatura: `accent` (#FF5A1F, laranja, igual nos dois temas) — pontuação
+  visual, **nunca decoração**; não preencher grandes áreas
 - Status (só com significado operacional): `success`, `warning`, `danger`, `info`,
-  cada um com par `-soft` para fundos
+  `steel`, cada um com `-soft` (fundo) e `-line` (borda). `danger-solid` é o
+  fundo do botão destrutivo — separado de `danger` porque um contrasta com texto
+  branco e o outro com o fundo suave do badge
 - Gráficos: consumir as CSS vars `--chart-accent`, `--chart-navy`, `--chart-neutral`,
-  `--chart-grid`, `--chart-axis`
+  `--chart-grid`, `--chart-axis`, `--chart-tooltip-*`, `--chart-legend-text`
 
 ### Princípios visuais a preservar
 
@@ -130,7 +140,7 @@ src/
 - Não implementar OCR real nem IA real (respostas do CORTEX são simuladas)
 - Não alterar os números demonstrativos sem necessidade
 - Não usar lorem ipsum, emojis como ícones ou imagens genéricas de IA
-- Não voltar ao tema escuro nem à sidebar larga permanente
+- Não usar cor hardcoded (quebra o tema escuro) nem voltar à sidebar em trilho compacto
 - Não deixar botões principais sem resposta ou links quebrados
 
 ## Deploy
