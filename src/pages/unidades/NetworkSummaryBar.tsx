@@ -30,7 +30,7 @@ export function NetworkSummaryBar({
   ]
 
   return (
-    <section className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border bg-border shadow-card lg:grid-cols-12">
+    <section className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border shadow-card lg:grid-cols-12">
       <div className="bg-surface p-5 lg:col-span-7 lg:p-6">
         <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
           {stats.map((s) => (

@@ -12,7 +12,7 @@ export function UnitStatusCard({ unit, onClick }: { unit: Unit; onClick?: () => 
   return (
     <button
       onClick={onClick}
-      className="group flex w-full flex-col gap-4 rounded-lg border border-border bg-surface p-5 text-left transition-all hover:border-border-strong hover:shadow-card"
+      className="group flex w-full flex-col gap-4 rounded-xl border border-border bg-surface p-6 text-left transition-all hover:border-border-strong hover:shadow-card"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">

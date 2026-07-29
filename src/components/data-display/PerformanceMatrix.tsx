@@ -17,7 +17,7 @@ export function PerformanceMatrix({ units, onSelectUnit }: { units: Unit[]; onSe
 
   return (
     <div>
-      <div className="relative aspect-[16/9] w-full rounded-lg border border-border bg-surface">
+      <div className="relative aspect-[16/9] w-full rounded-xl border border-border bg-surface">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           {['Monitorar', 'Prioridade', 'Saudável', 'Atenção'].map((label, i) => (
             <div

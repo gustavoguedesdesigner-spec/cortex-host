@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { PageBanner, PageHero } from '@/components/ui/PageHero'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { SegmentedControl } from '@/components/ui/SegmentedControl'
 import { Button } from '@/components/ui/Button'
@@ -93,11 +93,12 @@ export default function Unidades() {
   const selectedUnits = selectedIds.map((id) => units.find((u) => u.id === id)).filter(Boolean) as Unit[]
 
   return (
-    <div className="flex flex-col gap-8">
-      <PageHeader
+    <div className="flex flex-col gap-12">
+      <PageHero
         eyebrow="Operação"
         title="Unidades"
         description="Compare a situação operacional das seis unidades e identifique onde sua atenção é mais necessária."
+        banner={<PageBanner className="min-h-[172px]" />}
       />
 
       <NetworkSummaryBar

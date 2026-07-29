@@ -12,7 +12,7 @@ export function ReplicableInsightCard({
   onOpenReference: () => void
 }) {
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-accent/25 bg-accent-soft p-5">
+    <div className="flex flex-col gap-3 rounded-xl border border-accent-line bg-accent-soft p-6">
       <CortexLabel />
       <div className="max-w-3xl">
         <h3 className="text-card-title">{replicableInsight.titulo}</h3>
