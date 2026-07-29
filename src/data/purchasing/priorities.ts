@@ -61,7 +61,7 @@ export const purchasingPriorities: PurchasingPriority[] = [
     path: '/compras/pedidos/po-4532',
     acoesSecundarias: [
       { label: 'Abrir pedido', path: '/compras/pedidos/po-4532' },
-      { label: 'Ver Recebimentos', path: '/recebimentos' },
+      { label: 'Ver recebimento', path: '/recebimentos/rec-9860' },
     ],
     perguntaCortex: 'O pedido PO-4532 vai ser concluído hoje?',
     respostaCortex:
@@ -78,7 +78,7 @@ export const purchasingPriorities: PurchasingPriority[] = [
     path: '/compras/pedidos/po-4518',
     acoesSecundarias: [
       { label: 'Abrir pedido', path: '/compras/pedidos/po-4518' },
-      { label: 'Ver histórico do fornecedor', path: '/compras/pedidos/po-4518' },
+      { label: 'Ver recebimento', path: '/recebimentos/rec-9821' },
     ],
     perguntaCortex: 'Por que o pedido PO-4518 está divergente?',
     respostaCortex:

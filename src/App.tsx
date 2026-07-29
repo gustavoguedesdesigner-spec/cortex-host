@@ -29,6 +29,12 @@ import ComprasCotacaoDetail from '@/pages/ComprasCotacaoDetail'
 import ComprasPedidos from '@/pages/ComprasPedidos'
 import ComprasPedidoDetail from '@/pages/ComprasPedidoDetail'
 import Recebimentos from '@/pages/Recebimentos'
+import RecebimentosAgenda from '@/pages/RecebimentosAgenda'
+import RecebimentosAguardando from '@/pages/RecebimentosAguardando'
+import RecebimentosDivergencias from '@/pages/RecebimentosDivergencias'
+import RecebimentosQuarentena from '@/pages/RecebimentosQuarentena'
+import RecebimentosHistorico from '@/pages/RecebimentosHistorico'
+import ReceiptDetail from '@/pages/ReceiptDetail'
 import Fornecedores from '@/pages/Fornecedores'
 import FichasTecnicas from '@/pages/FichasTecnicas'
 import RecipeNew from '@/pages/RecipeNew'
@@ -122,6 +128,12 @@ export default function App() {
         <Route path="/compras/pedidos" element={<ComprasPedidos />} />
         <Route path="/compras/pedidos/:orderId" element={<ComprasPedidoDetail />} />
         <Route path="/recebimentos" element={<Recebimentos />} />
+        <Route path="/recebimentos/agenda" element={<RecebimentosAgenda />} />
+        <Route path="/recebimentos/aguardando" element={<RecebimentosAguardando />} />
+        <Route path="/recebimentos/divergencias" element={<RecebimentosDivergencias />} />
+        <Route path="/recebimentos/quarentena" element={<RecebimentosQuarentena />} />
+        <Route path="/recebimentos/historico" element={<RecebimentosHistorico />} />
+        <Route path="/recebimentos/:receiptId" element={<ReceiptDetail />} />
         <Route path="/fornecedores" element={<Fornecedores />} />
         <Route path="/fornecedores/desempenho" element={<FornecedoresDesempenho />} />
         <Route path="/fornecedores/divergencias" element={<FornecedoresDivergencias />} />

@@ -12,6 +12,7 @@ import { findAdminQuickAnswer } from '@/data/administration/adminQuickQuestions'
 import { findPurchasingQuickAnswer } from '@/data/purchasing/purchasingQuickQuestions'
 import { findKnowledgeQuickAnswer } from '@/data/knowledge/knowledgeQuickQuestions'
 import { findSupplierQuickAnswer } from '@/data/suppliers/supplierQuickQuestions'
+import { findReceivingQuickAnswer } from '@/data/receiving/receivingQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -39,6 +40,8 @@ function findAnswer(question: string): string {
   if (knowledge) return knowledge.resposta
   const supplier = findSupplierQuickAnswer(question)
   if (supplier) return supplier.resposta
+  const receiving = findReceivingQuickAnswer(question)
+  if (receiving) return receiving.resposta
   return fallbackAnswer
 }
 

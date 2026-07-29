@@ -25,7 +25,7 @@ export const purchaseOrders: PurchaseOrder[] = [
       { tipo: 'confirmado_fornecedor', data: '2026-07-22T14:10:00-03:00', responsavel: 'Bebidas Sul', status: 'Confirmado pelo fornecedor', descricao: 'Fornecedor confirmou o pedido com entrega prevista para 24/07.' },
       { tipo: 'entrega_prevista_atualizada', data: '2026-07-24T08:00:00-03:00', responsavel: 'Bebidas Sul', status: 'Previsão atualizada', descricao: 'Fornecedor remarcou a entrega para 25/07, às 14h, por atraso de rota.' },
       { tipo: 'em_transporte', data: '2026-07-25T07:20:00-03:00', responsavel: 'Bebidas Sul', status: 'Em transporte', descricao: 'Carga saiu para entrega — 320L confirmados nesta remessa, 80L no saldo seguinte.' },
-      { tipo: 'recebimento_parcial', data: '2026-07-25T11:45:00-03:00', responsavel: 'Rafael Martins', status: 'Recebimento parcial registrado', descricao: '320L recebidos e conferidos sem divergência. Saldo de 80L previsto para hoje às 14h.', link: { label: 'Abrir recebimento', path: '/recebimentos' } },
+      { tipo: 'recebimento_parcial', data: '2026-07-25T11:45:00-03:00', responsavel: 'Rafael Martins', status: 'Recebimento parcial registrado', descricao: '320L recebidos e conferidos sem divergência. Saldo de 80L previsto para hoje às 14h.', link: { label: 'Abrir recebimento', path: '/recebimentos/rec-9860' } },
     ],
   },
   {
@@ -53,7 +53,7 @@ export const purchaseOrders: PurchaseOrder[] = [
         responsavel: 'Rafael Martins',
         status: 'Recebido com divergência',
         descricao: '520 kg recebidos, 30 kg abaixo do pedido, com preço acima do acordado.',
-        link: { label: 'Abrir recebimento', path: '/recebimentos' },
+        link: { label: 'Abrir recebimento', path: '/recebimentos/rec-9821' },
       },
       { tipo: 'divergencia_registrada', data: '2026-07-23T10:35:00-03:00', responsavel: 'Rafael Martins', status: 'Divergência registrada', descricao: 'Diferença de quantidade e preço registrada — R$ 3.780 envolvidos.' },
       { tipo: 'cobranca_fornecedor', data: '2026-07-24T09:00:00-03:00', responsavel: 'Leo', status: 'Fornecedor cobrado', descricao: 'Cobrança formal enviada à Serra Alimentos solicitando ajuste ou devolução do saldo.' },

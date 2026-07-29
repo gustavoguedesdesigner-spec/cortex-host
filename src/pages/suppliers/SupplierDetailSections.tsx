@@ -28,7 +28,7 @@ import { getPurchaseSummaryBySupplier } from '@/data/suppliers/supplierPurchases
 import { getUnitById } from '@/data/units'
 import { riskLevelLabels } from '@/utils/supplierRisk'
 import { diasParaVencimento } from '@/utils/supplierDocuments'
-import { formatCurrencyBRL, formatDateFull, formatDateShort, formatPercent } from '@/utils/format'
+import { formatCurrencyBRL, formatCurrencyPreciseBRL, formatDateFull, formatDateShort, formatPercent } from '@/utils/format'
 import { useAppState } from '@/context/AppStateContext'
 import type { Supplier, PurchaseOrder } from '@/types'
 
@@ -205,8 +205,8 @@ export function SupplierCategoriesSection({ supplier }: { supplier: Supplier }) 
   const columns: TableColumn<(typeof produtos)[number]>[] = [
     { key: 'nome', header: 'Item', render: (p) => <span className="font-medium text-ink-primary">{p.nome}</span> },
     { key: 'codigo', header: 'Código', render: (p) => p.codigo },
-    { key: 'preco', header: 'Preço atual', align: 'right', render: (p) => formatCurrencyBRL(p.precoAtual) },
-    { key: 'anterior', header: 'Preço anterior', align: 'right', render: (p) => formatCurrencyBRL(p.precoAnterior) },
+    { key: 'preco', header: 'Preço atual', align: 'right', render: (p) => formatCurrencyPreciseBRL(p.precoAtual) },
+    { key: 'anterior', header: 'Preço anterior', align: 'right', render: (p) => formatCurrencyPreciseBRL(p.precoAnterior) },
     { key: 'prazo', header: 'Prazo', align: 'right', render: (p) => `${p.prazoEntregaDias}d` },
     { key: 'minimo', header: 'Mínimo', align: 'right', render: (p) => p.pedidoMinimo },
     { key: 'unidades', header: 'Unidades', align: 'right', render: (p) => p.unidadesAtendidas.length },
@@ -366,9 +366,9 @@ export function SupplierPricesSection({ supplier }: { supplier: Supplier }) {
             <DataList
               className="mt-3"
               items={[
-                { label: 'Atual', value: formatCurrencyBRL(p.precoAtual) },
-                { label: 'Médio', value: formatCurrencyBRL(p.precoMedio) },
-                { label: 'Menor / maior', value: `${formatCurrencyBRL(p.menor)} / ${formatCurrencyBRL(p.maior)}` },
+                { label: 'Atual', value: formatCurrencyPreciseBRL(p.precoAtual) },
+                { label: 'Médio', value: formatCurrencyPreciseBRL(p.precoMedio) },
+                { label: 'Menor / maior', value: `${formatCurrencyPreciseBRL(p.menor)} / ${formatCurrencyPreciseBRL(p.maior)}` },
               ]}
             />
           </Card>

@@ -6,8 +6,8 @@ import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { SupplierRegistrationBadge } from './SupplierBadges'
 import { categoryLabels } from '@/data/suppliers/supplierSummary'
-import { useSuppliers } from '@/hooks/useSuppliers'
 import { cn } from '@/utils/cn'
+import type { NovoFornecedorInput } from '@/hooks/useSuppliers'
 import type { Supplier, SupplierCategoryId } from '@/types'
 
 const steps = ['Identificação', 'Categorias', 'Contatos', 'Condições', 'Documentos', 'Homologação', 'Publicação']
@@ -41,8 +41,17 @@ const initialForm: FormState = {
 }
 
 /** Fluxo guiado de novo fornecedor (secao 57-65) — resulta sempre em status "Em homologação". */
-export function NovoFornecedorModal({ isOpen, onClose, onCreated }: { isOpen: boolean; onClose: () => void; onCreated: (supplier: Supplier) => void }) {
-  const { createSupplier } = useSuppliers()
+export function NovoFornecedorModal({
+  isOpen,
+  onClose,
+  onCreated,
+  createSupplier,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  onCreated: (supplier: Supplier) => void
+  createSupplier: (input: NovoFornecedorInput) => Supplier
+}) {
   const [step, setStep] = useState(0)
   const [form, setForm] = useState<FormState>(initialForm)
   const [checked, setChecked] = useState<boolean[]>(checklistItems.map(() => false))

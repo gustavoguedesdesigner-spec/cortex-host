@@ -27,7 +27,7 @@ type ViewMode = 'cards' | 'tabela'
 export default function Fornecedores() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
-  const { allSuppliers } = useSuppliers()
+  const { allSuppliers, createSupplier } = useSuppliers()
 
   const [viewMode, setViewMode] = useLocalStorageState<ViewMode>('cortex-host:suppliers-view-mode', 'cards')
   const [filters, setFilters] = useState<SuppliersFilters>({
@@ -152,6 +152,7 @@ export default function Fornecedores() {
       <NovoFornecedorModal
         isOpen={searchParams.get('novo') === '1'}
         onClose={() => setSearchParams({})}
+        createSupplier={createSupplier}
         onCreated={(supplier) => {
           setSearchParams({})
           navigate(`/fornecedores/${supplier.id}`)

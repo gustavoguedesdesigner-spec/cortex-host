@@ -109,4 +109,13 @@ export const notifications: NotificationItemData[] = [
     horario: '2026-07-15T09:00:00-03:00',
     lida: true,
   },
+  {
+    id: 'n13',
+    titulo: 'Item em quarentena',
+    descricao: 'Alface americana da Hortifruti Bahia retida por temperatura de recebimento acima do padrão.',
+    unidade: 'Salvador Zona Norte',
+    severidade: 'attention',
+    horario: '2026-07-23T09:25:00-03:00',
+    lida: false,
+  },
 ]
