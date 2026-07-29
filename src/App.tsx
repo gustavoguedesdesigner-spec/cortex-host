@@ -39,6 +39,19 @@ import RecipeCosts from '@/pages/RecipeCosts'
 import MenuEngineering from '@/pages/MenuEngineering'
 import RecipeDetail from '@/pages/RecipeDetail'
 import Biblioteca from '@/pages/Biblioteca'
+import BibliotecaDocumentos from '@/pages/BibliotecaDocumentos'
+import BibliotecaDocumentoDetail from '@/pages/BibliotecaDocumentoDetail'
+import BibliotecaProcedimentos from '@/pages/BibliotecaProcedimentos'
+import BibliotecaProcedimentoDetail from '@/pages/BibliotecaProcedimentoDetail'
+import BibliotecaTreinamentos from '@/pages/BibliotecaTreinamentos'
+import BibliotecaTreinamentoDetail from '@/pages/BibliotecaTreinamentoDetail'
+import BibliotecaChecklists from '@/pages/BibliotecaChecklists'
+import BibliotecaChecklistDetail from '@/pages/BibliotecaChecklistDetail'
+import BibliotecaExecucoes from '@/pages/BibliotecaExecucoes'
+import BibliotecaConformidade from '@/pages/BibliotecaConformidade'
+import BibliotecaRevisoes from '@/pages/BibliotecaRevisoes'
+import BibliotecaHistorico from '@/pages/BibliotecaHistorico'
+import BibliotecaFavoritos from '@/pages/BibliotecaFavoritos'
 import AssistenteCortex from '@/pages/AssistenteCortex'
 import Configuracoes from '@/pages/Configuracoes'
 import AdminOrganization from '@/pages/AdminOrganization'
@@ -112,6 +125,19 @@ export default function App() {
         <Route path="/fichas-tecnicas/engenharia" element={<MenuEngineering />} />
         <Route path="/fichas-tecnicas/:recipeId" element={<RecipeDetail />} />
         <Route path="/biblioteca" element={<Biblioteca />} />
+        <Route path="/biblioteca/documentos" element={<BibliotecaDocumentos />} />
+        <Route path="/biblioteca/documentos/:documentId" element={<BibliotecaDocumentoDetail />} />
+        <Route path="/biblioteca/procedimentos" element={<BibliotecaProcedimentos />} />
+        <Route path="/biblioteca/procedimentos/:procedureId" element={<BibliotecaProcedimentoDetail />} />
+        <Route path="/biblioteca/treinamentos" element={<BibliotecaTreinamentos />} />
+        <Route path="/biblioteca/treinamentos/:trainingId" element={<BibliotecaTreinamentoDetail />} />
+        <Route path="/biblioteca/checklists" element={<BibliotecaChecklists />} />
+        <Route path="/biblioteca/checklists/:checklistId" element={<BibliotecaChecklistDetail />} />
+        <Route path="/biblioteca/execucoes" element={<BibliotecaExecucoes />} />
+        <Route path="/biblioteca/conformidade" element={<BibliotecaConformidade />} />
+        <Route path="/biblioteca/revisoes" element={<BibliotecaRevisoes />} />
+        <Route path="/biblioteca/historico" element={<BibliotecaHistorico />} />
+        <Route path="/biblioteca/favoritos" element={<BibliotecaFavoritos />} />
         <Route path="/assistente" element={<AssistenteCortex />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
         <Route path="/configuracoes/organizacao" element={<AdminOrganization />} />

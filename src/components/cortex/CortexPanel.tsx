@@ -10,6 +10,7 @@ import { findInventoryQuickAnswer } from '@/data/inventory/inventoryQuickQuestio
 import { findRecipeQuickAnswer } from '@/data/recipes/recipeQuickQuestions'
 import { findAdminQuickAnswer } from '@/data/administration/adminQuickQuestions'
 import { findPurchasingQuickAnswer } from '@/data/purchasing/purchasingQuickQuestions'
+import { findKnowledgeQuickAnswer } from '@/data/knowledge/knowledgeQuickQuestions'
 import { useAppState } from '@/context/AppStateContext'
 
 const fallbackAnswer =
@@ -33,6 +34,8 @@ function findAnswer(question: string): string {
   if (admin) return admin.resposta
   const purchasing = findPurchasingQuickAnswer(question)
   if (purchasing) return purchasing.resposta
+  const knowledge = findKnowledgeQuickAnswer(question)
+  if (knowledge) return knowledge.resposta
   return fallbackAnswer
 }
 
