@@ -22,7 +22,7 @@ export function CmvCategoryUnitImpactSection({ onOpenCategory, onOpenUnit }: { o
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <section className="lg:col-span-7">
         <SectionHeader title="Onde a margem está sendo perdida" description="Impacto financeiro por categoria de insumo — clique para investigar" />
-        <div className="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface px-4">
+        <div className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface px-4">
           {financialImpactCategories.map((cat, i) => (
             <button key={cat.id} onClick={() => onOpenCategory(cat.id)} className="flex flex-col gap-2 py-3 text-left transition-colors hover:bg-surface-hover">
               <div className="flex items-baseline justify-between gap-3 text-support">
@@ -45,7 +45,7 @@ export function CmvCategoryUnitImpactSection({ onOpenCategory, onOpenUnit }: { o
 
       <section className="lg:col-span-5">
         <SectionHeader title="Impacto por unidade" description="Ordenado do maior para o menor impacto" />
-        <div className="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface">
+        <div className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface">
           {unitsByImpact.map((unit) => {
             const desvio = unit.cmvReal - unit.cmvTeorico
             const qualidade = qualidadeLabel(unit.id)

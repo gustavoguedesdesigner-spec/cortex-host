@@ -25,7 +25,7 @@ export default function CMV() {
   const closingCtaLabel = cmvCurrentPeriodStatus === 'aberto' ? 'Iniciar fechamento' : 'Revisar fechamento'
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       <CmvHeader
         quality={cmvDataQuality}
         ultimaAtualizacao={cmvNetworkPeriod.ultimaAtualizacao}

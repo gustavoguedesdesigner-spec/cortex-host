@@ -23,7 +23,7 @@ export function CmvOpportunityPanel({ desvioVsTeorico, impactoVsMeta }: { desvio
   const valor = cenario === '25' ? calcularRecuperacaoPotencial(desvioVsTeorico, 0.25) : cenario === '50' ? calcularRecuperacaoPotencial(desvioVsTeorico, 0.5) : impactoVsMeta
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-5">
+    <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-6">
       <p className="text-card-title text-ink-primary">Potencial de recuperação</p>
       <SegmentedControl value={cenario} onChange={setCenario} options={cenarioOptions} className="self-start" />
       <p className="text-metric-sm tabular text-ink-primary">{formatCurrencyBRL(valor)}</p>

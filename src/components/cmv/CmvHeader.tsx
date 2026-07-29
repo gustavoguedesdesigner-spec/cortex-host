@@ -1,5 +1,5 @@
 import { Calculator, ClipboardCheck, Sparkles } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { PageBanner, PageHero } from '@/components/ui/PageHero'
 import { Select } from '@/components/ui/Select'
 import { Button } from '@/components/ui/Button'
 import { IndicatorBadge } from '@/components/ui/StatusBadge'
@@ -47,7 +47,9 @@ export function CmvHeader({
 
   return (
     <div className="flex flex-col gap-4">
-      <PageHeader
+      <PageHero
+        divider={false}
+        banner={<PageBanner className="min-h-[164px]" />}
         eyebrow="Operação"
         title="CMV"
         description="Entenda a diferença entre o consumo esperado e o consumo real, identifique as causas e priorize ações."

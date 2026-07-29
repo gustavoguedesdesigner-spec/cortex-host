@@ -12,7 +12,7 @@ export function CmvBridgeSection({ custoTeorico, custoReal }: { custoTeorico: nu
         title="Do CMV teórico ao CMV real"
         description={`Decomposição da diferença de ${formatCurrencyBRL(totalDiferenca)} entre o custo teórico e o custo real do período`}
       />
-      <div className="rounded-lg border border-border bg-surface p-5">
+      <div className="rounded-xl border border-border bg-surface p-6">
         <CmvBridgeChart steps={cmvBridgeSteps} custoTeorico={custoTeorico} custoReal={custoReal} />
       </div>
     </section>

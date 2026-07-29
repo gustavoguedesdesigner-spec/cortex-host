@@ -18,7 +18,7 @@ export function CmvEvolutionSection({
     <section>
       <SectionHeader title="Evolução do CMV" description="CMV real, CMV teórico e meta — últimas 8 semanas" />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        <div className="rounded-lg border border-border bg-surface p-5 lg:col-span-8">
+        <div className="rounded-xl border border-border bg-surface p-6 lg:col-span-8">
           <CmvWeeklyChart data={cmvWeeklySeriesConsolidado} meta={cmvMeta} />
           {cmvTrendEvents.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2 border-t border-border pt-3">

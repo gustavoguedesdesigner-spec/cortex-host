@@ -61,7 +61,7 @@ export function CmvCausesTab() {
         {filtradas.length === 0 ? (
           <EmptyState icon={<SlidersHorizontal className="h-5 w-5" />} title="Nenhuma causa encontrada" description="Ajuste os filtros para ver outras causas do período." />
         ) : (
-          <div className="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface">
+          <div className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface">
             {filtradas
               .sort((a, b) => b.impacto - a.impacto)
               .map((causa) => (

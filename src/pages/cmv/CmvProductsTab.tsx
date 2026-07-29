@@ -44,7 +44,7 @@ export function CmvProductsTab() {
             <button
               key={p.id}
               onClick={() => navigate(`/cmv/produtos/${p.id}`)}
-              className="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-4 text-left transition-all hover:border-border-strong hover:shadow-card"
+              className="flex flex-col gap-1.5 rounded-xl border border-border bg-surface p-4 text-left transition-all hover:border-border-strong hover:shadow-card"
             >
               <p className="truncate text-support font-medium text-ink-primary">{p.nome}</p>
               <p className="text-metric-sm tabular text-danger">{formatCurrencyBRL(p.impacto)}</p>

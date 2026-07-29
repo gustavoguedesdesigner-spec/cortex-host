@@ -20,7 +20,7 @@ export function CmvUnitCategoryBreakdown({ unitId }: { unitId: string }) {
   return (
     <section>
       <SectionHeader title="Composição do desvio por categoria" description="Impacto financeiro desta unidade, decomposto por categoria de insumo" />
-      <div className="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface">
+      <div className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface">
         {cells.map((cell) => {
           const categoria = cmvCategoriesDestacadas.find((c) => c.id === cell.categoriaId)
           if (!categoria) return null
