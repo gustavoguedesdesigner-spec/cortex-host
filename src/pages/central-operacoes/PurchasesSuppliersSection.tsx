@@ -45,8 +45,8 @@ export function PurchasesSuppliersSection() {
           <ul className="flex flex-col divide-y divide-border border-t border-border">
             {supplierAlerts.map((s) => (
               <li key={s.id} className="flex items-start justify-between gap-4 py-3">
-                <div className="min-w-0">
-                  <p className="text-support font-medium text-ink-primary">{s.nome}</p>
+                <button className="min-w-0 text-left" onClick={() => navigate(`/fornecedores/${s.id}`)}>
+                  <p className="text-support font-medium text-ink-primary hover:text-accent">{s.nome}</p>
                   <p className="mt-0.5 flex flex-wrap gap-x-3 text-caption text-ink-tertiary">
                     {s.aumentoPreco !== undefined && <span>Preço +{(s.aumentoPreco * 100).toFixed(1)}%</span>}
                     {s.divergencias !== undefined && <span>{s.divergencias} divergências</span>}
@@ -54,7 +54,7 @@ export function PurchasesSuppliersSection() {
                     {s.atrasoRecorrente && <span>Atraso recorrente</span>}
                     {s.entregasIncompletas !== undefined && <span>{s.entregasIncompletas} entregas incompletas</span>}
                   </p>
-                </div>
+                </button>
                 <span
                   className={cn(
                     'inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-badge',

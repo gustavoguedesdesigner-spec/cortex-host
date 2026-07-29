@@ -1,0 +1,110 @@
+import type { SupplierNegotiation } from '@/types'
+
+/** Negociacoes abertas (secao 49-52) — aprofundada a de carnes com a Serra Alimentos. */
+export const supplierNegotiations: SupplierNegotiation[] = [
+  {
+    id: 'neg-carnes-q3',
+    titulo: 'Revisão comercial de carnes — 3º trimestre',
+    supplierId: 'serra-alimentos',
+    categoria: 'Carnes',
+    responsavel: 'Leo',
+    valorAnualRelacionado: 1028600,
+    potencialEstimado: 38400,
+    objetivos: ['Reduzir variação de preços', 'Melhorar prazo', 'Reduzir divergências', 'Definir plano corretivo', 'Revisar volume consolidado'],
+    inicio: '2026-07-15',
+    prazo: '2026-08-15',
+    status: 'em_andamento',
+    historico: [
+      { data: '2026-07-15T09:00:00-03:00', autor: 'Leo', tipo: 'proposta_inicial', descricao: 'Proposta inicial: redução de 4% no preço de carne bovina e prazo de entrega fixo de 3 dias.' },
+      { data: '2026-07-18T14:20:00-03:00', autor: 'Juliana Serra', tipo: 'contraproposta', descricao: 'Contraproposta: redução de 2% condicionada a volume consolidado mensal mínimo de 4.500 kg.' },
+      { data: '2026-07-21T10:00:00-03:00', autor: 'Leo', tipo: 'condicao', descricao: 'Condição adicional: SLA de conformidade de quantidade acima de 95% nos próximos 90 dias, com revisão trimestral.' },
+      { data: '2026-07-23T16:40:00-03:00', autor: 'Leo', tipo: 'divergencia', descricao: 'Divergência REC-9821 anexada à negociação como evidência do plano corretivo necessário.' },
+    ],
+    cenarios: [
+      { titulo: 'Menor preço', descricao: 'Redução de 4% sem volume mínimo — sujeito a recusa do fornecedor.' },
+      { titulo: 'Prazo melhor', descricao: 'Prazo fixo de 3 dias mantendo o preço atual.' },
+      { titulo: 'Acordo de volume', descricao: 'Redução de 2% com volume consolidado mensal mínimo de 4.500 kg.' },
+      { titulo: 'Fornecedor alternativo', descricao: 'Homologar segunda fonte e dividir 30% do volume de carnes.' },
+      { titulo: 'Divisão de fornecimento', descricao: 'Manter Serra Alimentos como principal e Sul Foodservice como reserva para itens secos.' },
+      { titulo: 'Contrato com SLA', descricao: 'Formalizar SLA de pontualidade e conformidade com penalidade contratual por divergência.' },
+    ],
+  },
+  {
+    id: 'neg-dg-precos',
+    titulo: 'Revisão de tabela de preços — óleos e secos',
+    supplierId: 'distribuidora-gaucha',
+    categoria: 'Óleos e secos',
+    responsavel: 'Leo',
+    valorAnualRelacionado: 655200,
+    potencialEstimado: 9800,
+    objetivos: ['Reduzir variação de preços', 'Confirmar reajustes antes do envio'],
+    inicio: '2026-07-12',
+    prazo: '2026-08-05',
+    status: 'aberta',
+    historico: [{ data: '2026-07-12T11:00:00-03:00', autor: 'Leo', tipo: 'proposta_inicial', descricao: 'Solicitação de confirmação prévia de qualquer reajuste de preço antes do envio do pedido.' }],
+  },
+  {
+    id: 'neg-eb-homologacao',
+    titulo: 'Condições comerciais de homologação',
+    supplierId: 'embalagens-bahia',
+    categoria: 'Embalagens',
+    responsavel: 'Leo',
+    valorAnualRelacionado: 112800,
+    potencialEstimado: 2100,
+    objetivos: ['Concluir homologação', 'Reduzir divergências de quantidade'],
+    inicio: '2026-07-08',
+    prazo: '2026-08-08',
+    status: 'em_andamento',
+    historico: [{ data: '2026-07-08T10:00:00-03:00', autor: 'Leo', tipo: 'condicao', descricao: 'Homologação condicionada à regularização de dois documentos pendentes.' }],
+  },
+  {
+    id: 'neg-le-contrato',
+    titulo: 'Renovação de contrato anual',
+    supplierId: 'limpeza-express',
+    categoria: 'Limpeza',
+    responsavel: 'Leo',
+    valorAnualRelacionado: 93600,
+    potencialEstimado: 3100,
+    objetivos: ['Renovar contrato', 'Ajustar SLA de entrega'],
+    inicio: '2026-07-05',
+    prazo: '2026-07-31',
+    status: 'aberta',
+    historico: [{ data: '2026-07-05T09:30:00-03:00', autor: 'Leo', tipo: 'proposta_inicial', descricao: 'Proposta de renovação por mais 12 meses com SLA de entrega revisado.' }],
+  },
+  {
+    id: 'neg-mp-escopo',
+    titulo: 'Ampliação de escopo — manutenção preventiva',
+    supplierId: 'manutencao-predial-bahia',
+    categoria: 'Manutenção',
+    responsavel: 'Bruno Teles',
+    valorAnualRelacionado: 74400,
+    potencialEstimado: 4200,
+    objetivos: ['Ampliar cobertura para Serra', 'Formalizar plano preventivo mensal'],
+    inicio: '2026-07-01',
+    prazo: '2026-08-01',
+    status: 'aberta',
+    historico: [{ data: '2026-07-01T08:00:00-03:00', autor: 'Bruno Teles', tipo: 'proposta_inicial', descricao: 'Proposta de plano preventivo mensal cobrindo também a unidade Serra.' }],
+  },
+  {
+    id: 'neg-ts-termos',
+    titulo: 'Termos comerciais de suporte técnico',
+    supplierId: 'techsolutions-ba',
+    categoria: 'Tecnologia',
+    responsavel: 'Leo',
+    valorAnualRelacionado: 25200,
+    potencialEstimado: 1400,
+    objetivos: ['Definir SLA de atendimento', 'Concluir homologação'],
+    inicio: '2026-07-10',
+    prazo: '2026-08-10',
+    status: 'aberta',
+    historico: [{ data: '2026-07-10T13:00:00-03:00', autor: 'Leo', tipo: 'proposta_inicial', descricao: 'Definição de SLA de atendimento remoto em até 4 horas úteis.' }],
+  },
+]
+
+export function getNegotiationsBySupplier(supplierId: string): SupplierNegotiation[] {
+  return supplierNegotiations.filter((n) => n.supplierId === supplierId)
+}
+
+export function getOpenNegotiations(): SupplierNegotiation[] {
+  return supplierNegotiations.filter((n) => n.status !== 'concluida' && n.status !== 'cancelada')
+}

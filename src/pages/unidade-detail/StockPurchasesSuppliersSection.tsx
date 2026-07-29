@@ -5,6 +5,7 @@ import { DataList } from '@/components/ui/DataList'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/utils/cn'
 import { formatCurrencyBRL } from '@/utils/format'
+import { getSupplierIdByName } from '@/data/suppliers/suppliers'
 import type { Unit, UnitProfile } from '@/types'
 
 export function StockPurchasesSuppliersSection({ unit, profile }: { unit: Unit; profile: UnitProfile }) {
@@ -63,10 +64,18 @@ export function StockPurchasesSuppliersSection({ unit, profile }: { unit: Unit; 
         <Card>
           <p className="text-card-title text-ink-primary mb-3">Fornecedores da unidade</p>
           <div className="flex flex-col gap-2">
-            {profile.fornecedores.map((f) => (
+            {profile.fornecedores.map((f) => {
+              const supplierId = getSupplierIdByName(f.nome)
+              return (
               <div key={f.nome} className="rounded-md bg-surface-subtle border border-border px-3 py-2">
                 <div className="flex items-center justify-between text-support">
-                  <span className="font-medium text-ink-primary">{f.nome}</span>
+                  {supplierId ? (
+                    <button className="font-medium text-ink-primary hover:text-accent" onClick={() => navigate(`/fornecedores/${supplierId}`)}>
+                      {f.nome}
+                    </button>
+                  ) : (
+                    <span className="font-medium text-ink-primary">{f.nome}</span>
+                  )}
                   <span
                     className={cn(
                       'text-badge font-semibold rounded-full border px-2 py-0.5',
@@ -86,7 +95,8 @@ export function StockPurchasesSuppliersSection({ unit, profile }: { unit: Unit; 
                   {f.divergenciasUnidade > 0 && ` · ${f.divergenciasUnidade} divergência(s) aqui`}
                 </p>
               </div>
-            ))}
+              )
+            })}
           </div>
         </Card>
       </div>

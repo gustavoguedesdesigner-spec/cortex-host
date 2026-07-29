@@ -91,4 +91,22 @@ export const notifications: NotificationItemData[] = [
     horario: '2026-07-24T17:10:00-03:00',
     lida: true,
   },
+  {
+    id: 'n11',
+    titulo: 'Documento de fornecedor vencendo',
+    descricao: 'Licença Sanitária demonstrativa da Serra Alimentos vence em 18 dias.',
+    unidade: 'Todas as unidades',
+    severidade: 'attention',
+    horario: '2026-07-23T08:00:00-03:00',
+    lida: false,
+  },
+  {
+    id: 'n12',
+    titulo: 'Negociação de fornecedor em andamento',
+    descricao: 'Revisão comercial de carnes com a Serra Alimentos — potencial estimado de R$ 38.400 anuais.',
+    unidade: 'Todas as unidades',
+    severidade: 'info',
+    horario: '2026-07-15T09:00:00-03:00',
+    lida: true,
+  },
 ]

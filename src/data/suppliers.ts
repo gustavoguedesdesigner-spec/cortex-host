@@ -8,9 +8,10 @@ export const purchaseSummary: PurchaseSummary = {
   valorEmDivergencia: 18400,
 }
 
+/** id bate com src/data/suppliers/suppliers.ts (módulo Fornecedores) — permite navegar direto ao cadastro completo. */
 export const supplierAlerts: SupplierAlert[] = [
   {
-    id: 'sup1',
+    id: 'serra-alimentos',
     nome: 'Serra Alimentos',
     aumentoPreco: 0.087,
     divergencias: 4,
@@ -18,15 +19,15 @@ export const supplierAlerts: SupplierAlert[] = [
     status: 'critico',
   },
   {
-    id: 'sup2',
+    id: 'distribuidora-gaucha',
     nome: 'Distribuidora Gaúcha',
     aumentoPreco: 0.052,
     divergencias: 2,
     status: 'atencao',
   },
   {
-    id: 'sup3',
-    nome: 'Vale Hortifruti',
+    id: 'hortifruti-bahia',
+    nome: 'Hortifruti Bahia',
     atrasoRecorrente: true,
     entregasIncompletas: 2,
     status: 'atencao',

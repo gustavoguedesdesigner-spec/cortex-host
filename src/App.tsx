@@ -38,6 +38,13 @@ import RecipeSubRecipes from '@/pages/RecipeSubRecipes'
 import RecipeCosts from '@/pages/RecipeCosts'
 import MenuEngineering from '@/pages/MenuEngineering'
 import RecipeDetail from '@/pages/RecipeDetail'
+import SupplierDetail from '@/pages/SupplierDetail'
+import FornecedoresDesempenho from '@/pages/FornecedoresDesempenho'
+import FornecedoresDivergencias from '@/pages/FornecedoresDivergencias'
+import FornecedoresDocumentos from '@/pages/FornecedoresDocumentos'
+import FornecedoresNegociacoes from '@/pages/FornecedoresNegociacoes'
+import FornecedoresRiscos from '@/pages/FornecedoresRiscos'
+import FornecedoresHistorico from '@/pages/FornecedoresHistorico'
 import Biblioteca from '@/pages/Biblioteca'
 import BibliotecaDocumentos from '@/pages/BibliotecaDocumentos'
 import BibliotecaDocumentoDetail from '@/pages/BibliotecaDocumentoDetail'
@@ -116,6 +123,13 @@ export default function App() {
         <Route path="/compras/pedidos/:orderId" element={<ComprasPedidoDetail />} />
         <Route path="/recebimentos" element={<Recebimentos />} />
         <Route path="/fornecedores" element={<Fornecedores />} />
+        <Route path="/fornecedores/desempenho" element={<FornecedoresDesempenho />} />
+        <Route path="/fornecedores/divergencias" element={<FornecedoresDivergencias />} />
+        <Route path="/fornecedores/documentos" element={<FornecedoresDocumentos />} />
+        <Route path="/fornecedores/negociacoes" element={<FornecedoresNegociacoes />} />
+        <Route path="/fornecedores/riscos" element={<FornecedoresRiscos />} />
+        <Route path="/fornecedores/historico" element={<FornecedoresHistorico />} />
+        <Route path="/fornecedores/:supplierId" element={<SupplierDetail />} />
         <Route path="/fichas-tecnicas" element={<FichasTecnicas />} />
         <Route path="/fichas-tecnicas/nova" element={<RecipeNew />} />
         <Route path="/fichas-tecnicas/revisoes" element={<RecipeRevisions />} />
