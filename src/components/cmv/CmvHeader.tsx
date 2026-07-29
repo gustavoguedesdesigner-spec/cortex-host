@@ -49,7 +49,7 @@ export function CmvHeader({
     <div className="flex flex-col gap-4">
       <PageHero
         divider={false}
-        banner={<PageBanner className="min-h-[164px]" />}
+        banner={<PageBanner slot="banner-cmv" rotulo="Imagem do banner de CMV" className="min-h-[164px]" />}
         eyebrow="Operação"
         title="CMV"
         description="Entenda a diferença entre o consumo esperado e o consumo real, identifique as causas e priorize ações."

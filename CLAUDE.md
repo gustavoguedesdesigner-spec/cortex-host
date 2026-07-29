@@ -104,6 +104,20 @@ Valores consolidados que devem bater em qualquer tela:
 Os **nomes das unidades são demonstrativos** e devem ser substituídos após
 validação com o cliente (ver comentário em `src/data/units.ts`).
 
+## Imagens de ambientação
+
+Banners das páginas, painel do login e marca aceitam **upload do cliente**
+(`useImageSlot` + `ImageUpload.tsx`). Ficam só no navegador (localStorage,
+chave `cortex-host:imagens`) — não há backend nesta etapa.
+
+- Toda imagem passa por `compressImage` antes de persistir: banners viram
+  JPEG (máx. 1600 px), a marca vira PNG (máx. 512 px, preserva transparência)
+  e SVG passa direto. Sem isso, duas fotos cruas estouram a cota de ~5 MB.
+- O painel do login aplica véu `bg-navy/[0.85]` sobre a imagem — é o que
+  mantém o texto branco em AA (10,3:1) mesmo sobre uma foto clara.
+- Sem imagem enviada, tudo volta à composição abstrata local. **Continua
+  valendo: nunca embutir foto genérica ou imagem gerada por IA no produto.**
+
 ## Estrutura
 
 ```

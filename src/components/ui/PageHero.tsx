@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/utils/cn'
+import { AbstractBannerPattern, UploadableBanner } from './ImageUpload'
+import type { ImageSlotId } from '@/hooks/useImageSlot'
 
 /**
  * Padrão global de cabeçalho de página: breadcrumb → label contextual →
@@ -51,25 +53,16 @@ export function PageActions({ children, className }: { children: ReactNode; clas
 }
 
 /**
- * Banner abstrato local — cor estrutural, formas geométricas e textura
- * discreta em SVG. Sem imagem externa, sem conteúdo funcional.
+ * Banner do cabeçalho de página. Com `slot`, o cliente pode enviar a própria
+ * imagem (persistida no navegador); sem imagem enviada — ou sem `slot` —
+ * mantém a composição abstrata local, nunca uma foto genérica.
  */
-export function PageBanner({ className }: { className?: string }) {
+export function PageBanner({ slot, rotulo, className }: { slot?: ImageSlotId; rotulo?: string; className?: string }) {
+  if (slot) return <UploadableBanner slot={slot} rotulo={rotulo ?? 'Imagem do banner da página'} className={className} />
+
   return (
     <div className={cn('relative hidden min-h-[180px] overflow-hidden rounded-[24px] bg-navy lg:block', className)} aria-hidden="true">
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 560 240" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <pattern id="hero-dots" width="22" height="22" patternUnits="userSpaceOnUse">
-            <circle cx="1.5" cy="1.5" r="1.5" className="fill-white/[0.06]" />
-          </pattern>
-        </defs>
-        <rect width="560" height="240" fill="url(#hero-dots)" />
-        <circle cx="470" cy="130" r="150" className="fill-accent/90" />
-        <circle cx="470" cy="130" r="196" className="fill-none stroke-white/10" strokeWidth="1.5" />
-        <circle cx="470" cy="130" r="240" className="fill-none stroke-white/[0.06]" strokeWidth="1.5" />
-        <circle cx="118" cy="196" r="46" className="fill-white/[0.05]" />
-        <circle cx="92" cy="48" r="5" className="fill-accent" />
-      </svg>
+      <AbstractBannerPattern id="page" />
     </div>
   )
 }

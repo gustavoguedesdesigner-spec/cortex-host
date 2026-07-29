@@ -34,7 +34,7 @@ export function ContextualHeader() {
       title={`Bom dia, ${demoUser.nome}.`}
       titleSize="display"
       description={`Veja o que exige sua atenção nas operações da ${demoUser.empresa}.`}
-      banner={<PageBanner className="min-h-[200px]" />}
+      banner={<PageBanner slot="banner-central" rotulo="Imagem do banner da Central de Operações" className="min-h-[200px]" />}
       meta={
         <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-caption text-ink-tertiary">
           <span>{formatDateFull(networkSummary.dataSimulada)}</span>

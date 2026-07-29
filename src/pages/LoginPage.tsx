@@ -4,6 +4,7 @@ import { ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Logo } from '@/components/layout/Logo'
+import { UploadableEditorialPanel } from '@/components/ui/ImageUpload'
 import { useAppState } from '@/context/AppStateContext'
 import { demoCredentials } from '@/data/user'
 
@@ -115,19 +116,26 @@ export default function LoginPage() {
       </div>
 
       {/* Painel editorial */}
-      <div className="relative hidden overflow-hidden bg-navy px-16 py-14 lg:flex lg:flex-col lg:justify-between">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.16]"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, rgba(255,255,255,0.28) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.28) 1px, transparent 1px)',
-            backgroundSize: '68px 68px',
-          }}
-          aria-hidden="true"
-        />
-        <div className="pointer-events-none absolute -right-24 top-24 h-64 w-64 rounded-full border border-accent/25" aria-hidden="true" />
-        <div className="pointer-events-none absolute right-16 top-56 h-24 w-24 rounded-full bg-accent/90" aria-hidden="true" />
-
+      <UploadableEditorialPanel
+        slot="login"
+        rotulo="Imagem do painel de login"
+        className="hidden px-16 py-14 lg:flex lg:flex-col lg:justify-between"
+        decoracao={
+          <>
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.16]"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, rgba(255,255,255,0.28) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.28) 1px, transparent 1px)',
+                backgroundSize: '68px 68px',
+              }}
+              aria-hidden="true"
+            />
+            <div className="pointer-events-none absolute -right-24 top-24 h-64 w-64 rounded-full border border-accent/25" aria-hidden="true" />
+            <div className="pointer-events-none absolute right-16 top-56 h-24 w-24 rounded-full bg-accent/90" aria-hidden="true" />
+          </>
+        }
+      >
         <span className="relative text-label uppercase tracking-[0.18em] text-white/45">Central de inteligência operacional</span>
 
         <div className="relative max-w-lg">
@@ -144,7 +152,7 @@ export default function LoginPage() {
           <span>Salvador Brewing Co.</span>
           <span>6 unidades conectadas</span>
         </div>
-      </div>
+      </UploadableEditorialPanel>
     </div>
   )
 }

@@ -66,7 +66,7 @@ export function BibliotecaHeader({
         eyebrow="Conhecimento"
         title="Biblioteca Operacional"
         description="Centralize procedimentos, treinamentos e checklists para garantir que cada unidade execute o padrão correto."
-        banner={<PageBanner className="min-h-[172px]" />}
+        banner={<PageBanner slot="banner-biblioteca" rotulo="Imagem do banner da Biblioteca" className="min-h-[172px]" />}
         meta={<p className="text-caption text-ink-tertiary">Atualizado {knowledgeSummary.ultimaAtualizacaoLabel}</p>}
         actions={
           <>

@@ -59,7 +59,7 @@ export function SuppliersHero({ onNovoFornecedor, onComparar }: { onNovoForneced
           </Button>
         </>
       }
-      banner={<PageBanner />}
+      banner={<PageBanner slot="banner-fornecedores" rotulo="Imagem do banner de Fornecedores" />}
     />
   )
 }

@@ -98,7 +98,7 @@ export default function Unidades() {
         eyebrow="Operação"
         title="Unidades"
         description="Compare a situação operacional das seis unidades e identifique onde sua atenção é mais necessária."
-        banner={<PageBanner className="min-h-[172px]" />}
+        banner={<PageBanner slot="banner-unidades" rotulo="Imagem do banner de Unidades" className="min-h-[172px]" />}
       />
 
       <NetworkSummaryBar

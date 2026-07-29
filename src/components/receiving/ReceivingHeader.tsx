@@ -50,7 +50,7 @@ export function ReceivingHero({ onNovoRecebimento }: { onNovoRecebimento: () => 
           Novo recebimento
         </Button>
       }
-      banner={<PageBanner />}
+      banner={<PageBanner slot="banner-recebimentos" rotulo="Imagem do banner de Recebimentos" />}
     />
   )
 }
