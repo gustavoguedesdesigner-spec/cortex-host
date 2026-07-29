@@ -20,10 +20,12 @@ export function SupplierCard({ supplier }: { supplier: Supplier }) {
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:border-border-strong hover:shadow-card">
       <button onClick={() => navigate(`/fornecedores/${supplier.id}`)} className="relative flex h-32 flex-col justify-between overflow-hidden bg-navy px-4 pt-3 pb-3 text-left">
-        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]" aria-hidden="true">
-          <pattern id={`dots-${supplier.id}`} width="16" height="16" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1" fill="white" />
-          </pattern>
+        <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+          <defs>
+            <pattern id={`dots-${supplier.id}`} width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" className="fill-white/[0.06]" />
+            </pattern>
+          </defs>
           <rect width="100%" height="100%" fill={`url(#dots-${supplier.id})`} />
         </svg>
         <div className="relative flex items-center justify-between text-badge uppercase tracking-[0.06em] text-white/60">
